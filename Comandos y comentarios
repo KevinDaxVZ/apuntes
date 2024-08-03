@@ -1,0 +1,3351 @@
+  ---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 1								|
+---------------------------------------------------------------------------------------------------------------------------------
+PARA MOSTRAR EN PANTALLA:
+------------------------------------------
+print(variable)					imprime la variable indicada en pantalla. La variable puede ser string, numeros, booleanos, etc. (los espacios son carácteres).
+\carácter					le indicamos a Python que al siguiente carácter lo tome como textual. (ojo con los carácteres especiales que van con \).	
+\n						dentro de los string significa nueva linea.
+\t						agregar un espacio de 4 carácteres antes del carácter siguiente. Es tabular o poner una sangría mejor dicho.
+\\						para poder usar \ como un carácter.
+
+
+PARA INGRESAR INFORMACIÓN:
+------------------------------------------
+input("mensaje")				para mostrar un mensaje luego espera a que el usuario ingrese información.
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 2								|
+---------------------------------------------------------------------------------------------------------------------------------
+
+TIPOS DE DATOS:
+-------------------------------------------
+nombre		abreviación	ejemplo				concepto
+----------	------------	---------			--------------------		
+string		(str)		'hola','-"·$',"123"		cadena de carácteres.
+integer		(int)		1,52,34,22,-5			numeros enteros.
+floating	(float)		1.23,3.5			numeros con decimales.
+listas		(list)		["sal",23,True]			una lista de datos con indices, la lista es dinamica.
+diccionarios	(dic)		{'hola':23,'arte':'coca'}	lista de datos sin indice, con cada clave con su valor.
+tuples		(tup)		(5,3,2,1)			lista de datos estatica, tiene indice.
+sets		(set)		{1,3,6,2}			conjunto de datos únicos.
+boleanos	(bool)		True, False			valor booleano, es como binario 0 y 1.
+
+
+VARIABLES:
+-------------------------------------------
+*Son letras que contienen valores.
+*Consejos a tener en cuenta al declarar una variable.
+	-regla1:legible.
+	-regla2:unidad.
+	-regla3:hispanios.
+	-regla4:números.
+	-regla5:signos.
+	-regla6:palabra clave.
+
+
+-------------------------------------------------
+|		comandos:			|
+-------------------------------------------------
+type(variable)					nos permite conocer el tipo de dato de la variable.
+int(variable)					para convertir los datos a tipo entero.
+str(variable)					para convertir los datos en cadena de carácteres.
+float(variable)					para convertir los datos a tipo flotante.
+
+round(n1,#decimal)				sirve para redondear numeros, sino indicamos el 2do parámtero redondea al entero más proximo.
+
+
+
+FORMAS DE CONCATENAR TEXTOS:
+-------------------------------------------------
+print("texto{} texto2 {}".format(n1,n2))		
+print(f"texto{n1} texto2 {n2}")
+print(n1,n2,"texto")						lo imprime como si fuera una tupla, es decir que imprime los valores de la misma.
+
+
+
+OPERADORES MATEMATICOS:
+-------------------------------------------------
+simbolo			nombre				definición
+----------		-----------			-------------------
++			suma				suma las variables
+-			resta				resta las variables
+*			multiplicación			multiplica las variables
+/			división			divide las variable
+//			división al piso		devuelve el cociente al dividir
+%			módulo				devuelve el residuo al dividir
+**			potencia			eleva a la potencia a las variables
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 3								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Los string en Python siempre empiezan por el índice 0.
+
+
+---------------------------------------------------------
+|	METODOS PARA MANIPULAR TEXTOS:			|
+---------------------------------------------------------
+*manipular textos, también archivos, etc.
+
+variable.index("carácter")				Nos devuelve el índice del caráter o palabra indicada. Buscara respecto al primer carácter de la palabra dada.
+variable.index("carácter",a,b)				'a' hace referencia al indice de donde comenzara buscar, 'b' hace referencia hasta el indice anterior llegara. la busqueda es de 						
+							izquierda a derecha.
+variable.rindex("carácter")				Este metodo funciona igual que index, pero la busqueda es al reves, es decir; de derecha a izquierda.			
+variable.rindex("carácter",a,b)				
+variable.find("carácter")				fin funciona igual que index, la diferencia esta en que si find no encuentra la palabra, devolvera -1, en cambio index vota error.
+variable.rfind("caráct	er")				busca de derecha a izquierda. (
+
+texto[a:b]						muestra desde el indice a hasta el indice b-1 del texto
+texto[a:b:n]						el tercer carácter hace referencia a cuanto en cuanto va avanzar.
+
+variable.count("palabra")				Cuenta cuantas veces se repite esa palabra.
+variable.startswith("palabra")				devuelve un valor booleano si palabra comienza con la indicada.
+variable.endswith("palabra")				devuelve un valor booleano si la palabra comienza con la indicada.
+
+variable.isdigit()					determina si todos los carácteres son digitos, o pueden formar números, incluido a lenguas orientales.
+variable.isnumeric()					determina si todos los carácteres son numeros. Incluye también carácteres de connotación numerica que no necesariamente son digitos.
+variable.isdecimal()					determina si todos los caracteres son decimales, es decir que sus carácteres esten entre 0-9
+variable.isalnum()					determina si todos los caracteres son alfanumericos.(es decir numeros y letras)
+variable.isalpha()					determina si todos los caracteres son alfabeticos.(solo letras del abcedario)
+
+variable.islower()					determina si todos los carácteres de la variable son minúsculas.
+variable.isupper()					determina si todos los carácteres de la variable son mayúsculas.
+variable.isprintable()					determina si todos los carácteres especiales son imprimibles, es decir si no son carácteres especiales (ejemplo \...)
+variable.isspace()					determina si todos los carácteres son espacios.
+
+variable.capitalize()					retorna todo el texto con el primer carácter en mayúscula.
+variable.encode()					codifica la cadena con el mapa de carácteres especificado y retorna una estancia del tipo bytes. (ejem "hola mundo".encode(utf-8))
+variable.replace(a1,a2)					remplaza la cadena a1 por a2 en la variable en toda la variable.					
+variable.lower()					retorna una copia de variable con todos sus carácteres en minúsculas.
+variable.upper()					retorna una copia de variable con todos sus carácteres en mayúsculas.
+
+variable.swapcase()					cambia las mayúsculas por minúsculas y visceversa.
+variable.strip()					remueven los espacios en blanco de más precedentes  y/o suceden en la cadena.
+variable.lstrip()					lo mismo que strip.
+variable.rstrip()					lo mismo que strip.
+variable.center(a,"carácter")				alinea el texto en el centro, la primera variable indica en cuantos espacios y la segunda que carácteres usara, por defecto es espacio.
+variable.ljust()
+variable.rjust()
+
+variable.split()					divide las cadenas de texto de variable según el carácter que le indiquemos(por defecto son espacios). El segundo caracter indica cual
+							es el maximo de divisiones que puede tener lugar (-1) por defecto
+
+variable.splitlines()					divide una cadena por cada aparición de un salto de linea.
+variable.partition("carácter")				retorna 3 tuplas, 1 un bloque de carácteres anterior al primer separador carácter indicado, 2 el carácter separador y 3 el bloque de 	carácteres posterior.
+variable.rpartition()					opera lo mismo que partition pero de izquierda a derecha.
+
+"carácter".join(variable)				une los elementos de una lista, tupla, etc. en un solo string añadiendo entre los elementos el carácter indicado.
+
+
+
+
+
+PROPIEDADES DE LOS STRINGS:
+----------------------------------
+*Los string son inmutables. Es decir que tu no puedes hacer esto variable[i]="otro valor", es decir los objetos de string no soportan asignación de items.
+*son multiplicables y concatenables. Ejemplo variable*2
+*son verificables. Ejemplo "hola" in variable    , "hola" not in variable.
+*los comentarios anchos se pueden usar como un string. variable=''' hola amigos ''' (esto es útil para hacer saltos de líneas sin usar los carácteres especiales.)
+*Se puede calcular la longitud.	len(variable)   Nos dira la cantidad de carácteres de nuestro string.
+
+
+---------------------------------------------------------
+|		METODOS PARA LISTAS:			|
+---------------------------------------------------------
+*Son ordenadas.
+*Aceptan cualquier tipo de dato.
+*Se puede anidar listas, tener listas de listas.
+*Las listas si son inmutables.
+*a=[1,'a',2] esto es un ejemplo de una lista.
+*lista hace referencia a una variable lista.
+
+len(lista)						nos dira el tamaño de elementos de nuestra lista.
+lista.append(elemento)					añade un elemento a nuestra lista, este elemento se agrega al final y se guarda ya en lista.
+lista.insert(i,elemento)				añade en el indice dado un elemento, se autoguarda.
+lista.pop()						elimina el ultimo elemento de la lista.						
+lista.pop(i)						elimina el indice indicado de la lista. este valor se auto guarda, pero también se puede guardar en una variable.
+
+lista.sort()						ordena la lista alfabeticamente y lo autoguarda.
+lista.reverse()						ordena los elementos de la lista al reves (ojo no los ordena alfabeticamente). Lo autoguarda
+
+
+
+
+---------------------------------------------------------
+|		METODOS PARA DICCIONARIOS:		|
+---------------------------------------------------------
+*Estas compuestos por una palabra clave y un valor asociado a esa clave. Las claves son unicas.
+*a={'hola':5,'sa':'maria'} esto es un ejemplo de diccionario.
+*no tienen un orden especifico. Esto indica que no se puede buscar un valor respecto a sus indices.
+*el tipo de dato es 'dict'
+*diccionario hace referencia a una variable diccionario.
+
+
+diccionario['clave1']					Esto nos devolvera el valor de esa clave.
+diccionario["nuevaClave"]=valor				Esto es para añadir una nueva clave y su respectivo valor a nuestro diccionario. Si la clave ya existe, se modifica solo el valor.
+diccionario.keys()					Muestra las claves de un diccionario.
+diccionario.values()					Muestra los valores de las claves del diccionario.
+diccionario.items()					Muestra cada clave con su valor en forma de tuplas.
+
+
+
+
+---------------------------------------------------------
+|		METODOS PARA TUPLAS:			|
+---------------------------------------------------------
+*Son muy parecidas a las listas, pero sus elementos son inmutables.
+*Se usa por ocupan menos espacios que las listas (eficiencia).
+*Se usa para hacer estructuras a pruebas de daños.
+*a=(1,2,3,4,'a') Este es un ejemplo de tupla. No es necesario usar las parentesis.			
+*El tipo de dato es tuple.
+*Son ordenadas, es decir tienen indices como las listas.
+*Muchos metodos de listas funcionan con las tuplas.
+
+
+
+
+---------------------------------------------------------
+|		METODOS PARA CONJUNTOS(set):		|
+---------------------------------------------------------
+*a={1,2,4,5} p a=set([1,2,4,5])	son dos formas de crear un set(conjunto).
+*Los elementos de un set no tienen orden.
+*Los elementos de un set son inmutables.
+*Los elementos de un set no pueden ser listas, ni diccionarios. Pero si tuplas.
+*sean set,set1,s2 variables tipo set.
+
+len(set)						nos indicara el número de elementos de nuestro set.
+
+set1.union(set2)					nos devolvera la unión de los elementos de nuestro set.
+set1.update(set2)					une los elementos de set2 a set1 y los autoguarda.
+set1.difference(set2)					nos devuelve solo los elementos del set1 que no esten incluidos en set2.
+set1.difference_update(set2)				remueve de set1 todos los elementos comunes entre set1 y set2. Se autoguarda
+set1.intersection(set2)					nos devuelve los elementos comunes entre el set1 y set2.
+set1.intersection_update(set2)				mantiene unicamente los elementos comunes entre set1 y set2. Y los autoguarda en set1.
+set1.symmetric_difference(set2)				nos devolvera la diferencia simetrica entre set1 y set2, es decir nos devuelve la unión menos la intersección.
+set1.symmetric_difference_update(set2)			elimina los elementos comunes entre entre set1 y set2, y los une los demás, autoguardandolo en set1.			
+
+set1.isdisjoint(set2)					devuelve True si no hay elementos comúnes entre set1 y set2.
+set1.issubset(set2)					devuelve True si set1 esta incluido en set2.
+set1.issuperset(set2)					devuelve True si set2 esta incluido en set1.
+
+set1.add(elemento)					Agrega un elemento a nuestro set y los autoguarda.
+set1.remove(elemento)					Elimina un elemento de nuestro set, si el elemento no esta votara error.
+set1.discard(elemento)					Elimina un elemento de nuestrp set, pero no devolvera error si no lo encuentra.
+set1.pop()						Como no indicamos el elemento a eliminar, eliminara un elemento de forma aleatoria.
+set1.clear()						Elimina todos los elementos de nuestro set. Y los autoguarda.
+set1.copy()						retorna una copia del set.
+
+
+
+---------------------------------------------------------
+|		METODOS PARA BOOLEANOS(set):		|
+---------------------------------------------------------
+*Los booleanos son tipos de datos binarios (True/False), que surgen de operaciones lógicas, o pueden declararse explícitamente.
+*a=bool() esto hace referencia un valor False.
+
+operadores de comparción:
+-----------------------------
+elemento1	<	elemento2			comprueba si elemento1 es menor que elemento2. y devuelve el valor booleano correspondiente.					
+elemento1	>	elemento2			comprueba si elemento1 es mayor que elemento2.
+elemento1	<=	elemento2			comprueba si elemento1 es menor o igual que elemento2.
+elemento1	>=	elemento2			comprueba si elemento1 es mayor o igual que elemento2.
+elemento1	==	elemento2			comprueba si elemento1 es igual que elemento2.
+elemento1	!=	elemento2			comprueba si elemento1 es diferente que elemento2.
+
+operadores lógicos:
+----------------------
+and							expresión lógica que hace referencia a 'y'
+or							expresión lógica que hace referencia a 'o'
+not							hace referencia a 'no'
+in							hace referencia a 'en' o 'dentro'
+not in							hace referencia a 'no en' o 'no dentro'
+-----------------------------------------
+|		CASTING:		|
+-----------------------------------------
+*Se dice casting al cambio de datos para darle otro uso.
+
+tuple(variable)						convierte a variable en tipo de dato tuple
+list(variable)						convierte a variable en tipo de dato list
+set(variable)						convierte a variable en tipo de dato set
+dict(variable)						convierte a variable en tipo de dato dict
+str(variable)						convierte a variable en tipo de dato str
+int(variable)						convierte a variable en tipo de dato int
+float(variable)						convierte a variable en tipo de dato float
+bool(variable)						convierte a variable en tipo de dato bool
+eval(variable)						analiza un strign para determinar si es una operación matemática, devuelve el resultado.
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 4								|
+---------------------------------------------------------------------------------------------------------------------------------
+
+control de flujo:
+-----------------
+if condicion:
+	codigo
+elif condicion:
+	codigo
+else:
+	codigo
+
+
+
+LOOPS(bucles):
+---------------
+
+-------------------
+|	FOR	  |
+-------------------
+for 'elemento' in 'variable':				para cada 'elemento' de nuestra 'variable', la variable debe ser iterable. elemento tomara uno a uno el valor de nuestro iterable.
+	codigo
+
+for a,b in variable:					para elementos pares de nuestra variable.
+	codigo		
+
+-------------------
+|	WHILE	  |
+-------------------
+while una_codicion:					Mientras la condición se cumpla, el código se seguira ejecutando.
+	codigo
+
+else:
+	otro_codigo					Se ejecutara en caso el while deje de ejecutarse o no se ejecute.
+
+
+---------------------------------------------------------
+|		METODOS PARA LOOPS:			|
+---------------------------------------------------------
+*Estos metodos aplican para 'for' y 'while'.
+
+break							Interrumpe el loop para salir directamente.
+continue						Interrumpe la interación actual y pasa a la siguiente.
+pass							se lo usa cuando aún no podes el código en los loops y no te salga un error por dejar espacio vacio.
+	
+
+range:
+---------------
+range(a)						para un rango de 0 hasta un rango menor que a.
+range(a,b)						para un rango de a hasta menor que b.
+range(a,b,c)						indicamos para un rango de 'a' hasta menor que 'b' aumentado de 'c' en 'c'.
+
+list(range(a,b))					creara una lista de elementos cuyo valor va desde 'a' hacia menor que 'b'.
+
+
+enumerate:
+---------------
+enumerate(variable)					devolvera una tupla donde sus elementos seran una tupla de cada indice con su elemento. Pero debemos pasarlo a lista o tupla por que 								
+							sino solo nos mostrara una posición de memoria.
+
+for i in enumerate(variable):				enumerate hace el iterador tenga por elmentos a cada indice y su elemento de nuestra variable iterable.
+	print(i)					mostrara (0,elemento1)... y asi sucesivamente.
+
+
+
+zip:
+---------------
+*si una lista tiene mas elementos que la otra, tomara en cuenta solo hasta que se agote la cantidad de elementos de la mas pequeña, y procede a ignorar lo demás.
+*
+
+
+zip(lista1,lista2)					creara un lista siendo cada elemento un tuple con elementos, el primero de la lista1 y el segundo de la lista2. 
+zip(lista1,lista2,lista3)				incluso pueden ser mas listas que solo 3. (pueden ser tuplas, string; cualquiera que sea iterable)
+
+list(zip)						debemos hacerle un casting a algún tipo de colección sino se vera solo una posición en memoria.
+
+
+
+min y max:
+--------------
+*encuentran el valor minimo o maximo de una colección.(tanto numericos como alfabeticos)
+*pueden ser int, float, str, list, tuple, set, diccionari,etc.
+*recuerda que se basa en el código ascii.
+
+min(variable)						encuentra el valor minimo de nuestra colección.
+max(variable)						encuentra el valor maximo de nuestra colección.
+
+
+random:
+--------------
+*estos son algunos metodos del modulo random
+*para usar estos metodos no olvidemos importar el modulo random
+
+from random import *					importa todos los metodos de este modulo.
+from random import randint				importa el metodo randint del mondulo random.
+import random						importa el metodo random, pero ten cuidado ya que no importa todo.
+
+randint(a,b)						nos dara un numero entero aleatorio entre 'a' y 'b' (si incluye a b)
+uniform(a,b)						nos dara un numero real aleatoria entre 'a' y 'b'
+random()						no necesita parámetros, elije un numero real aleatorio entre 0 y 1.
+choice(variable)					nos devuelve un elemento aleatorio de nuestra colección.
+shuffle(variable)					ordena nuestra colección de manera aleatoria.(no puede ser un string), suffle se autoguarda. Por eso no puede hacer con inmutables
+
+
+
+comprensión de listas:
+-----------------------
+*es poner el código en una linea.
+
+ejemplo 1:
+	palabra='python'
+	lista=[letra for letra in palabra]		#cada elemento de la lista sera 'letra' para cada 'letra' en 'palabra'.
+
+	print(lista)					#devolvera ['p','y','t','h','o','n']
+
+ejemplo 2:
+	lista=[n for n in range(0,5)]
+
+ejemplo 3:
+	lista=[n for n in range(0,10) if n*2>10]
+
+ejemplo 4:
+	lista=[n if n*2>10 else "no" for n in range(0,10)]
+
+ejemplo 5:
+	lista2=[p*5 for p in lista1]
+
+ejemplo 6:
+	(codigo) if (condicion) else (codigo)			si se cumple la condición mostrara el código a la izquierda de if, caso contrario mostrara el código a la derecha de else.
+
+ejemplo 7:
+	(codigo) if (condicion) else (codigo) for n in variable:
+
+
+
+
+
+match:
+-----------
+*Esta es una nueva herramienta agregada por python, esta herramienta es como el switch en otros lenguajes.
+*Pero incluso es mas potente, ya que nos permite detectar patrones, es decir detectar estructura, como se puede ver en el ejemplo 2.
+
+
+sintaxis:
+
+match variable:							Si 'variable' tiene alguno de los siguientes valores.
+	case a:							si tiene el valor de 'a' se ejecuta el siguiente código
+		codigo
+	case b:							si tiene el valor de 'b' se ejecuta el siguiente código
+		codigo
+	case _:							Esto indica valor por defecto, es decir para cualquier otro valor de nuestra variable
+		codigo
+
+
+Ejemplo 1:
+- - - - - -
+serie="N-02"
+match serie:
+    case "N-01":
+        print("Samsung")
+    case "N-02":
+        print("Nokia")
+    case "N-03":
+        print("Motorola")
+    case _:							·
+        print("No existe este producto")
+
+
+Ejemplo 2:
+- - - - - -
+cliente={'nombre':'Dax',
+         'edad':27,
+         'ocupacion':'programador'}
+
+pelicula={'titulo':'Call duty',
+          'ficha_tecnica':{'protagonista':'Elmer Santos',
+                           'director':'Pamela Victorio'}}
+
+elementos=[cliente,pelicula,'canto']
+
+for e in elementos:
+    match e:
+        case {'nombre':name,'edad':age,'ocupacion':ocupation}:
+            print("Es un cliente")
+            print(name, age, ocupation)
+
+        case {'titulo':title,'ficha_tecnica':{'protagonista':protagonist,'director':director}}:
+            print("Es una pelicula")
+            print(title, protagonist, director)
+
+        case _:
+            print("No se que es esto")
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 5								|
+---------------------------------------------------------------------------------------------------------------------------------
+*métodos son funciones de los objetos. Permiten manipularlos, analizarlos, ejecutar acciones.
+
+
+Metodos, ayuda y documentación:
+---------------------------------
+
+
+
+-------------------------------------------------------------
+|			FUNCIONES	   	            |
+-------------------------------------------------------------
+*
+
+sintaxis simple:
+- - - - - - - - -
+1)
+
+def mi_funcion():						definimos la función
+	'''información descriptiva'''				damos información sobre que trata la función
+	código							el código que se ejecuta una vez sea llamada la función
+
+
+mi_funcion()							Con esto llamamos a la función
+
+
+2)
+def mi_funcion(argumento):
+	'''Documentación para explicar de que trata'''			
+	codigo
+
+
+mi_funcion(valor)						Llamamos la función pero pasandola un valor
+
+
+
+-------------------------
+|	return		|
+-------------------------
+*Se usa para que las funciones devuelvan algo.
+
+
+|-------iteración entre funciones----------|
+
+
+|------argumentos indefinidos------------|
+- * y ** se usan para desmpacar.
+- *args nos permite definir funciones cuyo numero de argumentos sean variables.(args es solo una palabra, lo clave es * como se puede ver en el siguiente ejemplo)
+ejemplo1:
+def suma(*args):
+	for i in args:
+		print(i)
+
+suma(1)						# Se le paso 1 argumento
+suma(1,2)					# Se le paso 2 argumentos
+suma(1,2,4,6,1)					# Se le paso varios argumentos y no ocurrio un error.
+
+
+- **kwargs funciona de forma similar que *args , la diferencia es que trabaja muy bien con diccionarios, como veremos en el siguiente ejemplo. (kwargs es solo una palabra, lo clave es **)
+ejemplo2:
+def suma(**args):
+	#algun_codigo
+
+suma(a=1,b=2,c=3)				#**args guardara cada variable como si fuera un str y a la vez clave y valor de la variable como valor de un diccionario.
+
+
+ejemplo3:
+
+
+def prueba(num1,num2,*args,**kwargs):
+    print(f"el primer valor es {num1}")
+    print(f"el segundp valor es {num2}")
+
+    for arg in args:
+        print(f"arg = {arg}")
+
+    for clave, valor in kwargs.items():
+        print(f"{clave} = {valor}")
+
+
+args=[10,20,30,40]
+kwargs={'a':1,'b':2}
+
+prueba(1,2,*args,**kwargs)			#Como vemos pasamos las variables desmpaquetadas.
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 6								|
+---------------------------------------------------------------------------------------------------------------------------------
+*from io import *
+
+
+
+-abrir y manipular archivos-:
+---------------------------------
+
+mi_archivo=open('Prueba.txt')					#abre el archivo de prueba y lo guarda en la variable, en este ejemplo el archivo esta en la misma ruta del archivo python.
+mi_archivo=mi_archivo.read()					#Prepara el archivo para ser leído y mostrarlo en pantalla
+
+una_linea=mi_archivo.readline()					#guarda la primera linea en aquella variable, volver hacer lo mismo guardara la siguiente linea (considerar que cada fin de 									linea tiene un salto de linea que es un carácter en python)
+
+
+una_linea=mi_archivo.readline().rstrip()			#Elimina el salto de linea de la linea.
+
+
+una_linea=mi_archivo.readlines()				#guarda cada linea como elemento de una lista en la variable.
+	
+
+
+
+una_archivo.close()						#Como buena práctica cerramos el archivo que hemos abierto.
+
+
+
+
+-crear y escribir archivos-:
+-----------------------------
+open('namearchivo','modo_apertura')				#son tres modos de apertura (r,w,a,x) . por defecto viene 'r'. 
+								'r' indica abrir el archivo en modo lectura
+								'w' abre el archivo en modo escritura, en caso el archivo ya existe es vaciado, en caso no exista lo crea.
+								'a' abre el archivo en solo modo escritura, en caso el archivo ya existe, se posicia al final del archivo.
+								en caso de que el archivo no exista lo crea.
+								'x' crea un archivo, y arroja un error si el mismo ya existe en el directorio.
+
+
+
+mi_archivo=open("prueba.txt",'w')				abre o crea el archivo en modo escritura y lo guarda en la variable.
+mi_archivo.write(texto)						empieza a escribir en el archivo, borra todo su contenido
+
+mi_archivo.write('''asd						escribe en el archivo pero tal como esta aqui, cada linea una linea en el texto
+fsdf
+dfsdf
+sd''')
+
+
+mi_archivo.writelines(lista)					escribe cada elemento de la lista juntos.
+	
+mi_archivo=open("prueba.txt",'a')				escribe pero esta vez al final del contenido. Los mismos metodos para 'w' se pueden usar aquí.
+
+
+--------------------------
+--	directorios	--
+--------------------------
+
+*importaremos os						nos permite trabajar con comandos que aplican sobre el sistema operativo
+
+import os
+os.getcwd()							nos permite obtener la dirección del directorio actual en el que nos encontramos.	
+os.chdir('ruta')						nos permite cambiar la ruta del directorio actual para así poder abrir archivos de la nueva ruta en la que estamos. devuelve
+								ruta="C:\\Users\\Windows" (por ejemplo esa ruta, ten en cuenta que se usa \\ por si se pone uno lo reconoce python como un 									cáracter especial) . Devuelve None
+
+os.makedirs('ruta\\newDirectory')				permite crear un nuevo directorio en la ruta indicada
+os.rmdir(ruta)							Elimina el directorio de la ruta dada, devuelve error si el directorio no esta vacio y si no existe el directorio.
+os.open(namearchivo,'w')					crea un archivo
+os.remove(nameArchivo)						Elimina el archivo señalado
+os.unlink(nameArchivo)						Elimina el archivo señalado,es igual que os.remove()
+
+
+os.path.basename('ruta\\archivo')				Nos devolvera el nombre del archivo dada una ruta.
+os.path.dirname('ruta\\archivo')				Nos devolvera toda la ruta en la que se encuentra el archivo.
+os.path.split('ruta\\archivo')					Nos devolvera una tupla con ('ruta_del_directorio_del_archivo','nombre_archivo')
+os.path.splitext('ruta\\archivo')				Nos devolvera una tupla (elemento1, elemento2) , donde ambos elementos hacen referencia al nombre del archivo o ruta padre
+								elemento2 hace referencia a la extensión con el . , y el elemetno 1 al nombre sin la extensión
+
+
+*2>%1								Esto despues del comando nos permite verificar que se haga la captura de la salida en pantalla de lo que de el comando
+								esto se usa tanto en UNIX/LINUX (Esto es importantisimo)
+
+os.system('comandoCMD')						Permite ingresar el comando a la consola
+a=os.popen('comandoCMD')					Nos genera un objeto que guarda todo lo generado por el comando en la consola y lo podemos guargar en la variable a
+a.readlines()							Nos genera una lista donde sus elementos son cada linea generado de la consola generado por el comando cmd.
+for e in a.readlines():print(e,end="")				Mostrara como si hubieramos captura todo lo generado por el comando de la consola.
+
+
+*importaremos pathlib
+
+from pathlib import Path
+
+carpeta=Path('C:/Users/Windows')				Nos permite que python abra la ruta de esa carpeta no importando el sistema operativo. (pero se usa /)
+archivo=carpeta / 'nombreArchivo'				y así indicamos el archivo con el que queremos trabajar. (pudimos haberlo hecho también en la misma ruta de carpeta)
+	
+carpeta=Path('/ruta/ruta2')					Pudimos también haberla declarado así, sin el 'C:'
+capeta=Path('/ruta/ruta2') / 'archivo'			
+
+
+carpeta=Path('ruta/archivo')
+carpeta.read_text()						Nos permite leer directamente el contenido del archivo sin necesidad de abrirlo y cerrarlo.
+
+
+carpeta.parent							devuelve el nombre de la carpeta
+carpeta.name							devuelve el nombre y extensión del archivo.
+carpeta.suffix							nos devuelve la extensión del archivo.
+carpeta.stem							nos devuelve solo el nombre del archivo sin su extensión
+carpeta.exists()						verifica si el directorio de carpeta existe o no, retorna un valor booleano.
+
+ruta_windows=pathlib.PureWindowsPath(carpeta)			Devuelve la ruta de la carpeta pero adaptandola al formato de windows, es decir con las \. y lo guarda en la variable 
+								ruta_windows
+
+
+
+-from pathlib import Path
+base=Path.home()						Devuelve el directorio base de nuestro sistema.
+ruta=Path(*lista)						Si pasamos una lista, Path une los elementos como si fueran directorios cada uno para crear una ruta. Pero debeos desempaquetar
+								la lista
+
+ruta=Path(base,'amigo','hola',path('peru','lima.txt'))		Crea una ruta con todos esos elementos y los guarda en la variable ruta.
+ruta2=ruta.with_name('archivo')					Ahora esta ruta apunta del mismo directorio de ruta, pero a otro archivo señalado
+ruta.parent							devuelve la ruta del directorio padre
+ruta.parent.parent						devuelve la ruta del directorio padre del padre, esto se puede usar muchas veces hasta ir recorriendo todos los directorios.
+ruta.parents[i]							i toma un valor natural que puede ir desde 0. 	i=0 indica 1 parents.
+														i=1 indica 2 parents.
+														i=2 indica 3 parents. Y así sucesivamente.
+
+ruta.parents[i]							si i toma valor negativo, empezara por el principio. 	i=-1 hace referencia al directorio raíz.
+															i=-2 hace referencia al siguiente de raíz. Y así sucesivamente
+
+
+ruta=Path('ruta1')
+for e in ruta.glob('*'):					ruta.glob, nos permite indicar si con su argumento si es '*' cualquier contenido. '*.*' cualquier tipo de archivo de la ruta 		
+	print(e)						dada. 'e' ira tomando cada contenido que hay en esta ruta. '**/*' mostrara incluso el contenido de los directorios internos
+								'**/*.*' mostrara todos los archivos e incluidos de sus subdirectorios.
+							
+
+ruta.glob('*')							muestra todos los items(carpetas y archivos de esta ruta)
+ruta.glob('*.*')						muestra todo lo que tiene un . en su nombre (generalmente archivos por su extensión)
+ruta.glob('**/*')						muestra todo (carpetas, archivos, subcarpetas y sus archivos, sub de subcarpetas, y sus respectivos archivos, es decir todo)
+ruta.glob('**/*.*')						muestra todos los archivos (incluso de las carpetas internas que tenga y estas tienen carpetas internas, también lo muestra)
+ruta.glob('*/')							muestra las carpetas del directorio en el que estamos
+
+ruta=Path('a','b','c','d')					suponiendo que ruta sea igual a ese Path (a/b/c/d)
+sub_ruta1=ruta.relative_to('a')					sub_ruta1 sera igual al path (b/c/d), ya que indicamos que sea relativo a la ruta 'a'.
+sub_ruta2=ruta.relative_to('a','b')				sub_ruta2 sera igual al path (c/d), ya que indicamos que sea relativo a las rutas 'a' y 'b'. Funciona al reves del metodo 									parent
+
+
+ruta.mkdir()							crea el directorio para la ruta dada.
+ruta.rmdir()							Elimina el directorio para la ruta dada.
+
+ruta2=Path('ruta1/newArchivo.txt')
+ruta2.open('w')							crea el archivo de la ruta señalada.
+ruta2.open('w').write('texto')					crea el archivo y escribe el texto (es la misma logica que usar io)
+ruta2.unlink()							Elimina el archivo señalado.
+
+
+
+*Para limpiar la consola
+*La consola es de pychar y haremos que esta simule ser una consola de windows configurandola, puede que este metodo no te funcione con otro IDE
+
+from os import system
+codigo
+system('cls')							#si tu sistema es windows o DOS.
+system('clear')							#si tu sistema es linux,Unix o MacOS.
+
+
+
+-------------------------------------------------------------------------
+|	Metodos para abrir,manipular archivos y directorios		|
+-------------------------------------------------------------------------
+open("c:\\ruta\\archivo",'modo_apertura')				abre cualquier archivo no importa su ruta. Sino indicamos la ruta completa buscara en la ruta actual
+									usamos 2 barras para que python no considere ese carácter especial. (Esto es en windows)
+
+
+open("c:/ruta/archivo",'modo_apertura')					la barra invertida en mac.
+
+
+
+import platform 
+platform.system()							devuelve el nombe del sistema operativo que estamos usando, ejemplo: devuelve Windows si el sistema operativo es
+									windows.
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 7								|
+---------------------------------------------------------------------------------------------------------------------------------
+PROGRAMACION ORIENTADA A OBJETOS:
+---------------------------------
+*Esta basada en 6 principios básicos:
+	-herencia
+	-polimorfismo
+	-cohesión
+	-abstración
+	-acoplamiento
+	-encapsulamiento
+
+
+Syntax básica:
+--------------
+
+class Name:
+	codigo
+
+
+variable=Name()
+
+
+
+atributos:
+-----------
+*Existen 2 tipos de atributos. De clase y de instancia
+*De instancia son las que se definen dentro de la clase, por lo general recien un valor
+*De clase son aquellas que ya estan definidas dentro de la clase
+*a las funciones dentro de las clases se les conoce como metodo.
+
+class Name:
+	a=False					#atributo de clase
+
+	def __init__(self,color):		#a esta funcion se le conoce como el constructor, o también dicho metodo constructor
+		self.color=color		#atributo de instancia
+
+
+
+
+
+tipos de metodos:	
+-------------------------
+*metodos de instancia
+	-acceden y modifican atributos del objeto	
+	-acceder a otros objetos
+	-modificar el estado de la clase
+	-afecta a las instancias de nuestra clase
+	-son las que usan self
+
+	def mi_metodo(self):
+		codigo
+	
+	mi_metodo()
+
+
+*metodos de clase	(que se crean usando @classmethod)
+	-estos metodos son propias de la clase y no necesitan de una instancia de la clase.
+	-al no necesitar de la instancia, no pueden acceder a los atributos de la instancia.
+	-pero si pueden acceder a los atributos de clase
+
+	
+	@classmethod
+	def mi_metodo(cls):
+		codigo
+
+
+
+*metodos estaticos	(que se crea usando @staticmethod)
+	-estos metodos son como funciones normales, con la limitante que estan dentro de la clase, no reciben ni self ni a la clase como parametros.
+	-como no reciben la clase ni la instancia, no pueden modificar ningun atributo.
+
+	@staticmethod
+	def mi_metodo():
+		codigo
+
+
+
+---------------------------------------------
+|		HERENCIA		    |
+---------------------------------------------
+*la herencia de clases es cuando una clase hereda atributos y metodos de otra clase(llamada clase padre) y esta pasa ser la clase hija
+
+ejemplo de sintaxis:
+---------------------
+class Animal:
+    def __init__(self,edad,color):
+        self.edad=edad
+        self.color=color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+
+class Pajaro(Animal):
+    pass
+
+
+piolin=Pajaro(2,'rojo')				#Como la instancia piolin de Pajaro cuenta con los metodos y atributos de la clase Animal
+
+
+
+
+
+herencia extendida:
+-----------------------
+*Las clases que heredan van buscando sus metodos y atributos en sus clases padres, y luego en las padres de estas respectivamente.
+
+ejemplo 1:
+-------------
+class Animal:
+    def __init__(self, edad, color):
+        self.edad = edad
+        self.color = color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+
+    def hablar(self):
+        print("Este animal emite un sonido")
+
+class Pajaro(Animal):
+    def __int__(self,edad,color,altura_vuelo):
+        super().__init__(edad,color)					#super.__init__() llama al metodo constructor del padre, es la forma mas comoda de usar los atributos del padre
+        self.altura_vuelo=altura_vuelo
+
+    def hablar(self):							#en caso el padre y el hijo tengan el mismo metodo, prioriza el metodo del hijo
+        print("Pio")
+
+    def volar(self,metro):						#cada clase hijo puede tener sus propios metodos y atributos.
+        print(f"Ha voldado {metro} metros")
+
+
+
+ejemplo 2:
+------------
+class Padre:
+    def __init__(self,p):
+        self.p=p
+
+class Hijo(Padre):
+    def __init__(self, h):
+        super().__init__(h)						#hereda el constructor de su padre, sino estuviera este codigo su hijo solo heredaria de aqui
+        self.h = h
+
+class Nieto(Hijo):							#hereda el constructor de su padre
+    pass
+
+
+
+
+ejemplo 3:
+------------
+class Padre:
+    def hablar(self):
+        print('hola')
+
+class Madre:
+    def reir(self):
+        print("jaja")
+
+    def hablar(self):
+        print('que tal')
+
+class Hijo(Padre,Madre):						#Aqui hay una herencia multiple, primero hereda de padre, luego busca en madre si no encuentra los metodos.
+    pass
+
+class Nieto(Hijo):
+    pass
+
+
+
+POLIMORFISMO:
+--------------
+*Es aplicar metodos del mismo nombre a distintas instancias de diferentes clases
+*Como vemos en el ejemplo, de las 2 formas llamamos a distintas instancias pero llamando a metodos del mismo nombre pero que tienen distinta función.
+
+class Vaca:
+    def __init__(self,nombre):
+        self.nombre=nombre
+
+    def hablar(self):
+        print(self.nombre+"dice muuu")
+
+
+class Oveja:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(self.nombre + "dice beee")
+
+def Animal_habla(animal):
+    animal.hablar()
+
+vaca1=Vaca('Lola')
+oveja1=Oveja('lele')
+
+#forma1
+lista=[vaca1,oveja1]
+
+for animal in lista:
+    animal.hablar()
+
+print("\n")
+
+#forma
+Animal_habla(vaca1)
+
+
+ENCAPSULAMIENTO:
+-----------------------------------
+*Es anteponer ' __ ' a los atributos o metodos para que estos sean inaccesible desde el exterior. 
+
+
+class Persona:
+    atributo_publico = "Mostrar"   # Accesible desde el exterior
+    __atributo_privado = "Oculto"  # No accesible
+    # No accesible desde el exterior
+    def __metodo_oculto(self):
+        print("Este método está oculto")
+        self.__variable = 0
+    # Accesible desde el exterior
+    def metodo_normal(self):
+        # El método si es accesible desde el interior
+        self.__metodo_oculto()
+alumno = Persona()
+# alumno.__metodo_oculto()  # Este método no es accesible desde el exterior
+alumno.metodo_normal()      # Este método es accesible
+
+
+*Existe un pequeño truco (no recomendado) para acceder a los atributos y métodos ocultos. Dichos métodos están presentes con un nombre algo distinto:
+	
+	instancia.+ _ + NombreClase +__+ método/atributo oculto
+	
+Del ejemplo anterior:
+----------------------
+alumno._Persona__metodo_oculto()
+print(alumno._Persona__atributo_privado)
+
+
+
+Metodos especiales en las clases:
+-----------------------------------------------------------------------------------------------
+*También conocidos métodos magicos o metodos dunder(En ingles dunder==double underscore; o doble guion baho). Pueden ayudarnos a sobrescribir métodos incorporados de Python sobre nuestras
+clases para controlar el resultado devuelto.
+*Estos metodos estan en todas las clases ocultamente.
+*Recuerda que todas son funciones internas de la clase, lo hemos puesto de la siguiente manera por que va acorde mas a su utilidad.
+
+
+def __init__(self):							#Sirve para inicializar los atributos de una clase nueva. Conocida como constructor.
+def __str__(self): return algo						#Nos sirve para modificar y poder ver algo al llamar a las intancias sin metodo. nos retorna lo que le demos
+def __len__(self): return algo						#Cuando hagamos un lento a una instancia de la clase, ya no votara error, sino returnara lo que le hayamos dado en 										return, podemos hacer lo mismo para int,float, abs,etc...
+def __int__(self): return algo						#al aplicarle un int ya no vatara error sino devolvera algo
+def __float__(self): return algo
+def __abs__(self): return algo
+def __del__(self): return algo						#ahora al eliminar un objeto mostrara lo dado en return.
+
+
+clase1.__bases__							#Este metodo nos muestra de que clase esta heredando nuestra clase1 (Nos muestra a su padre)
+clase1.__subclasses__()							#Nos muestra una lista, donde sus elementos son las clases a las que le hereda su atributo (sus hijas)
+clase1.__mro__								#Nos muestra el orden en el que se organiza la busqueda de los metodos heredados. 
+
+
+
+super().__init__(variabl1,variable2...)					#para heredar de nuestra clase padre.
+del variable								#del es una palabra clave, que elimina cualquier variable, objeto, etc. de la memoria de python
+
+
+
+
+Ejmplo:
+---------
+class CD:
+    def __init__(self,autor, album, cantidad):
+        self.autor=autor
+        self.album=album
+        self.canciones=cantidad
+
+    def __str__(self):
+        return "Album: "+self.album+" de "+self.autor
+
+    def __len__(self):
+        return self.canciones
+
+    def __del__(self):
+        print('He sido eliminado')
+
+mi_cd=CD('Pink Floyd','The Wall',24)
+
+print(mi_cd)
+print(len(mi_cd))
+
+
+del mi_cd
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 8								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Se veran los siguientes temas:
+	-como instalar paquetes
+	-crear modulos y paquetes
+	-manejo de errores
+	-detectar error con pylint
+	-probar el código con unittest
+	-decoradores
+	-generadores
+
+
+
+INSTALAR PAQUETES:
+-------------------
+* Se le llama paquete a un conjunto de modulos y metodos(recuerda que cada modulo tiene sus metodos)
+*PyPi (Se les llama así a los repositorios de python que contienen esos modulos y metodos que estamos necesitando instalar para que cumpla con nuestro requerimiento)
+	http://pypi.org		es el repositorio oficial de python
+*pip install (es un comando del cmd que se instala al instalar python en nuestro ordenador), estos paquetes instalados se cargan en la memoria de python y luego solo haria falta importarlos
+*también podemos directamente descargarlos y instalarlos manualmente sin la necesidad de usar pip
+*Hasta ahora hemos utilizado solo códigos, metodos, módulos,etc. ya instaladas por defecto en Python (también llamadas bibiliotacas integradas o estandar)
+ 
+
+pasos:
+	-buscar en google , se recomienda buscar en ingles por que hay mas opciones 
+		-por ejemplo: python packages for console text colors	()
+
+	-la busqueda nos dara varios sitios, se recomienda buscar en los repositorios oficiales. (http://pypi.org)
+		-por ejemplo: una vez encontramos el sitio, nos dara la indicacion para instalar con pip
+			-para nuestro ejemplo nos sale 'pip install colored'	
+			-una vez instalado ya podemos usar sus metodos y modulos pero no olvides importarlos. (import colored) o (from colored import fb,bg,attr) para solo metodos especificos
+
+
+	ejmplos2:
+	-buscamos en google 'python packages for excel'
+	-localizado el paquete desado; lo instalamos 'pip install openpyxl'
+	-importamos openpyxl para usar sus modulos o metodos.
+
+
+
+
+
+MODULOS Y PAQUETES:
+-------------------------
+*modulo se le denomina a cualquier archivo .py (osea cualquier archivo python es un modulo)
+*usando 'import' podemos importar todo el contenido de un módulo.
+*los paquetes son colecciones de modulos.
+	-todo paquete de contener un archivo(modulo) llamado __init__.py  (esto es para que python entienda que se trata de un paquete y no de usa simple carpeta)
+	-puedes tener subpaquetes dentro de tus paquetes, pero cada subpaquete de tener este archivo __init__.py para que sean considerados como paquetes
+
+
+
+
+syntax:
+----------
+*Se pueden importar paquetes pero no se podran usar sus modulos ni metodos, conviene por eso importar modulos
+*Los paquetes o modulos importados deben tener la misma ruta base del arhicvo que estamos importando.
+*Solo se mira por defecto para abajo.
+
+
+forma 1:
+--------------
+import modulo					#En el caso de que el modulo este en la misma ruta, se importa directamente el modulo
+import paquete.modulo				#En el caso de que el paquete este en la misma ruta, pero no el modulo. Asi importaremos ese modulo interno de ese paquete
+import paquete.subpaquete.modulo		#Para el caso en que el modulo este dentro de otros subpaquetes, asi encontraremos el modulo para usar sus metodos (ojo que el paquete base
+						 debe estar en la misma ruta del archivo al cual estamos importando)
+
+import paquete.subpaquete.modulo as nombre	#para cambiarl nombre de esa ruta por la dada y asi usar mas facil dichos metodos de esa ruta.
+
+
+
+forma 2:
+---------------
+*El modulo importado debe estar en la misma ruta del archivo al cual se importa
+*El paquete debe estar en la misma ruta del archivo.
+*El paquete del subpaquete debe tener la misma ruta base del archivo
+
+from modulo import metodo					#de dicho modulo importamos dicho metodo
+from modulo import *						#De dicho modulo importamos todos los metodos
+from paquete.modulo import metodo				#Del modulo de dicho paquete importamos dicho metodo
+from paquete.modulo import *					#Del modulo de dicho paquete importamos todos sus metodos
+from paquete.subpaquete.modulo import metodo			#Del modulo del subpaquete del paquete importamos dicho método 
+from paquete.subpaquete.modulo import *				#Del modulo del subpaquete del paquete importamos todos sus metodos
+from paquete.subpaquete.modulo import metodo as name		#Del modulo del subpaquete del paquete importamos dicho metodo como name
+
+
+from paquete import modulo					#De dicho paquete importamos dicho modulo
+from paquete.subpaquete import modulo				#Del subpaquete del paquete importamos dicho modulo 
+from paquete.subpaquete import modulo as name			#Del subpaquete del paquete importamos dicho módulo como name
+
+
+forma 3:
+--------------
+*para trabajar directamente con el paquete, se agrega al archivo __init__.py lo siguiente:
+
+from .namemodulo1 import *					#cuando trabajar con ese modulo y todos sus objetos
+
+
+
+
+MANEJO DE ERRORES:
+-------------------------
+*Se deben manejar los errores para que nuestro programa no se caiga.
+*Se utiliza estas palabras claves:
+	-try: 
+		codigo		#código que queremos intentar ejecutar
+	-except: 
+		codigo		#codigo que se ejecuta si ocurre un error al ejecutar try
+	-else: 
+		codigo		#codigo a ejecutar si no ocurre un error en try (sirve para aumentar información a try)
+	-finally: 
+		codigo		#codigo que se ejecuta de todos modos
+
+
+
+*También se pueden capturar los errores con except
+
+
+	try:
+		codigo
+
+	except ValueError:			#si al intentar ejecutar el código da un error tipo ValeError, mostrara el codigo que contiene
+		codigo
+
+	except TypeError:			#si al intentar ejecutar el código da un error tipo TypeError, mostrara el codigo que contiene.
+		codigo
+
+
+	except:					#esto no es necesario, pero si lo pones debe ir al ultimo ya que absorveria todas las excepciones posteriores.	
+		codigo
+
+
+
+def suma():
+    n1=int(input('Ingrese un numero: '))
+    n2=int(input('Ingrese otro numero: '))
+    print(n1+n2)
+    print('Gracias por sumar')
+
+
+try:
+    suma()
+
+except ValueError:
+    print('los datos no son numeros')
+
+
+except TypeError:
+    print('no se concatena')
+
+
+else:
+    print('Bien hecho')
+
+finally:
+    print('Nos vemos')
+
+
+def sumar():
+    while True:
+        try:
+            n1=int(input('Ingrese un numero: '))
+            n2=int(input('Ingrese otro numero: '))
+
+
+        except:
+            print('Ingresa solo numeros')
+
+        else:
+            print(n1 + n2)
+            print('Muy bien, hasta luego')
+            break
+        finally:						#el código se ejecutara aún asi haya un break
+            print('dabai')
+sumar()
+
+
+
+BUSCANDO ERRORES CON PYLINT
+--------------------------------------
+*pylint es una biblioteca que analiza tu código en busca de algunos errores. puede por ejemplo buscar problemas de estilo o algún código no valido.
+*este es un paquete que se debe instalar. (desde la terminal ->pip install pylint)
+*este comando se usa desde la consola. >>>pylint nameArchivo.py -r y   (para eso debes estar en la misma ruta desde la terminal)
+
+syntax:
+----------
+ >>>pylint nameArchivo.py -r y   (para eso debes estar en la misma ruta desde la terminal o consola)	
+
+ejemplo:
+-----------------
+*Por lo general devuelve la información de la siguiente manera.
+
+
+************* Module buscador de error con pylint
+buscador de error con pylint.py:2:0: C0304: Final newline missing (missing-final-newline)				#Estos con C0304 hacaen referencia al estilo
+buscador de error con pylint.py:1:0: C0114: Missing module docstring (missing-module-docstring)				#Estas lineas de aqui representan por asi decirlo el resumen.
+buscador de error con pylint.py:1:0: C0103: Module name "buscador de error con pylint" doesn't conform to snake_case naming style (invalid-name)
+buscador de error con pylint.py:1:0: C0103: Constant name "numero" doesn't conform to UPPER_CASE naming style (invalid-name)
+buscador de error con pylint.py:2:6: E0602: Undefined variable 'Numero' (undefined-variable)				#Aqui se ve el error
+
+
+Report
+======
+2 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |NC         |NC         |0.00        |100.00   |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |NC         |NC         |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |NC         |NC         |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|function |0      |NC         |NC         |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+4 lines have been analyzed
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |3      |75.00 |NC       |NC         |
++----------+-------+------+---------+-----------+
+|docstring |0      |0.00  |NC       |NC         |
++----------+-------+------+---------+-----------+
+|comment   |0      |0.00  |NC       |NC         |
++----------+-------+------+---------+-----------+
+|empty     |1      |25.00 |NC       |NC         |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |NC       |NC         |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |NC       |NC         |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |4      |NC       |NC         |
++-----------+-------+---------+-----------+
+|refactor   |0      |NC       |NC         |
++-----------+-------+---------+-----------+
+|warning    |0      |NC       |NC         |
++-----------+-------+---------+-----------+
+|error      |1      |NC       |NC         |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------+------------+
+|message id               |occurrences |
++=========================+============+
+|invalid-name             |2           |
++-------------------------+------------+
+|undefined-variable       |1           |
++-------------------------+------------+
+|missing-module-docstring |1           |
++-------------------------+------------+
+|missing-final-newline    |1           |
++-------------------------+------------+
+
+
+
+
+-----------------------------------
+Your code has been rated at 0.00/10					#Esta linea de aqui nos indica el puntaje en estructura que tiene nuestro codigo respecto a la convesión.
+									#Es recomendable tener una puntuación de 7/10 , la 10/10 es mas que nada para maquina
+
+BUSCANDO ERRORES CON UNITTEST
+--------------------------------------
+*es una biblioteca incorporada en python que te va permitir probar tu programa, y ver si esta te devuelve el resultado que estabas esperando. (no se centra en los errores de código sino en el resultado esperado)
+
+
+#modulo1
+def devoler_mayuscula(text):
+	return text.upper()
+
+
+#modulo2								#En este archivo probaremos el funcionamiento de los metodos del modulo1
+import unittest								#importamos el modulo unittest
+import modulo1								#importamos el archivo al que vamos a testear
+
+class nameClase(unittest.TestCase):					#heredamos metodos de unittest.TestCase
+	def test_name(self):						#el nombre de cualquier funcion que creemos debe empezar con 'test'
+		palabra= 'buen dia'					
+		resultado= modulo1.deolver_mayuscula(palabra)
+		self.assertEqual(resultado, 'resultado esperado')		#aqui se compara el resultado con 'resultado esperado'
+		#self.assertEqual(resultado,'resultado esperado, mensaje')	#en caso no se de el resultado esperado, podemos pasar un tercer parametro que muestre un mensaje.
+		
+
+if __name__ = "__main__"						#esto comprueba si el modulo es interno o exportado (para mas detalle leer la documentación)			
+	unittest.main()					
+
+
+
+
+---------------------------
+|	DECORADORES:	  |
+---------------------------
+*Funciones que modifican el comportamiento de otras funciones.
+*La función decoradora debe tener una sintaxis parecida, analiza y recuerda porque, si lo entendiste Dax.
+*Como veremos en el siguiente ejemplo, podemos hacerlo de 2 maneras.
+*En python todo es un objeto, por lo tanto podemos pasar funciones como argumentos por que como dije todo es un objeto en python hasta los string.
+
+#PRIMERA FORMA DE DECORAR:
+ 
+###Sin parametros
+def decoradora(funcion):
+    def interna_decoradora():
+        print('Lo lavo')
+        funcion()
+        print('te devuelvo')
+
+
+    return interna_decoradora
+
+
+def suma():
+    print(5+4)
+
+decoradora(suma)
+
+
+###Con parametros
+def decoradora(funcion):
+    def inter_decoradora(*args):
+        print('===================')
+        funcion(*args)
+        print('===================')
+
+    return inter_decoradora
+
+
+def suma(a,b):
+    print(a+b)
+
+
+suma_decorada=decoradora(suma)
+suma_decorada(5,4)'''
+
+
+#SEGUNDA FORMA DE DECORAR
+###Sin parametros
+def decoradora(funcion):
+    def interna_decora():
+        print('==============')
+        funcion()
+        print('==============')
+
+    return interna_decora
+
+@decoradora					#@nameFuncion  ;@ indica que la funcion de abajo quedara envuelta con esta función, osea decorada, lo que hace esto es básicamente
+def suma():					pasarle a la función decoradora esta función como objeto y luego dentro de la decoradora devolverla llamaba (osea aplicar parentesis)
+    print(5+4)					hace esto en pocas palabras 'suma=decorado(suma)'
+
+suma()
+
+###con parametros
+def decoradora(funcion):
+    def interna_decora(*args):
+        print('==============')
+        funcion(*args)
+        print('==============')
+
+    return interna_decora
+
+@decoradora					#@nameFuncion  ;@ indica que la funcion de abajo quedara envuelta con esta función, osea decorada
+def suma(a,b):
+    print(a+b)
+
+suma(5,4)
+
+
+
+*La ventaja de la primera forma es que no afecta a la función original, en cambio en la forma 2 la función original queda envuelta con su decorador
+
+
+
+
+
+-----------------------------------------------
+|		GENERADORES		      |
+-----------------------------------------------
+*se utilizan dos palabras claves 'yiel' y 'next()'. 
+*Un generador va producion valores a medida que le solicitemos.
+*La diferencia entre una función normal con return y contra un generador es que una vez el return se ejecute, la función se termina, en cambio con yiel podemos ir recibiendo valores a medida
+que lo solicitemos y la función no se terminara.
+
+EJEMPLOS:
+--------------
+#----------1
+def namegenerador():				#esto es una función común y corriente
+    x=1
+    yield x					#el generador devuelve este valor con el primer next y se queda ahí hasta recibir el siguiente next
+    x=2						
+    yield x					#este es el valor que devolvera al segundo next
+    x=3
+    yield x					#tercer valor que devolvera al siguiente next que hagamos
+
+a=namegenerador()				#creamos una variable que tendra a nuestra funcion generadora, se crea un objeto de tipo generador
+print(a)					#si imprimimos veremos que es un objeto de tipo generador
+print(next(a))					#imprime el valor del primer yiel que encontremos
+print(next(a))					#imprime el valor del siguiente yield
+print(next(a))					#y asi sucesivamente
+print(next(a))					#en caso ya no haya mas yield en la función y nosotros sigamos pidiendo valores, nos devolvera un error por que ya no habrá valores que mostrar
+				
+						#en ruesumen, yield una vez pedido el valor, buscara el siguiente yield por mostrar, si no lo encuentra dara un error tipo 'StopIteration'.
+
+#----------2
+def mi_funcion():
+    lista=[]
+    for i in range(1,5):
+        lista.append(i**2)
+
+    return lista
+
+def mi_generador():
+    for i in range(1,5):
+        yield i**2				#con next podemos ir pidiendo segun lo requerigamos los valores que se dan en este loop.
+						Y no te preocupes por next(generador) siempre recuerda en yield que se quedo.
+
+print(mi_funcion())
+a=mi_generador()
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 9								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Los temas que se veran en este día:
+	-Collections
+	-Modulo OS y Shutil
+	-Modulo Datetime
+	-Modulos para medir el tiempo
+	-Modulo Math
+	-Modulo RE
+	-Comprimir y descomprimir archivos
+
+
+-----------------------------------------
+|	 MODULO COLLECTIONS		|
+-----------------------------------------
+*es una biblioteca incorporada por defecto en python, por lo tanto solo necesitaremos importarla.
+*veremos algunos metodos de collections los cuales son:
+	-from collections import Counter
+	-from collections
+	-from collections
+
+
+from collections import Counter
+
+Counters(iterable)					#lo que hara es devolvera en un subDiccionario las repeticiones de cada elemento de este iterable. (en str sera cada carácter, en 
+							lista cada elemento, etc)
+
+Ejemplo:
+-----------
+a=[1,4,2,5,2,3,4]
+print(Counters(a))					#devuelve Counter({4:2 , 2:2, 5:1 , 3:1, 1:1})
+
+a='hola'
+
+
+
+from collections import defaultdict
+
+a=defaultdict(lamba: 'nada')				#esto indica que cada vez que llamemos con una clave que no existe en el diccionario 'a', devolvera 'nada' y creara un elemento del 								diccionario cuya clave sera 'la clave que escribimos' y su valor sera 'nada'. En vez de votar un error.
+
+
+from collections import namedtuple
+
+
+b=nameTuple('indentificar',['valor1','valor2',etc])	#esto define el comportamiento de la tupla, 'indentificador es solo un nombre'
+a=b(valo1,valo2,valo3)					#aqui creamos una tupla dando esos valores respectimos
+
+a[0]							#devuelve valo1
+a.valor1						#devuelve valo1, como vemos ahora tenemos 2 formas de llamar a los elementos de la tupla, por nombre o por indice.
+
+
+
+
+from collections import deque
+
+a=deque(iterable)					asi definimos una lista deque(el iterable puede ser lista, etc)
+a.append(elemento)					añade elemento al final de lista
+a.appendleft(elemento)					añade elemento al principio de la lista
+a.extend(iterable)					añade la colección al final de la lista
+a.extendleft(iterable)					añade al principio de la lista pero los elementos entran al reves
+a.pop()							elimina el ultimo elemento de la lista
+a.popleft()						elimina el primer elemento de la lista
+a.rotate(valor)						corre a la derecha los elementos respecto al valor dado, si es negativo lo hace a la izquierda
+a.reverse()						invierte el orden de la collecion
+a.remove(elemento)					elimina al elemento dado, buscando de la izquierda a la dercha (solo la primera aparición)
+
+
+
+	Metodos:
+--------------------------------------
+a=Counter(iterable)					#devuelve una subdicionario don los elementos unicos pasan a ser clave y la cantidad de repeticiones de estos su valor respectivamente
+a.most_common()						#devuelve al Counter en pares de tuplas, de mayor a menos respectivamente
+a.most_common(i)					#para i=1 devuelve solo el mayor numero de pariciones, para i=2 los dos mayores, así respectivamente.
+list(a)							#recuerda que al caster un disccionario a lista o tupla, solo quedaran como elemento las claves del diccionario.
+
+
+a=defaultdict(lamba: 'nada')				#esto indica que cada vez que llamemos con una clave que no existe en el diccionario 'a', devolvera 'nada' y creara un elemento del 								       								diccionario cuya clave sera 'la clave que escribimos' y su valor sera 'nada'. En vez de votar un error.
+
+b=nameTuple('indentificar',['valor1','valor2',etc])	#esto define el comportamiento de la tupla, 'indentificador es solo un nombre'
+a=b(valo1,valo2,valo3)					#aqui creamos una tupla dando esos valores respectimos
+
+a[0]							#devuelve valo1
+a.valor1						#devuelve valo1, como vemos ahora tenemos 2 formas de llamar a los elementos de la tupla, por nombre o por indice.
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================
+|		MODULO OS y SHUTIL		|
+=================================================
+*Algunos metodos extras para estos modulos
+
+MODULO OS
+-------------
+import os
+
+
+os.getcwd()					#devuelve la ruta actual del archivo en el que estamos trabajando
+os.listdir()					#devuelve una lista con todo los archivos que hay en este ruta(incluyendo carpetas). Estos elementos estaran ordenandos alfabeticamente
+						ignorando mayusculas
+
+os.unlink('path\archivo')			#elimina un archivo con la ruta dada
+os.rmdir(path)					#elimina un directorio vacio de la ruta dada
+shutil.rmtree(path)				#elimina un directorio con todo su contenido(archivos y directorios de forma irreversible)
+
+os.walk(path)					#devuelve un objeto generador, donde sus elemenetos seran tuplas de 3: 
+						(ruta/carpeta,[subcaperta1,subcarpeta2,...],[archivo1,archivo2,...])			
+						*Si existen subcarpetas seguira generando tuplas donde esta vez la subcarpeta1 pasara a ser la ruta/carepta 				
+						(subcarpeta1,[sub_subcarpeta1,sub_carpeta2,...],[archivo1,archivo2]) y así sucesivamente hasta recorrer todas las carpetas.
+
+
+MODULO SHUTIL
+----------------
+import shutil
+
+shutil.move('nameFile','path')			#mueve el archivo a la ruta dada(también mueve directorios por mas que tenga contenido, incluso puede moverse a si misma)
+
+
+carpeta_origen='ruta/nameCarpeta'					#nameCarpeta es la carpeta que vamos a comprimir, sino indicamos la ruta por defecto toma la ruta en la que estamos
+archivo_destino='ruta/nameArchivo'					#namArchivo es el archivo comprimido que va crear y almacena nameCarpeta
+shutil.make_archive(archivo_destino,'zip',carpeta_origen)		#Aqui creamos el archivo con un formato zip para las rutas dadas
+shutil.make_archive(ruta_destino,'formato','ruta_origen')
+
+
+shutil.unpack_archive(namearchivo, newdir, formato)			#para descomprimir namearchivo y crear la carpeta newdir que contendra lo descomprimido
+shutil.unpack_archive(ruta/namearchivo,ruta/newdir,formato)
+shutil.unpack_archive('comprimido_mama.zip','mama','zip')		#aqui un ejemplo, como no dimos las rutas, usara la ruta en la que se encuentra por defecto.		
+
+
+*Cuando eliminamos nada se envia a la papelera, para que si ocurra esto necesitamos instalar un paquete 'pip install send2trash'
+
+import send2trash
+
+send2trash.send2trash('path')		#Manda a la papelera archivos o carpetas(no importa que tengan contenido) de la ruta dada
+
+
+=================================================
+|		MODULO DATETIME			|
+=================================================
+*Para trabajar con este módulo debemos importarlo, import datetime.
+*Este modulo nos permite:
+	-almacenar hora y fecha en variables.
+	-cálculos de tiempo.
+	-mostrar en diferentes formatos.
+
+
+*import datetime
+hora=datetime.time(h,m,s,microse,info horaria)			#no es necesario escribir todos los atributos, h hace referencia la hora, m a los minutos, s a los segundos,etc.
+hora.hour							#muestra la hora de dicha variable
+hora.minute
+hora.second
+hora.microsecond
+
+
+fecha=datetime.date(year,mounts,day)				#guardamos en una variable la fecha, el mes y el dia dados.
+fecha.year							#de la fecha dada devuelve el año
+fecha.month							#de la fecha dada devuelve el mes
+fecha.day							#de la fecha dada devuelve el dia
+fecha.today()							#devuelve la fecha actual, 
+fecha.ctime()							#de la fecha dada la devuelve pero en otro formato.
+
+
+*from datetime import datetime
+fecha=datetime(year,month,day,hour,minute,second,microsecond,tzinfo)		#para establecer una fecha y su hora
+fecha.replace(year=newvalor)							#sirve para cambiar cualquier atributo de la fecha data, si deseas minutos, en vez de year seria minute= 
+										 (no se autoguarda)
+fecha.today()									#Muestra la fecha actual con la hora actual
+fecha.today().time()								#Muestra solo la hora de la fecha actual
+fecha.today().date()								#Muestra solo la fecha de la fecha actual.
+fecha.now()									#otra forma de obtener la fecha y la hora actual.
+
+fecha.today().strftime(%d%m%y)							#%d hace refencia, %m al dia y %y al año de la fecha actual, podriamos modificar el orden, agregar guiones
+										o lo que queramos para dar otro formato a la fecha.
+
+
+strftime(format='nombreFormat')	
+*Valores para 'nombreFormat':
+	
+%Y	Año, versión completa
+%y	Año, versión abreviada (sin siglo)
+%B	Mes, versión completa (idioma inglés)
+%b	Mes, versión abreviada (idioma inglés)
+%m	Mes, versión numérica
+%d	Día del mes
+%j	Día del año, 001-366
+%A	Día de la semana, versión completa (idioma inglés)
+%a	Día de la semana, versión abreviada (idioma inglés)
+%w	Día de la semana, versión numérica (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+%W	Semana del año, con lunes como primer día
+%U	Semana del año, con domingo como primer día
+%H	Hora, 00-23
+%I	Hora, 00-12
+%p	AM / PM	
+%M	Minuto, 00-59
+%S	Segundo, 00-59
+%f	Microsegundo, 000000-999999
+%Z	Zona horaria
+%z	Offset de UTC
+%c	Versión local de fecha y hora
+%x	Versión local de fecha
+%X	Versión local de hora
+%%	Caracter %
+%G	Año ISO 8601
+%u	Día de la semana ISO 8601
+%V	Semana del año ISO 8601
+
+
+
+import locale										#Esta libreria nos permite configurar la localizacion del idioma a Español u otro idioma
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')						# Configura la localización a español					
+
+
+
+
+*Se puede hacer operaciones con fechas, pero estas deberian tener el mismo formato.
+fecha=fecha_actual -  fecha_anterior								#Muestra la diferencia entre las fechas dadas, se muestran la cantidad total de dias y
+print(fecha)											 y la diferencia de las horas
+fecha.days											#Muestra solo la cantidad de dias
+fecha.seconds											#Muestra solo de la cantidad de diferencia de horas en segundos.	
+
+
+
+
+*Modulos time , nos sirve para medir el tiempo de demora de un proceso, no es muy útil para procesos pequeños.
+import time
+
+inicio=time.time()					#se le da un tiempo inicial antes de la ejecución del código.
+código
+final=time.time()					#se le da un tiempo final despues de la ejecución del código.
+print(final-inicio)					#muestra cuanto tiempo demoro la ejecución del código
+
+
+
+*Modulo timeit, este modulo nos permite evaluar el tiempo de duración de pequeños procesos.
+import timeit.timeit(declaracion,setup,number=valor), el valor de number hace referencia a cuantas veces se va a ejecutar este proceso. la declaración es la función y el valor del parametro
+y el setupo es la estructura de la función a evaluar. (No es necesario que las función existan, ya que timeit evalua respecto a su setup)
+
+
+Ejemplos:
+----------------------
+import timeit
+
+def prueba1(numbers):
+    lista=[]
+    for num in range(1,numbers+1):
+        lista.append(num)
+    return lista
+
+def prueba2(numbers):
+    lista=[]
+    contador=1
+    while contador<numbers+1:
+        lista.append(contador)
+        contador+=1
+    return lista
+
+
+declaracion1='''
+prueba1(10)
+'''
+mi_setup1='''
+def prueba1(numbers):
+    lista=[]
+    for num in range(1,numbers+1):
+        lista.append(num)
+    return lista
+'''
+duracion1=timeit.timeit(declaracion1,mi_setup1,number=10000000)
+
+
+
+declaracion2='''
+prueba2(10)
+'''
+mi_setup2='''
+def prueba2(numbers):
+    lista=[]
+    contador=1
+    while contador<numbers+1:
+        lista.append(contador)
+        contador+=1
+    return lista
+'''
+duracion2=timeit.timeit(declaracion2,mi_setup2,number=10000000)
+
+print(duracion1)
+print(duracion2)
+
+
+
+
+=================================================
+|		MODULO MATH			|
+=================================================
+*El modulo math contiene un conjunto de métodos y constantes que se pueden utilizar para resolver tareas matemáticas de mayor complejidad. Es el equivalente a la calculadora cientifica dentro de python.
+*Puedes investigar de los metodos y atributos de este modulo en los siguientes links:
+-https://docs.python.org/es/3.11/library/math.html					#Para reales
+-https://docs.python.org/es/3.11/library/cmath.html#module-cmath			#Para complejos
+
+*Algunos otros modulos para trabahar con matematica son: (algunos modulos necesitan ser instalados)
+	-numpy
+	-matplotlib
+	-sympy	
+	-scikit-learn	
+	-import cv2 (conocida como open cv)
+	-animatplot
+	-from mpl_toolkits.mplot3d import axes3d
+
+	
+math.floor(x)		n<=x<n+1		--> devuelve el maximo entero de x, nos devuelve el anterior o igual que x
+math.ceil(x)		x<=n	 		--> devuelve el mayor entero por exceso como el menor número mayor o igual que x.
+
+
+=================================================
+|		MODULO RE			|
+=================================================
+*re:regular expresions
+
+Expresiones regulares:
+----------------------
+*Nos sirve para trabajar con textos.
+
+ejemplos:
+---------
+variable=r''						#Con la r'' indicamos que trate a estre string como una expresión regular.
+variable=r'\d'						#la \d significa digito
+	variable=r'\d\d\d-\d\d'				#cualquier estring que comience con 3 digitos de carácteres luego un - y luego 2 digitos de carácteres.
+	variable=r'\d{3}-\d{2]'				#Es lo mismo de lo que esta arriba.
+
+
+
+
+CARACTERES ESPECIALES EN LA EXPRESIONES REGULARES:
+--------------------------------------------------
+caracteres especiales			descripción						ejemplo			ejemplo aplicativo
+------------------------		------------						--------		-------------------
+\d					digito númerico						v\d.\d\d 		v1.23
+\w					carácter alfanumerérico					\w\w\w-\w\w		sol-25
+\s					espacio en blanco					numero\s\d\d		numero 21
+\D					no digito numerico					\D\D.\D			ab.3
+\W					no alfanumerico						\W\W.\W			??.=			
+\S					no espacio en blanco					\S\S\S			12A
+\					poner \ para usar como caracter a estos 		\.			ho.1
+					caracteres cuantificadores especiales		
+
+
+	
+caracteres cuantificadores		descripción						ejemplo			ejemplo aplicativo
+---------------------------		------------						---------		-------------------
++					que el caracter se repite 1 o más veces			codigo_\d+		codigo_1,codigo_232,etc
+{n}					que el caracter se repite 'n' veces			\d{3}			234, 123,etc
+{n,m}					que el caracter se repite entre n a m veces		\w{3,5}			amig, sol, panad,etc
+{n,}					que se repite n veces o mas				\w{2,}			ag, sol, mar4,etc
+{,n}					que se repita como maximo n veces o menos		\w{,2}			be, b, 
+*					1 o mas veces o ninguna					\w\s*\w			1 3, a   b, ab,etc
+?					1 vez o ninguna.					casas?			casa, casas
+
+
+
+*Los carácteres cuantificadores aplican sobre cualquier carácter (sea especial o no)
+
+
+
+cuantificadores especiales		descripción						ejemplo			ejemplo aplicativo
+----------------------------		-------------						----------		--------------------
+|					o busca esto o lo otro					r'text1|text2'		text1, text2
+.					cualquier caracter o simbolo(en su posicion)		r'as.22'		as122, asa22			
+^					que nuestra busqueda comience con lo buscado		r'^patron'		patron de la...
+$					que haya la busqueda al final del string		r'patron$'		....patron
+[ca]					el caracter indicado debe estar
+[ca1ca2]				o bien el caracter1 o bien el caracter2			
+[ca1-ca2]				entre el rango de estos caracteres ca1 a ca2
+[ca1-ca2ca3-ca4]			entre ca1 a ca2 o ca3 a ca4			
+[CA1-CA2]
+
+[^]					un caracter que ignore el patron indicado		r'[^\s]'		a,2,-   	(no buscara espacio)
+												r'[^\s]+'		asda,23a
+
+
+*sea ca=caracter
+
+
+
+re.search(patron,texto,re.IGNORECASE)				#el tercer parametro es para que ignore la mayuscula o minuscula de la busqueda.
+
+variable=re.search(patron,texto)				#devuelve un objeto re en caso se encuentre la busqueda, en caso de no encontrarla devuelve None
+variable.span()							#devuelve la ubicación de la palabra encontrada (el indice de inicio y del final en una tupla)
+variable.start()						#devuelve una vez encontrada la palabra, la ubicación del primer carácter
+variable.end()							#devuelve una vez encontrada la palabra, la ubicación del último carácter
+variable.group()						#devuelve la palabra encontrada que cumpla con el formato indicado.
+
+re.compile(patron,)						#cada patron dado en compile, podra ser llamado, simplemente dandole un valor desde 1 en group.
+patron=re.compile(r'(patron1)(patron2)..etc')			#al poner parentesis agrupa los patrones, aunque no afecta a la busqueda, sirvea la hora querer mostrar dicha busqueda
+variable=re.search(patron,texto)				#busca el patron creado con re.compile en el texto
+variable.group(i)						#i empieza desde el valor 1, si i=1, entonces muestra el primer parentesis, i=2 muestra el segundo, etc.
+
+
+variable=re.findall(patron,texto)				#devuelve una lista con las apariciones de patron
+
+
+variable=re.finditer(patron,texto)				#devuelve un objeto que se puede iterar, el cual va contener muchos re.search de la palabra buscada
+for hallago in variable:
+	print(hallazgo.span())					#devolvera la ubicación de los indices de cada vez que encuentre la palabra.
+
+
+
+
+ejemplos:
+-------------
+import re
+def verificar_email(email):
+    patron=re.compile(r'(@\w+\.com)(\.[a-zA-Z]{2})?$')
+    busqueda=re.search(patron,email)
+    return "Ok" if busqueda is not None else "La dirección de email es incorrecta"
+
+email='asdf@hot.com'
+print(verificar_email(email))
+
+
+
+
+
+=========================================================================
+|		COMPRIMIR Y DESCOMPRIMIR ARCHIVOS			|
+=========================================================================
+import zipfile
+
+variable= zipfile.ZipFile('nameZip.zip','w')				#abre el zip en modo escritura, sino existe lo crea (algo como lo hacia open)
+	= zipfile.ZipFile('ruta/nameZip.zip','w')			#podriamos crear el zip en otra ruta
+variable.write('namearchivo')						#el archivo mencionado lo comprime al zip
+variable.write('namearchivo2')						#como se puede ver, se puede seguir comprimiendo mas archivos
+variable.write('ruta/namearchivo3')					#podriamos tambien dar una ruta y elegir un archivo de esa ruta
+variable.close()							#cerramos el zip
+
+ 
+variable= zipfile.ZipFile('nameZip.zip','r')				#abrimos el zip en modo lectura con 'r'
+	= zipfile.ZipFile('ruta/nameZip.zip','r')			#o podemos indicar la ruta del zip a leer
+variable.extractall()							#extrae todos los ficheros y archivos del zip mencionado a la ruta en la que te encuentras(por defecto)
+variable.extractall(ruta)						#o podemos indicar una ruta
+variable.close()							#cerramos el zip
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 10								|
+---------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------
+|	PYGAME:		|
+-------------------------
+*pygame es un paquete externo, por lo cual debemos instalarlo con pip "pip install pygame"
+*Cada cosa que suceda en la pantalla de pygame es un evento.
+
+
+CREAR PANTALLA:
+------------------
+import pygame								#importamos el modulo pygame
+pygame.init()								#iniciamos pygame para que se carguen todos sus funciones, modulos, etc
+pantalla=pygame.display.set_mode((700,700))				#mostramos la pantalla con una resolucion de (700,700) (ancho, alto)
+
+running=True								#este valor nos permitira cerrar el bucle
+while running:								#el bucle se ejecuta infinitamente hasta que running sea falso
+	for evento in pygame.event.get():				#para que evento que se dee lo guardamos en evento
+		if evento.type == pygame.QUIT:				#si el tipo de evento es pygame.QUIT (esto se da al presionar la 'x' en la esquina)
+			running=False					#cambiara el valor running
+
+
+
+
+CAMBIAR TITULO, ICONO Y FONDO DE PANTALLA
+------------------------------------------
+
+import pygame
+#iniciamos pygame
+pygame.init()
+
+#mostrar pantalla
+pantalla=pygame.display.set_mode((800,800))
+
+#titulo, icono y fondo de pnatalla
+pygame.display.set_caption('Invasion Espacial')				#sirve para poner un titulo a la pantalla pygame, en esta caso puse 'invasion espacial'
+icono=pygame.image.load('ovni.png')					#cargamos una imagen a la variable
+pygame.display.set_icon(icono)						#cargamos la imagen guardada a la pantalla como favicon.
+
+
+#Loop del juego
+running=True
+while running:
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            running=False
+
+    pantalla.fill((205,145,228))					#aqui damos el color de fondo a la pantalla mediante el formato RGB en una tupla
+    pygame.display.update()						#es necesario cargar los cambios a la pantalla
+
+pygame.quit()
+
+
+
+
+AGREGAR EL PROTAGONISTA:
+-------------------------
+
+import pygame
+pygame.init()
+
+#pantalla
+pantalla=pygame.display.set_mode((800,800))
+
+#titulo y icono
+icono=pygame.image.load('ovni.png')
+pygame.display.set_caption('Invasion Extraterrestre')
+pygame.display.set_icon(icono)
+
+#personaje
+imagen_personaje=pygame.image.load('cohete.png')			#cargamos la imagen del personaje en una variable
+x_lugar=400-32								#posicion de la imagen en el eje x
+y_lugar=790-64								#posicion de la imagen en el eje y
+									La posicion (0,0) hace referencia a la posicion de la esquina supeior de la izquierda.
+					
+def personaje():							#creamos una funcion que se encargara de ubicar al personaje en la pantalla
+    pantalla.blit(imagen_personaje,(x_lugar,y_lugar))			#.blit arroja la imagen que le demos a la pantalla en la posicion que le demos
+
+
+#loop del juego
+running=True
+while running:
+    pantalla.fill((205,144,228))					#pintamos la pantalla
+    personaje()								#es importante cargar imagenes despues del pintado de la pantalla, por que sino lo tapara.
+
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            running=False
+
+
+    pygame.display.update()
+
+pygame.quit()
+
+
+
+MOVER AL PERSONAJE:
+---------------------
+def personaje(X,Y):							
+    pantalla.blit(imagen_personaje,(x,y))
+
+ 
+personaje(x_lugar,y_lugar)
+x_lugar+=0.1								#como la funcion se invoco dentro de un loop, la imagen del personaje se ira desplazando 0.1 en el eje x
+
+
+
+CONTROLAR MOVIMIENTO:
+------------------------
+*recuerda que en 'for evento in pygame.event.get()'			#evento va capturando todo lo que va sucediendo en la pantalla de pygame.
+
+if evento.type == pygame.KEYDOWN:					#si el tipo de evento es igual a una tecla presionada (keydown hace referencia a una tecla presionada)
+    if evento.key == pygame.K_LEFT:					#si la clave del evento es tipo K_LEFT(esto hace referencia a la tecla 'flecha izquieda')
+        mov_x=-0.1
+    if evento.key == pygame.K_RIGHT:					#si la clave del evento es tipo K_RIGHT(esto hace referencia a la tecla 'flecha derecha')
+        mov_x=0.1
+    if evento.key == pygame.K_UP:					#si la clave del evento es tipo K_UP(esto hace referencia a la tecla 'flecha arriba')
+        mov_y = -0.1
+    if evento.key == pygame.K_DOWN:					#si la clave del evento es tipo K_DOWN(esto hace referencia a la tecla 'flecha abajo')
+        mov_y = 0.1
+if evento.type == pygame.KEYUP:							#pygame.KEYUP hace referencia a cuando deje de presionar la tecla, al levantar el dedo.
+    if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT:		#si la clave de la tecla presionada fue igual a K_LEFT o K_RIGHT
+        mov_x=0
+    if evento.key == pygame.K_DOWN or evento.key == pygame.K_UP:		#si la clave de la tecla presionada fue igual a K_DOWN o K_UP
+        mov_y=0
+
+
+
+
+LIMITADOR DEL MOVIMIENTO:
+---------------------------
+*definimos metodos simplemente en caso la posicion pase los bordes, por ejemplo los siguientes metodos.
+
+#limita el movimiento del personaje
+#para X
+if pos_x <= 0:
+pos_x=0
+elif pos_x>=736:
+pos_x=736
+
+#para Y
+if pos_y <= 0:
+pos_y=0
+
+
+
+CREAR ENEMIGOS:
+-------------------
+#crear enemigo
+imagen_enemigo=pygame.image.load('enemigo.png')					#cargamos la imagen del enemigo en la variable
+def enemigo(x,y):								#creamos una funcion encarga de posicionar al enemigo
+    pantalla.blit(imagen_enemigo,(x,y))						#dibuja la imagen del enemigo en la pantalla de pygame
+
+#variables del enemigo			
+enemigo_x=random.randint(0,736)							#elejimos una posicion aleatoria para nuestro enemigo en el eje x
+enemigo_y=random.randint(50,200)						#elejimos una posicion aleatoria para nuestro enemigo en el eje y
+
+
+
+GENERAR MOVIMIENTO ENEMIGO:
+----------------------------
+  # movimiento para el enemigo
+    if pos_enemigo_x >= 736:							#si se cumple la condicion, el enemigo tambien se desplaza en el eje y
+        pos_enemigo_x = 736
+        pos_enemigo_y += 32
+        mov_enemigo_x *= -1
+
+    elif pos_enemigo_x <= 0:							#si se cumple condicion el enemigo se desplaza en el eje y
+        pos_enemigo_x = 0
+        pos_enemigo_y += 32
+        mov_enemigo_x *= -1
+
+
+
+AGREGAR FONDO DE IMAGEN:
+-------------------------
+#cargando imagen de fondo
+fondo_imagen= pygame.image.load('Fondo.jpg')					
+
+#imagen de fondo
+    pantalla.blit(fondo_imagen,(0,0))
+
+
+
+
+DISPARAR BALAS:
+---------------
+#-----BALA-------
+#variables
+bala_imagen=pygame.image.load('bala.png')						#Se carga la imagen de la bala
+bala_posx=pj_posx									#se le da posiciones
+bala_posy=pj_posy
+bala_movy=-0.1
+bala_visible=False
+
+#crear_personaje
+def bala():
+    y=pj_posy
+    x=pj_posx
+
+    while True:
+        yield pantalla.blit(bala_imagen,(x+16,y))					#se crea una funcion, mira el ejemplo de movimiento de balas, ahi esta mas detallado
+        y+=bala_movy
+
+
+
+
+MOVIMIENTOS DE LAS BALAS:
+-----------------------------
+import pygame
+import math
+import os
+import random
+
+pygame.init()
+
+#---------PANTALLA-------
+#defino la pantalla
+pantalla=pygame.display.set_mode((800,600))
+
+#fondo de pantalla
+fondo_imagen=pygame.image.load('Fondo.jpg')
+
+#Colocando el Fondo
+def crear_fondo():
+    pantalla.blit(fondo_imagen,(0,0))
+
+
+#-----PERSONAJE-------
+#variables
+pj_imagen=pygame.image.load('cohete.png')
+pj_posx=368
+pj_posy=511
+pj_movx=0
+
+
+#crear_personaje
+def crear_personaje(x,y):
+    pantalla.blit(pj_imagen,(x,y))
+
+
+#-----ENEMIGO-------
+#variables
+enemigo_imagen=pygame.image.load('enemigo.png')
+enemigo_posx=random.randint(100,536)
+enemigo_posy=random.randint(50,236)
+enemigo_movx=0.4
+enemigo_movy=50
+
+
+#crear_personaje
+def crear_enemigo(x,y):
+    pantalla.blit(enemigo_imagen,(x,y))
+
+
+#-----BALA-------
+#variables
+bala_imagen=pygame.image.load('bala.png')
+bala_posx=pj_posx
+bala_posy=pj_posy
+bala_movy=-0.1
+
+
+#crear_bala
+def bala():
+    y=pj_posy
+    x=pj_posx
+
+    while True:
+        yield pantalla.blit(bala_imagen,(x+16,y))				#se crea un generador, para tener asi multiples objetos, y dar movimiento a cada uno de estos multiples objetos
+        y+=bala_movy
+
+#loop del juego
+running=True
+a=False
+lista=[]									#se crea una lista que contendra cada objeto generadoo, para luego llamar a cada objeto y dibujar su recorrido
+
+while running:
+    #fondo de pantalla
+    crear_fondo()
+
+    for evento in pygame.event.get():
+
+        if evento.type == pygame.QUIT:
+            running = False
+
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_LEFT:
+                pj_movx= -0.2
+            if evento.key == pygame.K_RIGHT:
+                pj_movx= 0.2
+
+            if evento.key == pygame.K_SPACE:
+                bala_posx = pj_posx
+                bala_posy = pj_posy
+                # ------BALA-------
+                # limites de la ba
+                lista.append(bala())						#se agrega esos objetos creados a la lista
+                # colocando la bala
+                a=True
+
+        if evento.type == pygame.KEYUP:
+                if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT:
+                    pj_movx = 0
+
+                if evento.key == pygame.K_SPACE:
+                    pass
+
+
+    #para la bala								
+    if a:			
+        for e in lista:								#se llama a cada objeto de la lista, creados al presionar space y se le llama a cada uno de ellos con next
+            next(e)
+
+
+    #------PERSONAJE-------
+    #limites del personaje
+    if pj_posx <=0:
+        pj_posx =0
+
+    elif pj_posx >=736:
+        pj_posx = 736
+
+    #colocando al personaje y movimiento
+    crear_personaje(pj_posx,pj_posy)
+    pj_posx+=pj_movx
+
+
+
+
+
+    # ------ENEMIGO-------
+    # limites del ENEMIGO
+    if enemigo_posy <= 0:
+
+        enemigo_posy =0.00001
+        enemigo_movy*=-1
+
+
+
+    elif enemigo_posy >= 536:
+
+        enemigo_posy = 536 - 0.00001
+        enemigo_movy*=-1
+
+
+
+    if enemigo_posx <= 0:
+        enemigo_posx = 0
+        enemigo_movx*=-1
+
+        enemigo_posy+=enemigo_movy
+
+    elif enemigo_posx >= 736:
+        enemigo_posx=736
+        enemigo_movx*=-1
+
+        enemigo_posy+=enemigo_movy
+
+     # colocando enemigo y movimiento
+    crear_enemigo(enemigo_posx, enemigo_posy)
+    enemigo_posx += enemigo_movx
+
+    #actualizando pantalla
+    pygame.display.update()
+
+
+pygame.quit()
+
+#otro metodo mediante
+
+if evento.type == pygame.KEYDOWN:
+    if evento.key == pygame.K_SPACE:
+        if not bala_mostrar:
+            bala_posx=pj_posx
+            bala_posy=pj_posy
+            bala_mostrar=True
+
+
+
+
+
+DETECTAR COLISIONES:
+----------------------
+#DETECTAR COLISIONES
+def colision(x1,y1,x2,y2):
+    d= math.sqrt(math.pow(x2-x1,2) + math.pow(y2-y1,2))
+    if d <27:
+        return True
+    return False
+
+#colision
+    if colision(enemigo_posx,enemigo_posy,bala_posx,bala_posy):
+        puntaje+=1
+        print(puntaje)
+        bala_mostrar=False
+        bala_posx = pj_posx
+        bala_posy = pj_posy
+        pygame.display.set_caption('Invasion Extraterreste: Puntaje({})'.format(puntaje))
+
+        enemigo_posx = random.randint(100, 636)
+        enemigo_posy = random.randint(50, 136)
+        enemigo_movx+= 0.1 if enemigo_movx>0 else -0.1
+
+
+
+
+AGREGAR ENEMIGOS:
+-------------------
+enemigos_cantidad=n								#Aqui se define cuantos enemigos habra
+enemigos_velocidad=random.choice([-v,v])					
+enemigos_imagen = []
+enemigos_posx = []
+enemigos_posy = []
+enemigos_movx = []
+enemigos_mostrar= []
+
+for enemigo in range(enemigos_cantidad):					#aqui construimos a todos los enemigos y sus caracteristicas personales lo guardamos en distintas listas.
+enemigos_imagen.append(pygame.image.load('enemigo.png'))
+enemigos_posx.append(random.randint(0,536))
+enemigos_posy.append(random.randint(0,36))
+enemigos_movx.append(enemigos_velocidad)
+enemigos_mostrar.append(True)
+
+
+
+MOSTRAR PUNTAJE:
+-------------------
+puntaje=0
+texto_fuente=pygame.font.Font('FreeSansBold.ttf',40)
+texto_posx=5
+texto_posy=5
+
+
+while running:					#dentro del while
+        texto = texto_fuente.render(texto, True, (255, 255, 255))				#renderizamos el 'texto' cargado con la fuente especificada  para que sea como imagen, luego 													con True indicamos que sea fijo, RGB(0,0,0) indicamos el color de la fuente, y tambien 													podriamos agregar un parametro mas RGB(0,0,0) el cual seria el fondo que tendria el 'texto'
+        pantalla.blit(texto,(texto_posx,texto_posy))						#arrojamos el texto renderizado a la pantalla en las posiciones indicadas.
+
+
+AGREGAR MUSICA Y SONIDOS:
+--------------------------------
+*La diferencia esta en que, la musica de fondo no se corta y el sonido que ocurre en el juego si.
+
+-para agregar musica de fondo:
+	pygame.mixer.music.load('MusicaFondo.mp3')					#carga la musica que se reproducira como musica de fondo
+	pygame.mixer.music.set_volume(0.2)						#establece el volumen, su valor varia entre 0 y 1
+	pygame.mixer.music.play(-1) 							#reproducimos la musica de fondo, en play(n), n viene a ser las veces que se va repetir, por 												defecto si no indicamos vale 1, si pondemos 2 se reproduce 2 veces, si ponemos -1 es infinitas veces
+							
+
+-sonidos que ocurren en el juego:
+	sonido_disparo=pygame.mixer.Sound('disparo.mp3')				#carga el sonido indicado en la variable sonido
+	sonido_disparo.set_volume(0.2)							#establece el volumen, su valor varia entre 0 y 1
+        sonido_disparo.play()								#reproduce el sonido por defecto 1 vez, podriamos indicar mas veces.
+
+
+	colision_music = pygame.mixer.Sound('Golpe.mp3')				#aqui otro ejemplo
+        colision_music.play()
+
+TERMINAR EL JUEGO:
+-----------------------
+fin_sin_enemigos=[]									#creamos la lista fin enemigos, que contendra puro False, que es el caso si todas las naves fueran 												destruidas
+for enemigo in range(enemigos_cantidad):
+	fin_sin_enemigos.append(False)							
+
+
+def fin():										#creamos la función fin
+	global running
+	running=False
+
+
+for enemigo in range(enemigos_cantidad):
+if enemigos_posy[enemigo] > 462:
+    if  pj_posx<= enemigos_posx[enemigo] <=pj_posx+64 or pj_posx<= enemigos_posx[enemigo]+64 <=pj_posx+64:	#Si alguna nave choca contra nuestro personaje, oculta a todas las naves y 															procede a llamar a la función
+        pj_mostrar=False
+        bala_mostrar=False
+        for enemigo in range(enemigos_cantidad):
+            enemigos_mostrar[enemigo]=False
+       	fin()
+
+	if fin_sin_enemigos == enemigos_mostrar:						#si no chochan, pero todas las naves han sido eliminadas, es decir que todas 													las naves tendran la variable False en enemigos_mostrar, procede a llamar a la funcion fin
+	fin()
+
+
+JUEGO COMPLETO
+------------------------------------------------------
+El juego completo se encuentra en esta ruta:
+"C:/Users/Usuario/OneDrive/Escritorio/Escritorio 2022/Cursos/Udemy/Federico Garay/Python TOTAL - Programador Avanzado en 16 días/Materiales/Dia 10/pygame curso/Juego_completo.py"
+
+
+
+UBICAR LA POSICION DONDE APARECERA LA PANTALLA DE PYGAME
+-------------------------------------------------------------
+# Define la posición de la ventana en la pantalla
+x_position = 200
+y_position = 50
+
+# Establece la posición de la ventana
+os.environ['SDL_VIDEO_WINDOW_POS'] = "{},{}".format(x_position, y_position)			#Establece donde apareceran las pantallas creadas sobre la pantalla del sistema.
+
+
+CONVERTIRLO EN UN .EXE
+-------------------------------
+*Primero instalamos con cmd 'pip --install pyinstaller'
+*Cuando estemos en la misma ruta del archivo.py que vamos a convertir en .exe, corremos el siguiente comando en el cmd:
+
+pyinstaller --clean --onefile --windowed  Invasión_Espacial.py	
+			
+					#--clean: indica que limpie los archivos temporales que usa para crear el exe(elimina la carpeta build que se crea)
+					#--onefile: inica que lo cree todo en un archivo exe, y que tenga todo lo necesario incluyendo los scripts usados, modulos y bibliotecas
+					#--noconsole: indica pyinstaller no incluya una consola en el archivo.exe
+					#--windowed: crea un archivo ejecutable que se ejecuta en una ventana en lugar de pantalla completa.
+			
+
+pyinstaller invasion_espacil.spec	#Este comando generará un directorio "dist" en el mismo directorio que el archivo .py, que contendrá el archivo .exe y todas las dependencias 						necesarias.
+
+
+
+pyinstaller script.py --onefile --noconsole --icon 'tuicono.ico' 		#--icon nos permite poner nuestro icono y --noconsole que no se habra la consola
+
+
+
+CONVERTIR DATOS A BYTES:
+-----------------------------
+*Es recomendado convertir a bytes toda la multimedia que vaya a usar nuestro .py , las fuentes tambien, ya que al convertirlos a bytes usamos menos memoria, evitamos error de formatos que puede ocurrir, e incluso podemos empaquetar todo en un solo archivo.exe
+
+
+CONVERTIR FUENTE.TTF A BYTES:
+-------------------------------
+def fuente_a_bytes(fuente):
+    with open(fuente,'rb') as f:					#se abre el archivo de la fuente en modo 'rb' (lectura binaria)
+        ttf_bytes= f.read()						#leido el archivo binario se guarda en la variable ttf_bytes
+    return io.BytesIO(ttf_bytes)					#Carga la fuente en bytes a la memoria de modo en bytes igualmente. Esto nos ayudaria a que cuando convirtamos el .py
+									a un archivo .exe, el archivo ya no necesitaria del archivo.ttf
+
+
+fuente_bytes= fuente_a_bytes('FreeSansBold.ttf')			#se le pasa la función a la fuente
+
+fuente_texto= pygame.font.Font(fuente_bytes,24)				#Como vemos lo unico que cambio fuente que la fuente ahora estara en bytes, gracias a la función anterior
+texto=fuente_texto.render('Hola Dax',True,(0,0,0))
+
+
+*Es casi un procedimiento similar al convertir imagenes a byte o musica, o cualquier otra multimedia.
+	
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 11								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Antes de hacer web scraping es recomendable repasar las "reglas del web scraping".
+
+
+	-reglas del web scraping
+	-limmitacion del web scraping
+
+
+*Estructura básica de un sitio web.
+	-html		: estructura y contenido
+	-css		: diseño y estilo
+	-javascript	: elementos interactivos
+
+
+
+*Recueda que el navegador recibe codigo html, css y js.
+*el código se organiza en etiquetas
+*para buscar apuntamos a una etiqueta
+
+*usaremos las bibliotecas: (no olvides instalarlas)
+	-beautifulsoup4
+	-lxml
+	-requests
+
+
+
+EXTRAER EL TITULO DE UNA PAGINA:
+-----------------------------------
+import bs4
+import requests				
+
+
+mi_url = requests.get('url-del-sitio-web)				#se genera una clase que obtiene el codigo fuente de la url
+mi_url.text								#imprime todo el codigo fuente en formato 'str'
+mi_url.content								#muestra el contenido pero en bytes.
+
+mi_sopa = bs4.BeautifulSoup(mi_url.text,'lxml')				#bs4.BeautifulSoup lo que hace es parsear el string(en este caso el codigo fuente), descompone una cadena de texto
+									en sus componenetes sintacticos, para poder procesar y manipular dicha información de manera mas efectiva.
+									aqui se parsea el código HTML y XML, con un analizador sintactico, que por defecto es 
+									'html.parser', otros analizadores son, 'lxml' y 'html5lib'
+
+mi_etiqueta=mi_sopa.select('etiqueta')					#Nos generara una lista en base a la etiqueta html o css,etc. que le pasemos con todas las veces que se repita esa 										etiqueta y su contenido. ('etiqueta' hace referencia al nombre de la etiqueta, por ejemplo: 'title', 'p' ,etc)
+mi_sopa.select('etiqueta')[0]						#imprimira el primer elemento de la lista
+mi_sopa.select('etiqueta')[0].getText()					#imprimira el texto sin las etiquetas del primer elemento de la lista. (es decir que imprimira solo el texto)
+
+print(mi_etiqueta[0]['href'])						#en caso esa etiqueta tenga atributos, podemos llamar al valor de ese atributo simplemento usando el nombre de ese 										atributo, ya que esta se comportara como si fuera un diccionario.
+									Ten cuidado con esto, ya que si tu etiqueta no tiene ese atributo votara error por mas que otras etiquetas tengan.
+									te conviene trabajarlo dentro de un try:codigo y except:continue
+			
+
+EXTRAER ELEMENTOS DE UNA CLASE:
+--------------------------------
+Existen ciertos caracteres especiales, los cuales son:
+
+Carácter			Sintaxis				Resultados
+-------------			-----------------			----------------------
+''				soup.select('div')			Todos los elementos con la etiqueta 'div'
+#				soup.select('#estilo_4')		Elementos que contengan id='estilo4'
+.				soup.select('.columna_der')		Elementos que contengan class='columna_der'
+(ESPACIO)			soup.select('div span')			Cualquier elemento 'span' dentro de un elemento 'div'
+>				soup.select('div>span')			Cualquier elemento llamado 'span' directamente dentro de un elemento 'div', sin nada en medio.
+
+
+
+
+EXTRAER IMAGENES:
+------------------
+imagen=requests.get('url-de-la-imagen')				#extrae la imagen de la url dada y lo carga en la memoria en modo binario, ya que es este modo en que una computadora lo sabe 									leer
+imag=imagen.content						#muestra el contenido de la url, pero estara en binario OJO. Es decir que veremos la imagen en binario.
+
+archivo_imagen=open('imagen_descargada.jpg','wb')		#Lo abrimos e indicamos que vamos a escribir en binario (ya que la imagen que le daremos esta en binario)
+archivo_imagen=open('path\imagen_descargada.jpg','wb'		#Ten en cuenta la extensión al momento de crear las imagenes, podemos guardarla como vemos en cualquier ruta.
+
+archivo_imagen.write(imag)					#Le pasamos la imagen en binario y luego procede a escribir
+archivo_imagen.close()						#Cerramos el archivo, y si revisamos la carpeta, podremos ver que esta la imagen dada
+
+
+
+
+PROYECTO DE WEB SCRAPING:
+------------------------------
+*Para este proyecto usaremos la URL https://toscrape.com/ , ya que esta url nos permite practicar nuestras habilidades en web scraping.
+
+#Forma 1
+'''lista_de_libros=[]
+
+for i in range(1,51):
+    url_base=requests.get(f'http://books.toscrape.com/catalogue/page-{i}.html')
+    parseando_web=bs4.BeautifulSoup(url_base.text,'lxml').select('.product_pod')
+
+    for e in parseando_web:
+        #print(e.select('p')[0]['class'])
+        if e.select('p')[0]['class'][1] == 'Five' or e.select('p')[0]['class'][1] == 'Four':
+            lista_de_libros.append(e.select('h3')[0].select('a')[0]['title'])
+
+for libro in lista_de_libros:
+    print(libro)'''
+
+#Forma 2
+lista_libros=[]
+for i in range(1,51):
+    url_base=requests.get(f'http://books.toscrape.com/catalogue/page-{i}.html')
+    parseando_url_base=bs4.BeautifulSoup(url_base.text,'lxml').select('.product_pod')
+
+    for i in parseando_url_base:
+        if i.select('.star-rating.Four') != [] or i.select('.star-rating.Five') != []:			#Cuando el nombre de la clase o atributo, o cualquier etiqueta que vayasemos a señalar
+            lista_libros.append(i.select('h3 a')[0]['title'])						tenga espacios en su nombre, se pone un . en cada espacio o sino no lo va reconocer.
+
+
+for libro in lista_libros:
+    print(libro)
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 12								|
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 13								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Las bibliotecas que estan con una identacion de mas, significa que se instalan por defecto como complemento a esas bibliotecas, pero en caso no lo hagan, tendrias que instalarlas por ti mismo.
+*Las bibliotecas que usaremos para este curso son:
+	pyttsx3							# Esta biblioteca se encarga que nuestro sistema pueda hablar con nosotros.
+	SpeechRecognition					# Este paquete reconoce el sonido de la voz y la transforma en texto.
+		flask							# Esta biblioteca es necesaria para poder usar la biblioteca de arriba
+		pyaudio							# Esta biblioteca es necesaria para poder usar speech_recognition
+		pipwin							# Esta biblioteca es necesaria para poder usar speech_recognition
+
+	pywhatkit						# Permite que nuestro sistema pueda abrir, sitios como youtube, wikipedia, etc
+		wikipedia						# Nos permite usar wikipedia, hacer busquedas en ella, etc.
+	yfinance						# Nos conecta a yahoo finance para encontrar precio de acciones, etc
+	pyjokes							# Nos permite que nuestro asistente pueda contarnos chisques, hacernos bromas, etc.
+		webbrowser						# Nos permite usar nuestro navegador de internet.
+	
+
+
+*ahora los importamos:
+	import pyttsx3
+	import speech_recognition as sr
+	import pywhatkit
+	import yfinance as yf
+	import pyjokes
+	import datetime
+	import webbrowser
+	import wikipedia
+	
+
+
+
+
+*import speech_recognitionm as sr, metodos:
+	sr.Recognizer()
+		pause_threshold 				#Nos permite establecer una pausa en segundos
+	sr.Microphone()
+	 
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 14								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Para este proyecto necesitaremos un compilador c , descargalo de este sitio https://visualstudio.microsoft.com/es/downloads/
+
+*Las bibliotecas que usaremos en este proyecto son y sus versiones:
+				- cmake				=3.21.4
+				- dlib				=19.22.1	/ 19.23.1
+				- face-recognition		=1.3.0
+				- face-recognition-models 	=0.3.0
+				- numpy				=1.21.4
+				- opencv-python			=4.5.4.58
+				- pip 				=21.1.3
+				- pillow			=8.4.0
+
+*La version de python que usaremos es 3.10.0
+
+
+
+PASO 1: CARGAR IMAGENES
+--------------------------------
+from cv import cv
+import face_recognition 
+
+foto_control = face_recognition.load_image_file('FotoA.jpg')			#carga la imagen, esa imagen sera el control
+foto_prueba = face_recognition.load_image_file('FotoB.jpg')			#carga la imagen, esta imagen sera la imagen que probaremos para ver si esta registrado
+
+foto_control = cv2.cvtColor(foto_control, cv2.COLOR_BGR2RGB)			#pasa la imagen a formato rgb, por que en este formato cv2 sabe trabajar
+foto_prueba = cv2.cvtColor(foto_prueba, cv2.COLOR_BGR2RGB)			#pasa la imagen a RGB, y los estamos guardando en la misma variable
+
+cv2.imshow('foto control', foto_control)					#muestra la imagen en una pantalla asi como pygame.display, y en la primera variable se la un titulo
+cv2.imshow('foto prueba', foto_prueba)
+
+cv2.waitKey(0)									#evita que se cierre el programa para poder ver las imagenes, con waitKey(0) indicamos que el programa espere
+										la pulsacion de una tecla indifinidamente.
+
+cv2.waitKey(1)									#Indicaremos que espere 1 milisegundo a que se presione una tecla antes de pasar al siguiente frame
+										en Resumen, el valor del atributo indica el tiempo de espera en milisegundo	
+
+
+
+
+cap.release()									cierra la camara web, libera todos los recursos usados por esta variable, como esta variable apunto a la
+										camara web, entonces cierra la camara web, mas no las ventanas por que ese es otro recurso OJO.
+cv2.destroyAllWindows()								Cierra todas las ventanas creadas por OpenCV, esto es util en caso queden ventanas abiertas, con esto nos 											aseguramos que se cieeren todas					
+
+
+
+
+PASO 2: MOSTRAR CARAS
+----------------------------------------------------------------
+
+lugar_cara_A = face_recognition.face_locations(foto_control)			#localiza cada cara que aparezca en la imagen, y guarda su posicion de cada cara en una tupla de 4 elementos
+										(y1,x2,y2,x1), siendo como si fueran matematicas el primer punto es mas alejado, y el segundo el mas cerca si 
+										los agruparamos en pares, pero recuerda que aqui las coordenadas es igual que pygame
+
+
+cara_codificada_A = face_recognition.face_encodings(foto_control)		#codifica la imagen para que nuestro sistema entienda donde hay una cara, se codifica para tener una mayor
+										precision al comparar carasd
+
+
+cv2.rectangle(foto_control, pt1, pt2,(0,255,0),2)				#1er atributo es: la imagen donde se mostrara el rectangulo, el 2do y 3er atributo es 											pt1=(x1,y1) y pt2=(x2,y2); que hacen referencia a los puntos del cuadrado(la coordenadas es igual que pygame)
+										el 4to atributo es color en formato RGB, y el ultimo hace referencia al grosor 2
+
+EJEMPLO:
+#Localizar cara
+#para foto A
+lugar_cara_A = face_recognition.face_locations(foto_control)[0]			#para nuestro ejemplo solo nos localiza una cara, por eso tendra solo un elemento el cual llamanos con indice 0
+cara_codificada_A = face_recognition.face_encodings(foto_control)[0]		#Lo mismo que face_locations
+
+#para foto B
+lugar_cara_B = face_recognition.face_locations(foto_prueba)[0]
+cara_codificada_B = face_recognition.face_locations(foto_prueba)[0]
+
+#mostrar rectangulo
+cv2.rectangle(foto_control,
+              (lugar_cara_A[3],lugar_cara_A[0]),(lugar_cara_A[1],lugar_cara_A[2]),
+              (0,255,0),
+              2)
+
+cv2.rectangle(foto_prueba,
+              (lugar_cara_B[3],lugar_cara_B[0]),(lugar_cara_B[1],lugar_cara_B[2]),
+              (0,255,0),
+              2)
+
+
+
+
+RECONOCIENDO LA CARA Y PONIENDOLE EL CUADRADO VERDE EN UN VIDEO
+ººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+ºfrom cv2 import cv2														º
+ºimport face_recognition as fr													º
+º																º
+º# Crear objeto de captura de video												º
+ºcap = cv2.VideoCapture(0, cv2.CAP_DSHOW)											º
+º																º
+º# Bucle para leer los fotogramas y mostrarlos											º
+ºwhile True:															º
+º    # Leer un nuevo fotograma													º
+º    ret, frame = cap.read()													º
+º																º
+º    #Esto yo lo he implementado -INICIO-											º
+º    #para que ponga un cuadrado en la cara reconocida del video								º
+º    try:															º
+º        cara_frame = fr.face_locations(frame)[0]										º
+º        cv2.rectangle(frame,													º
+º                      (cara_frame[3],cara_frame[0]),(cara_frame[1],cara_frame[2]),						º
+º                      (0,255,0),												º
+º                      2)													º
+º    except:															º
+º        pass															º
+º    #-FINAL-															º
+º																º
+º    # Mostrar el fotograma en una ventana											º
+º    cv2.imshow('Video', frame)													º
+º																º
+º    # Esperar 1 milisegundo y comprobar si se presionó la tecla 'q' para salir							º
+º    if cv2.waitKey(1) & 0xFF == ord('q'):											º
+º        break															º
+º																º
+º# Liberar el objeto de captura y cerrar todas las ventanas de OpenCV								º
+ºcap.release()															º
+ºcv2.destroyAllWindows()													º
+º																º
+º																º
+ººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+cv2.waitKey(1) 				indica que espere un milisegundo para que presionen tecla antes de pasar al siguiente frame, esto devuelve -1 si no se presiona una tecla
+					y si se presiona una tecla, devuelve el valor de la tecla en codigo ASCII
+&					es un operador logico como AND, pero este lo hace bit a bit
+0xFF					Es una representación binaria de 8 bits de la tecla presionada. El valor 0xFF es una máscara utilizada para asegurarse de que solo se consideran los 8 						bits menos significativos del valor devuelto por cv2.waitKey(), se asegura que este en Ascii el valor al que le hagamos &
+
+chr(valor)				dado un valor, devuelve su equivalencia en Ascii
+ord('tecla_del_teclado')		devuelve el valor de la tecla del teclado pasada como parámetro, el valor lo devuelve respecto a su valor en Ascii.
+cap2.release()				cierra la camara en web en pocas palabras y libera la memoria de la variable cap2
+cv2.destroyAllWindows()			cierra todas las ventanas abiertas por OpenCV, ya sean por cv2.imshow() o por cv2.nameWindow(),etc
+
+img_resized = cv2.resize(img, (640, 480))			#cv2.resize() nos permite modificar el tamaño en dimensiones de la imagen que le pasemos.
+cv2.imshow('Imagen redimensionada', img_resized)		#y ahora mostraremos la imagen redimensionada y ya no la otra
+
+
+
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FPS, 30)					#Cambiamos los FPS de imshow, que por lo general vale 30, esto varia segun tu hardware y tu camara.
+ret, frame = cap.read()
+cv2.imshow('Fotograma', frame)
+
+				
+cap = cv2.VideoCapture(0)					# Abrir la cámara web
+default_fps = cap.get(cv2.CAP_PROP_FPS)				# Obtener la tasa de fotogramas por defecto
+
+
+
+cap = cv2.VideoCapture(0)					#Abrimos la camara
+cap.set(cv2.CAP_PROP_FPS, 30)					#Modificamos el fps, dando otro valor en el segundo parametro
+
+
+
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)			#Capturamos el video en la variable cap
+# Establecer la resolución deseada	
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)				#Modificamos la resolucion que tendra en el ancho la camara web
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)				#Modificamos la resolucion altura
+
+
+
+
+
+PASO 3: COMPARAR CARAS
+------------------------------------------
+#REALIZAR COMPARACION								#hara una comparación entre una lista de caras y una cara de prueba, todas codificadas en el paso anterior
+resultado = fr.compare_faces([codifi_cara_A],codifi_cara_B)			#compara las caras codificadas con la cara codificada_cara_B, devuelve un valor Booleano
+print(resultado)								#determinara el resultado en base a distancia, que por defecto es 0,6
+
+
+
+resultado = fr.compare_faces([codifi_cara_A],codifi_cara_B,tolerancia)		#tolerancia es un valor float, que por defecto como dije arribita es 0,6 sino ponemos este atributo
+
+
+
+
+
+
+MEDIR LA DIFERENCIA (DISTANCIA)
+---------------------------------------
+#REALIZAR COMPARACION								
+resultado = fr.compare_faces([codifi_cara_A],codifi_cara_B,0.3)			#comparamos las caras codificadas y la cara de prueba pero esta vez le damos otra tolerancia
+print(resultado)								
+
+#MEDIR LA DISTANCIA
+distancia = fr.face_distance([codifi_cara_A],codifi_cara_B)			#nos da el valor de la distancia de las caras, este valor hace referencia a la tolerancia en la comparacion
+print(distancia)								#muestra el valor de la distancia entre las imagenes
+
+
+
+
+
+MOSTRAR LA DISTANCIA
+----------------------------
+#MOSTRAR DISTANCIA								#mostrara la distancia o lo que le especifiquemos en pantalla
+cv2.putText(foto,'texto',posicion(x,y),tipoLetra,escalada,Color,grosor)		#la funcion real es asi, en tipos de letras tenemos muchas como cv2.FONT_HERSHEY_COMPLEX, etc.
+										la escalada se refiere al tamaño de la letra, el color el que elijamos en formato RGB y el grosor 
+										al grosor de la tipografia.
+
+cv2.putText(foto_control,							
+            f"{resultado} {distancia.round(3)}",
+            (50,50),
+            cv2.FONT_HERSHEY_COMPLEX,
+            1,
+            (0,255,0),
+            2)									
+
+
+
+
+
+CREAR UNA BASE DE DATOS DE ROSTROS:
+------------------------------------------------------
+from cv2 import cv2
+import face_recognition as fr
+import os
+from pathlib import Path
+
+ruta= 'Empleados'									#Ruta de la carpeta empleados
+lista_nombres_empleados=[]								#lista que contendra el nombre de mis empleados	
+lista_imagen_empleados= []								#lista que contendra las imagenes base de nuestros empleados
+empleados = os.listdir(ruta)								#empleados contendra una lista con todo lo que tenga esta ruta al hacerle un dir
+					
+for empleado in empleados:
+    imagen_actual = cv2.imread(f"{ruta}\{empleado}")					#cargamos la imagen en la variable, es lo mismo que fr.load_imagen_file(imagen)
+											La diferencia esta en que cv2.imread() utiliza un formato RGB, pero asi debemos pasarlo para estar 												seguros
+
+    lista_imagen_empleados.append(imagen_actual)					#y agregamos esa imagen leida a la lista 
+    lista_nombres_empleados.append(os.path.splitext(empleado)[0])			#usamos el metodo splitext para obtener el nombre sin la extensión como se aprecia
+
+
+def codifiacar(imagenes):								#creamos una función que se encargara de codificar las imagenes que le pasemos
+    imagenes_codificadas=[]								#esta lista contendra las imagenes codificadas
+
+    for imagen in imagenes:								#iteramos en las imagenes pasadas
+        imagen_rgb = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)				#primero antes de codificar una imagen se les pasa al formato RGB
+        imagen_codificada = fr.face_encodings(imagen_rgb)[0]				#codificamos cada una de las imagenes
+        imagenes_codificadas.append(imagen_codificada)					#agregamos cada imagen codificada a la lista
+
+    return imagenes_codificadas								#returnamos la lista que contendra las imagenes codificadas
+
+imagenes_empleados_codificadas = codifiacar(lista_imagen_empleados)			guardamos la lista devuelta por la función en imagenes_empleados
+
+
+
+
+
+ENCONTRAR COINCIDENCIAS EN LA BASE DE DATOS:
+--------------------------------------------------------------------------------------------
+#TOMAR UNA IMAGEN DE LA CAMARA WEB
+captura = cv2.VideoCapture(0,cv2.CAP_DSHOW)						#Esta funcion se encargara de abrir la camara web y lo deja abierto, el primer atributo indica si hay 												varias camaras, si solo hay una su valor es 0, si hay varias camaras indicar su id, es ir probando 												probando 
+											El segundo atributo hace referencia la tipo de camara, en windows es cv2.CAP_DSHOW, en Linux es
+											cv2.CAP_V4L, hay muchos tipos
+
+#LEER IMAGEN DE LA CAMARA WEB
+exito, imagen_de_la_captura=captura.read()						#una vez la camara abierta .read() captura un instante de lo que se transmite en la camara,
+											devuelve 2 valores, el primero si la captura fue exitosa y la segunda sera la imagen, osea la captura
+											que hizo con la camara abierta, y luego se cerrara
+imagen_de_la_captura= cv2.cvtColor(imagen_de_la_captura,cv2.COLOR_BGR2RGB)		convierte la imagen capturada a formato rgb
+
+
+if not exito:
+    print('LA CAMARA NO ESTA FUNCIONANDO')						
+
+else:
+    #RECONOCER CARA EN IMAGEN
+    cara_captura = fr.face_locations(imagen_de_la_captura)				#localizamos la cara de la instantanea, recuerda que esto sera una lista
+
+    #CODIFICAR CARA CAPTURADA
+    codificar_captura = fr.face_encodings(imagen_de_la_captura, cara_captura)		#codificamos la cara de la instantanea, recuerda que esto sera una lista
+
+    #BUSCAR COINCIDENCIAS
+    for caraubi, caracodif in zip(cara_captura,codificar_captura):			#hace un zip y los desempaquetamos para elemento de los pasados
+        coincidencias = fr.compare_faces(imagenes_empleados_codificadas,caracodif)	#contendra una lista de booleanos en caso encuentre coincidencias de los empleados y la instantanea
+        distancias = fr.face_distance(imagenes_empleados_codificadas,caracodif)		#contendra una lista de las distancias entre los empleados y la instantanea
+
+        indice_coincidencia = numpy.argmin(distancias)					#obtenemos el indice del valor minimo de la lista pasada
+
+        # MOSTRAR COINCIDENCIAS SI LAS HAY						
+        if distancias[indice_coincidencia]>0.6:						#En caso el valor minimo sea mayor que la tolerancia 6, entonces significa que no es un empleado
+            print('Usted no pertenece a la empresa')		
+        else:										#En caso si lo sea, imprimimos el nombre del empleado
+            print(f"Bienvenido {lista_nombres_empleados[indice_coincidencia]}")		
+
+
+
+
+
+MOSTRAR COINCIDENCIAS:
+--------------------------------------------------------------------
+*Una vez indetificado al personal, procedemos a mostrar la instantanea, ponerle un cuadro en el rostro y el nombre para este ejemplo.
+
+        for caraubic, caracodif in zip(cara_instantanea, codificar_instantanea):
+            distancias = fr.face_distance(empleados_codificados, caracodif)
+            verificaciones = fr.compare_faces(empleados_codificados, caracodif)
+
+            indice_coincidencia = numpy.argmin(distancias)
+
+            if distancias[indice_coincidencia] > 0.6:
+                print('Usted no es un empleado')
+
+            else:
+                nombre = empleados_nombres[indice_coincidencia]
+                y1, x2, y2 , x1 = caraubic
+
+                cv2.putText(instantanea,'BIENVENIDO A SENATI',(int(ancho/2)-10,10),cv2.FONT_HERSHEY_COMPLEX,0.5,(0,255,0),1)
+
+                cv2.rectangle(instantanea,
+                              (x1,y1), (x2,y2),
+                              (0,255,0), 2 )
+
+                cv2.rectangle(instantanea,
+                              (x1,y2-20), (x2,y2),
+                              (0,255,0), cv2.FILLED)
+
+                cv2.putText(instantanea, nombre, (x1+5,y2-10), cv2.FONT_HERSHEY_COMPLEX, 0.5 , (255,255,255),1)
+
+
+
+REGISTRAR ASISTENCIA:
+--------------------------------------
+
+
+
+
+
+
+
+
+
+
+Utilizades de numpy:
+------------------------
+arr.shape							#devuelve las dimensiones del array (altura, ancho , profundidad)
+for i in range(arr.shape[0]):					#hacemos todo lo de abajo para iterar sobre todos los elmentos del array
+    for j in range(arr.shape[1]):
+        for k in range(arr.shape[2]):
+            print(arr[i, j, k])
+
+
+numpy.all(array == 0)
+numpy.zeros((d1,d2,d3))						#arreglo de d1xd2xd3 todos de elementos 0
+numpy.array_equal(array1,array2)				#para comparar si los 2 array son iguales, devuelve un valor booleano
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 15								|
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|								DIA 16								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Para montar un sevidor simple con python:
+
+python -m SimpleHTTPServer 8080							# En python 2
+python -m http.server 8080							# En python 3
+
+python -m pyftpdlib -p 7070							#para montar un servidor ftp basico (se requiere pip install pyftpdlib ) en el puerto indicado
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+|							COMENTARIOS								|
+---------------------------------------------------------------------------------------------------------------------------------
+*Este curso lo estoy realizando teniendo ya buena experiencia en Pyton, debido a eso no sean tomado a cuenta todos los apuntes.
+*Tener cuidado al nombrar archivos python, ya que al momento de importar modulos, puede que se confunda.
+*python tiene una convención de estilos conocida como 'PEP-8'
+*En python todo es un objeto. incluso los int, float, str, funciones, etc.... todo.
+*Recuerda que en python por convención el nombre de las funciones comienza con minusculas y el de las clases con masyusculas.
+*EN GENERADORES. tu puedes crear un objeto generador y puedes interar en esta, cada elemento del loop for para el objeto generador devolvera un valor como si lo estuvieras llamando con next.
+*en Pycharm a veces por el interprete y la instalación de paquetes ocurre un error, eso no significa que cuando tu corras tu archivo python vaya haber un error.
+*en pycharm se trabaja mucho con entornos virtuales y es recomendable eso.
+*Las versiones de las librerias que instalemos estan relacionadas con la version de python que esten trabajando, por ejemplo en la libreria 
+opencv-python 4.5.5.62 funciona bien con python 3.11.3.
+*Importante saber que pip a veces no es lo mismo que pip 3, ya que podria ser pip2, ambas hacen distintas instalacion para disntintas versiones de python.
+	alias pip=pip3	, ahora cada que usemos pip se usara pip3
+
+*Editar las variables de entorno del sistema en esa ruta podemos, cambiar para py3.11 sea por defecto lo que utiliza antes de py3.9 solo subiendolo de posicion, lo mismo podemos hacer con pip,etc. o tambien podemos editar desde la terminal pero recuerda que debes hacerlo como administrador.
+
+
+Para hacer un alias en windows
+doskey conda=_conda $*			#usa un alias solo para esta sesión de la terminal
+
+
+
+
+*C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib 			->esta es la carpeta donde estan las librerias base con la que esta trabajando pycharm
+*C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Lib\site-packages	->esta es la carpeta donde se guardan los paquetes instalados por el pip
+
+
+*para ver los metodos de una clase, por ejmplo 'persona' o sus atributos, o informacion de un metodo, etc. hacemos lo siguiente:
+	-persona.__doc__				#nos mostrara la documentacion principal de la clase.
+	-dir(persona)					#mostrara una lista cuyos elementos seran los metodos y atributos de la clase dada.
+	-vars(persona)					#mostrara un diccionario, cuyos elemenos tendran por clave el atributo o clase y su valor sera el valor predeterminado que tengan.
+	-help(persona.metodo1)				#mostrara la documentacion del metodo1() que tenga esa clase.
+
+	-modulo.__file__				#muestra la ruta de ese modulo o libreria, etc
+	-import inspect
+		print(inspect.getfile(libreria))	#devuelve la ruta completa de la libreria dada
+
+	- pip list					#muestra los paquetes que tengamos instalados
+	- pip freeze					#muestra los paquetes que tengamos instalados pero con su version
+	- pip install paquete				#instala el paquete mencionado
+	- pip install paquete==version			#instala la version dada	
+	- pip unistall paquete				#desinstala el paquete mencionado
+	- pip show paquete				#muestra información sobre el paquete, sino muestra nada es que no esta instalado
+
+	-where python 					#mostrara todas las rutas en las que hay un interprete python instalado y añadido al path de entorno del sistema
+							veras 2 rutas para la misma versión, por ejemplo:
+							C:\Users\Usuario\AppData\Local\Programs\Python\Python310\Scripts		hace referencia al pip de esta version
+							C:\Users\Usuario\AppData\Local\Programs\Python\Python310\			hace referencia la interprete
+
+
+
+
+*Algunos archivos python requeriran privilegios de root: entonces abriremos el cmd o powershell, nos dirigimos a la ruta del scripts.
+		python archivo.py			ejecuta el archivo.py
+		
+		.\activate.ps1				ejecuta el archivo activate.ps1, este archivo es util al querer usar un entorno virtual, debemos estar en la ruta que tenga ese archivo
+		activate.ba				ejecuta el archivo activate.bat
+
+
+*Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process	Este comando permite ejecutar archivos que no tengan firma digital temporalmente
+
+
+
+
+
+	Modulos vistos:
+----------------------------
+import io
+import pathlib
+from pathlib import Path
+import random
+import os	
+import shutil
+import math
+import datetime
+import time
+import timeit
+import pygame
+import sys
+import re
+import pylint
+import collections
+import zip
+import zipfile
+import unitest
+import bs4			(es beautifulsoup4)
+import requests
+import string
+import langdetect
+
+
+
+
+Aquí tienes una lista más completa de los especificadores de tipo utilizados con el operador % en el formateo de cadenas en Python:
+ejemplo: print('hola %s' %s)
+
+%s: Cadena (str)
+%r: Representación en cadena de un objeto (str)
+%d: Entero decimal (int)
+%i: Entero decimal (int)
+%u: Entero decimal sin signo (int)
+%o: Entero octal (int)
+%x: Entero hexadecimal (letras minúsculas) (int)
+%X: Entero hexadecimal (letras mayúsculas) (int)
+%e: Notación científica (exponencial) (float)
+%E: Notación científica (exponencial) (float)
+%f: Número de punto flotante (float)
+%g: Elige %e o %f automáticamente según sea más corto (float)
+%G: Elige %E o %f automáticamente según sea más corto (float)
+%c: Carácter (str)
+%%: Carácter de porcentaje literal (%)
+%b: Se utiliza específicamente para representar números enteros en formato binario.
+
+*Antiguamente se usaba asi, tener en cuenta por si ves esto dentro de los print
+
+
+
+#Aqui una forma de guardar valores binarios indicados en forma hexadecimal
+icmp_packet = b"\x08\x00\x00\x00\x00\x01\x00\x01"		representa una secuencia de bytes en Python. La secuencia de bytes está escrita en formato hexadecimal utilizando la sintaxis 									\x seguida de dos dígitos hexadecimales. 
+
+
+
+
+convertir string a bits y hexadecimal METODO 1:
+------------------------------------------------
+texto = 'hola mundo'
+
+# Convertir a bits
+bits = ''.join(format(ord(c), '08b') for c in texto)
+
+# Convertir a hexadecimal
+hexadecimal = hex(int(bits, 2))[2:]
+
+print('Texto original:', texto)
+print('Bits:', bits)
+print('Hexadecimal:', hexadecimal)
+
+convertir string a bits y hexadecimal METODO 2:
+------------------------------------------------
+texto = 'hola mundo'
+
+# Convertir a bytes utilizando la codificación UTF-8
+bytes_texto = texto.encode('utf-8')
+
+# Convertir a hexadecimal
+hexadecimal = bytes_texto.hex()
+
+print('Texto original:', texto)
+print('Bytes:', bytes_texto)
+print('Hexadecimal:', hexadecimal)
+
+
+convertir string a bits y hexadecimal METODO 3:
+------------------------------------------------
+m='hola mundo'
+
+a=m.encode('utf-8')     #Esto codifica el texto utilizando el formato 'utf-8' la cual esta en bytes, por eso 'a' esta en bytes
+b=a.hex()               #Lo convierte de byte a hexadecimal
+c=int(b,16)             #Lo convierte el hexadecimal a entero
+d=bin(c)                #Lo convierte el entero a binario
+e=hex(c)                #Lo convierte el entero a hexadecimal
+
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
+
+
+0b1101000011011110110110001100001001000000110110101110101011011100110010001101111	0b delante indica binario
+0x686f6c61206d756e646f									0x delante indica hexadecimal
+
+
+
+detectar idioma dando un texto:
+---------------------------------
+import langdetect				#libreria util para detectar idiomas
+
+langdetect.detect('texto')			#devuelve el idioma dandole un texto, si fuera español retorna 'es' si fuera ingles 'en', etc.
+
+
+
+usar el alfabeto:
+------------------
+import string					#libreria para trabajar con cadenas de string, asi como el ascii
+
+string.ascii_lowercase				#devuelve el alfabeto ingles en minuscula
+string.ascii_
+
+
+
+
+################################################################### 	extras:
+
+#LO DE ABAJO NOS SIRVE PARA INTERACTUAR CON SHELL DEL LINUX O CMD DE WINDOWS, ETC. Y MANEJAR LOS ERRORES QUE SE PRODUZCAN AL USAR CIERTOS COMANDOS, QUE SALEN EN ROJITO.
+
+import subprocess
+
+# Ejecutar el comando y capturar la salida estándar y la salida de error
+resultado = subprocess.run('dir -a', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+# Verificar si hubo un error en la salida
+if resultado.returncode != 0:
+    print("Error: ", resultado.stderr)
+    
+else:
+    # Imprimir la salida estándar si no hay error
+    print(resultado.stdout)	
+
+
+
+
+
+#os.listdir(os.sep.join([os.environ.get("SystemRoot",'C:\Windows'),'temp']))			#Forma 1 para saber si somos o no admin en la consola de windows
+#net session											#Forma 2 para saber si somos o no admin en la consola de windows
+
+subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v backdoorDax /t REG_SZ /d "'+ location + '"', shell=True)				#PARA AÑADIR UN REGISTRO INDICADO
+
+
+###
+En realidad todo es un diccionario en python, hasta las variables que uno crea y usa, al hacer a=5 por ejemplo, python lo maneja añadiendo un nuevo valor a su diccionario como 'a':'5'
+
+if 'a' in locals():				#para verificar si la variable a existe en locals() o globals()
+    print(a)
+else:
+    print("La variable 'a' no existe.")
+
+
+
+
+
+-------------------------------------------------------------------------------
+CHROME VENTANAS
+-------------------------------------------------------------------------------
+start chrome --new-window "about:blank" --window-size=400,900 --user-data-dir="%TEMP%\chrome-profile"				#Abre una ventana de chrome con el tamaño especificado
+
+start firefox --width 400 --height 900	
+
+
+
+https://teleticket.com.pe/Account/SignIn											#Abre una ventana de firefox con el tamaño indicado
+
+
+
+
+
+
+
+
+start chrome --new-window "https://teleticket.com.pe/Account/SignIn" --window-size=400,900 --user-data-dir="%TEMP%\chrome-profile"
+start chrome --new-window "https://www.cineplanet.com.pe/autenticacion/login" --window-size=400,900 --user-data-dir="%TEMP%\chrome-profile"
+
+
+start chrome --new-window "https://falabella.com.pe/falabella-pe/myaccount/" --window-size=500,650 --user-data-dir="%TEMP%\chrome-profile"
+
+
+
+
+
+
+
+#INSTALAR ALGUNAS BIBLIOTECAS SE HACE DESDE EL GITHUB 
+---------------------------------------------------------------------------------------
+
+
+pip install git+https://github.com/openai/whisper.git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
