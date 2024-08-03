@@ -1,0 +1,2891 @@
+print("texto")		permite inprimir "texto" que mostrara el programa		
+print("texto",end="")	esto es util para bucles, ya que hace que no halla saltos de linea	
+break;			forza a salir de un bucle, de una condición,etc.
+len(variable)		sirve para contar la cantidad de caracteres de nuestra variable(tiene que ser de tipo string)
+variable.lower()	transforma toda la cadena de carácteres a minusculas
+variable.upper()	transforma toda la cadena de carácteres a masyusculas
+range(i)		sirve como contador para bucles, si ponemos ejemplo range(5) el bucle se ejecutara 5 veces, i empieza con valor=0 
+range(i,j)		el rango ira desde i hasta j-1000
+range(i,j,k)		el rango ira desde i hasta j-1, el valor de i aumentara en k en k
+round(numero)		redondea al entero mas cercano		
+del variable		borra la información de la variable en la memoria
+
+print(f"texto{variable1}texto{variable}....")		imprime texto con valores de las variables entre las llaves
+print("texto{}texto...".format(variable)...)		imprimte texto con valores entre las llaves de las variables
+
+
+---------------------------------------------------------------------------------
+			Introducir datos					|
+---------------------------------------------------------------------------------
+
+variable=input()			permite ingresar datos y guardarlo en la variable(los datos guardados seran de tipo 'str') 
+variable=input("parametros")		en parametros se puede introducir un mensaje antes de pedir el dato.
+
+variable=int(input())			permite guardar el dato introducido en tipo entero
+variable=float(intput())		permite guardar el dato introducido en tipo flotante
+variable=str(input)			permite guardar el dato introducido en tipo string
+
+
+
+---------------------------------------------------------------------------------
+				CLASES						|
+---------------------------------------------------------------------------------
+estas son algúnos modulos que importamos para trabajar con ellos. 
+
+from tkinter import messagebox
+from tkinter import *
+from io import *
+import re
+import math
+from io import open
+import pickle
+import sqlite3
+from setuptools import  setup
+import doctest
+import keyword					-->para llamar una lista de palabras claves usamos keyword.kwlist
+import cmath					-->liberia para trabajar con los argumentos de los números complejos
+
+
+import math:				permite importar para usar las clases math
+------------
+marth.sqrt(variable)			sirve para hablar la raiz cuadrada, en este caso de la variable
+math.pi					nos permite usar el valor de pi
+
+
+
+
+
+
+----------------------------------------
+		Funciones		
+----------------------------------------
+*Conjunto de lineas agrupadas, que funcionan como una unidad realizando una tarea especifica.
+*Las funciones pueden devolver valores.
+*las funciones pueden tener parametros / argumentos
+*A las funciones también se les denomina "métodos" cuando se encuentran definidas dentro de una clase.
+*Es importante definir las funciones primero antes de llamarlas
+
+Sintaxis:
+---------
+*así definimos a una función
+
+1.
+def nombre_función():
+	Instrucciones de la función					respetando la sangria 
+	return(opcional)
+
+2.
+def nombre_función(parámetros):
+	Instrucciones de la función
+	return(opcional)
+
+*así ejecutamos a una función
+-----------------------------
+1.
+nombre_función()
+2.
+nombre_función(parámetros)
+
+
+------------------------------------------------------------------------------
+				LISTAS
+------------------------------------------------------------------------------
+*Nos permite almacenar varios valores
+*Las listas en python nos permiten guardar muchos tipos de valores
+*Se pueden expandir dinamicamente añadiendo nuevos elementos
+
+Sintaxis:
+---------
+nombreLista=[elemento1,elemento2,elemento3...]
+		[0]	   [1]	    [2]			<---- esto viene a ser el indice 
+
+
+*así utilizamos a una lista
+---------------------------
+nombreLista=[:]				Se usa para utilizar todos los valores de nuestra lista
+nombreLista=[]				Se usa para utilizar todos los valores de nuestra lista
+
+nombreLista=[i:n]			Se utiliza para mostrar una porción de la lista empezando por el indice i hasta el indice n (Sin contar el 						elemento de este indice )
+					(Si tu omites el indice i Python interpretara que comienza del indice 0 hasta n, si omites el indice n, python 						interpretara que es del indice i hasta el final)
+
+nombreLista.append(elemento)					agrega un elemento a nuestra lista, este elemento se agrega al final
+nombreLista.insert(i,elemento)					agrega un elemento a nuestra lista, este elemento se agregara en el indice i, haciendo 									que el elemento de ese 	indice se corra 1 posición
+
+nombreLista.extend([elemento1,elemento2,elemento3...])		agrega varios elementos a nuestra lista
+nombreLista.index(elementoLista)				muestra el indice del elemento perteneciente a nuestra lista (en caso de tener 									elementos iguales, mostrara el indice del primer elemento, de izquierda a derecha)
+
+Lista3=Lista1+Lista2						Así se concatenan listas.
+Lista=[elemento1,elemento2...]*n				repite los elementos de la lista n veces y los guarda
+
+nombreLista.remove(elemento)					elimina dicho elemento de nuestra lista, de izquiera a derecha, solo 1 vez.
+nombreLista.pop()						elimina el ultimo elemento de nuestra lista.
+					
+
+
+
+
+nombreLista=[i]				Llama a un valor de nuestra lista de indice i
+nombreLista=[-i]			cuando el indice es negativo empieza a contar desde el final de lista empezando por -1
+
+
+-------------------------------------------------------------------------------------------
+					Tuplas
+-------------------------------------------------------------------------------------------
+*Son listas inmutables, es decir, no se pueden modificar despues de creación
+	-no se permite eliminar, añadir, mover elementos
+	-si se permite extraer porciones, pero el resultado es una nueva tupla
+	-si permite comprobar que elementos pertenecen a la tupla
+	
+
+*ventajas:
+	-mas rapidas(cuando se ejecuta un programa), menos espacio, formatean string, pueden utilizarse como claves de un diccionario.
+	
+
+Sintaxis:
+---------
+nombreTupla=(elemento1,elemento2....)			el paretesis es opcional, pero se recomienda como buena práctica(empaquetado de tupla)
+		[0]	[1]				----> indice, los indices de la tupla tienen la misma regla que la lista
+
+
+nombreTupla=(elemento,)					Así se indica que esto sera una tupla unitaria
+
+variable1,variable2,variable3...=nombretupla		desempaquetado de Tupla, los valores de la Tupla son asignado a las variables
+
+
+*variable				cuando pones un "*" delante de la variable en python indicamos que va recibir un número indeterminado 
+					de elementos y estos a su vez perteneceran a una tupla
+
+
+
+---------------------------------------------------------
+		convertir Tuplas-listas
+---------------------------------------------------------
+
+Tupla a lista
+-------------
+Lista1=list(tupla1)					convierte una tupla a lista
+
+
+Lista a Tupla
+--------------
+Tupla1=tuple(Lista1)					convierte una lista a tupla	
+
+
+
+
+
+--------------------------------------------
+herramientas extras para tuplas,listas
+--------------------------------------------
+Lista1.count(x)						Cuenta cuantas veces se repite el elemento x en la lista1(puede ser tupla)
+len(Lista1)						Sirve para averiguar la longitud en elementos de la lista1(puede ser tupla)
+
+
+---------------------------------------------------------------------------------
+				Diccionarios
+---------------------------------------------------------------------------------
+*Estructura de datos que nos permite almacenar valores diferentes tipo (enteros, cadenas de texto, decimales) e incluso listas y otros
+diccionarios.
+*La principal carácteristica de los diccionarios es que los datos se almacenan asociados a una clave de tal forma que se crea una asociación
+de tipo "clave:valor" para cada elemento almacenado.
+*Los elementos almacenados no estan ordenados. EL orden es indiferente a la hora de almacernar información en un diccionario.
+*Dentro de un diccionario no puede a ver 2 claves iguales 
+
+Sintaxis:
+---------
+miDiccionario={Clave1:Valor1,Clave2:Valor2...}		A cada palabra Clave le corresponde un valor
+miDiccionario						Invocara a todo el contenido del diccionario
+miDiccionario[Nuevaclave]=valor				Agrega un elemento mas a nuestro diccionario con dicha clave y valor
+miDiccionario[Clave]=nuevoValor				se utiliza para replazar el valor a una clave
+
+	
+
+
+
+del miDiccionario[Clave]				Eliminatara dicho elemento Clave con su valor
+MiDiccionario.keys()					Nos dara todas las claves que tiene el diccionario
+MiDiccionario.values()					Nos dara los valores de todas las claves del diccionario
+len(MiDiccionario)					Nos dara la longitud de las parejas totales que hay en el diccionario
+
+
+*Así utilizamos el diccionario:
+-------------------------------
+miDiccionario[Clave1]			Nos devolvera Valor1 ya que corresponde a la Clave1
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------
+				CONDICIONALES: 
+----------------------------------------------------------------------------
+
+
+
+if-else-elif
+-------
+Sintaxis:
+---------
+
+if condición:
+	algoritmo 			Se ejecutara el algoritmo si se cumple la secuencia
+
+elif condicion:				
+	algoritmo			Se ejecutara en caso de no cumplirse el if (se puede meter muchos mas elif)		
+
+else:
+	algoritmo			Se ejecutara el algoritmo en caso de no cumplirse la secuencia.
+
+*Si la condición(en este caso una variable) es de tipo booleano, podemos ponerla de la siguiente manera
+ejemplo:
+	sea casa=True
+if casa:				el programa automaticamente ya sabe y se ejecutara solo si casa es verdadero.
+
+
+--------------------------------------------------------------------------------
+				BUCLES		
+--------------------------------------------------------------------------------
+*repetir una linea de código varias veces
+*Existen 2 tipos de bucles, los determinados y los indeterminados
+determinados: se sabe cuantas veces se va ejecutar
+indeterminados: no se sabe cuantas veces se va ejecutar
+*else: 		este codigo también trabaja con bucles y se ejecuta solo si el bucle a terminado de recorrer toda su condición
+
+
+continue		salta a la siguiente iteracción del bucle (es decir ignora una vuelta y pasa a la siguiente)
+pass			sirve para rellenar donde no hay código escribe y no nos salte un error(por ahora lo entiendo así)
+else			la función else tiene la misma función en bucles que en condicionales
+
+
+
+---------------------------
+	FOR		  |
+---------------------------
+*los elementos pertenecientes al cuerpo del bucle tienen una identazión
+*print("texto",end="")	util para seguir imprimiendo pero no hacer salto de lineas, si deseas usas espacios en blanco entre los corchetes
+
+
+Sintaxis:
+---------
+
+for 'i' in 'elemento a recorrer':		elemento a recorrer puede ser una lista, tupla, cadena de texto, rango, etc.
+						la 'i' es una variable pero por convección se utiliza esta variable.
+
+
+ejemplo:
+	for i in ["maria","pepe","Jhony"]:			el bucle se ejecutara 3 veces(cantidad de elementos)
+	for i in "maria":					el bucle se ejecutara 5 veces(cantidad de carácteres)
+	for i in range(5):					el bucle se ejecutara 5 veces(i=0 a i=4)
+	for i in range(5,10):					el bucle se ejecutara 5 veces(i=5 a i=9)
+	for i in range(5,10,2):					empieza en i=5 hasta i=9, avanzara de 2 en 2
+
+	
+
+----------------------------
+	while		   |
+----------------------------
+
+sintaxis:
+---------
+while condición:
+	cuerpo del bucle(algoritmo)
+
+
+----------------------------------------------------------------------------------
+				GENERADORES					||
+----------------------------------------------------------------------------------
+*Estructuras que extraen valores de una función y se almacenan en objetos iterables (que se pueden recorrer)
+*Estos valores se almacenan de uno en uno
+*cada vez que un generador almacena un valor, esta permanece en un estado pausado hasta que se solicita el siguiente.
+Esta carácteristica es conocida como "suspensión de estado".
+
+*a diferencia de una función, un generador controla el flujo al devolver datos, una función retorna todo, un generador
+de vuelve parte por parte, y por cada parte queda en suspensión.(es como un depurador)
+
+*Los generadores son mas eficientes, muy utiles con listas de valores infinitos, bajo determinadas condiciones es util que devuelva de uno en uno.
+*Los generadores permiten ahorrar espacio en memoria
+
+*next(generadorNombre)		nos permite usar valor a valor cada resultado de la yield (hacer llamadas)
+*yield				se combina next(generadorNombre), 
+*from yield elemento:
+	-Simplifica el código del generador en caso de utilizar bucles aninadas. 			
+
+
+Sintaxis:
+---------
+
+Def generaNumeros():
+	código	
+	yield numeros
+
+
+
+
+ejemplo de uso:
+
+def generaPares(limite):
+    num=1
+
+    while num<limite:
+
+        yield num*2
+
+        num+=1
+
+devuelvePares=generaPares(10)
+
+print(next(devuelvePares))
+print("Aquí podria ir mas código")
+print(next(devuelvePares))
+print("Aquí podria ir mas código")
+print(next(devuelvePares))
+
+
+ejemplo2:
+
+def devuelve_ciudades(*ciudades):
+    for elemento in ciudades:
+        yield from elemento				Es indicarle al programa que nos haga un yield desde el primer elemento.
+
+
+ciudades_devueltas=devuelve_ciudades("Madrid","Barcelona","Bilbao","Valencia")
+
+print(next(ciudades_devueltas))
+
+
+-------------------------------------------------------------------------------------
+				Excepciones
+-------------------------------------------------------------------------------------
+*Las excepciones son errores que ocurren durante la ejecución de un programa. La sintaxis del código es correcta pero durante 
+la ejecución ha ocurrido "algo inesperado"
+*Este tipo de errores de ejecución se pueden controlar para que la ejecución del programa continúe. Es lo que se conoce como
+manejo o control de excepciones.
+*Se puede meter la cantidad excepciones que usted desee.
+*Si no se especifica el nombre de la excepción, significa que estamos haciendo una excepción general. (la desventaja es que no sabriamos que error
+hemos cometido)
+*El atributo finally: hace que se ejecute siempre una instrucción.
+
+
+sintaxis:
+---------
+	try:
+	    operación a intentar
+	except "nombre del error":			(El error que se produce debe ser igual al nombre del error a capturar)
+	     mensaje					(si no se especifica el error signfica que haremos una excepción general)
+	     return "mensaje del return"
+
+ejemplo:1
+	try:
+	        return num1/num2
+	except ZeroDivisionError:					(el error que se produce debe ser igual al nombre del error a capturar)
+        	print("No se puede dividir entre 0")
+        	return "Operación errónea"
+
+ejemplo:2
+	while True:	
+    try:									con esta sintaxis podemos forzar a que el usuario digite correctamente
+        op1=int(input("Introduce el primer numero: "))				sin salir del programa
+        op2=int(input("Introduce el segundo numero: "))
+        break;
+    except ValueError:
+        print("los valores introducidos no son correctos. Intentalo de nuevo")
+
+ejemplo:3					
+  def divide():									Se puede meter la cantidad excepciones que usted desee.
+  	try:
+  	  op1=float(input("Introduce el primer número: "))
+  	  op2=float(input("Introduce el segundo número: "))
+
+  	  print(f"La división es: {op1/op2}")
+
+  	except ValueError:
+      	   print("El valor introducido es erróneo")
+  	except ZeroDivisionError:
+           print("No se puede dividir entre 0")
+  	finally:								hace que una instrucción se ejecute siempre
+ 	   print("Calculo finalizado")
+
+
+lanzamientos de excepciones:
+----------------------------
+raise	nombredelError					sirve para crear nuestras propias excepciones sin capturar
+
+sintaxis:
+---------
+	raise NombreError("mensaje")			sirve para crear nuestras excepciones (el nombre del error debe existir por que sino seria 								tomado como una variable, para evitar eso creariamos una clase)
+
+ejemplo:1
+	def evaluaEdad(edad):
+    if edad<0:
+        raise TypeError("No se permiten edades negativas")		Creamos esta excepción 
+    if edad<20:
+        return "Eres muy joven"
+    elif edad<40:
+        return "Eres joven"
+    elif edad<65:
+        return "Eres maduro"
+    elif edad<100:
+        return "Cuídate..."
+
+print(evaluaEdad(110))
+
+ejemplo:2
+	import math
+
+	def calculaRaiz(num1):
+    		if num1<0:
+       			 raise ValueError("El número no puede ser negativo")
+    		else:
+        		 return math.sqrt(num1)
+
+	op1=int(input("Introduce un número: "))
+
+	try:
+  	  print(calculaRaiz(op1))
+	except ValueError as ErrorDeNumeroNegaivo:		 
+   	  print(ErrorDeNumeroNegaivo)
+
+	print("Programa terminado")
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+||||||							POO								|||||
+-----------------------------------------------------------------------------------------------------------------------------
+*Trasladar el comportamiento de los objetos de la vida real al código de programación.
+*Los objetos tienen un estado, un comportamiento(¿Qué puede hacer?), y unas propiedades.
+
+*objeto:
+    *Tiene propiedades (atributos):	
+	*color
+	*peso
+	*alto
+	*largo
+    *Tiene un comportamiento (¿Qué es capaz de hacer?):
+	*Arrancar
+	*Frenar
+	*Girar
+	*Acelerar
+
+*Vocabulario de la POO
+	*clase				-Modelo donde se redactan las características comunes de un grupo de objetos			
+	*objeto				-(Un objeto puede tener muchas clases)
+	*Ejemplar de clase. Instancia de clase. Ejemplarizar una clase.			-ejemplar perteneciente a una clase
+	*Modularización				-Es tener muchas clases de un objeto
+	*Encapsulamiento / encasulación		-Cada clase no depende de otra, pero todas las clases funcionan bien como equipo(metodos de acceso)
+	*Herencia			-
+	*Polimorfismo			-
+
+nomenclatura del punto ejemplo.
+
+*objeto:
+    *Accediendo a propiedades del objeto desde código (pseudocódigo)
+	-miCoche.color="rojo"		
+	-miCoche.peso=1500		
+	-miCoche.ancho=2000		
+	-miCoche.alto=900		
+
+    *Accediendo a comportamiento de objeto desde código (pseudocódigo)
+	-miCoche.arranca()	
+	-miCoche.frena()
+	-miCoche.gira()
+	-miCoche.acelera()
+
+Sintaxis:
+---------
+*para crear una clase
+
+class nombreClase():
+	propiedades				una objeto tiene propiedades
+
+	def NombreClase(self):			una objeto tiene comportamiento
+		pass
+
+
+*para crear un metodo
+-un metodo es una función especial perteneciente a una clase
+
+class nombreClase():
+	propiedades
+	
+	def nombreMetodo(self):			self hace referencia a que esto sera un metodo perteneciente a la clase perteneciente.(instancia)
+	    pass		
+
+
+ejemplo:
+	class Coche():				creamos una clase
+    		largoChasis=250
+    		anchoChasis=120			esto es la propiedad de la clase
+    		ruedas=4
+    		enmarcha=False
+
+    		def arrancar(self):					aqui se definira su comportamiento
+        	    self.enmarcha=True
+		
+		def estado(self):					aquí veremos su estado.
+		    if(self.enmarcha):	
+			return "El coche esta en movimiento"	
+
+		    else:
+			return "El coche esta parado"
+
+
+miCoche=coche()					esto es istanciar una clase. Ejemplarizar una clase
+						aquí es decir miCoche se transforma en un objeto y tendra las propiedades y comportamiento especificado
+						en la class Coche():
+
+print(miCoche.largoChasis)			para usar algúna propiedad o comportamiento utilizamos la nomeclatura del ".", como se ve en el ejemplo
+miCoche.arrancar()				llamaremos al comportamiento arrancar(), enmarcha=True			
+
+
+ejemplo2:
+
+class Coche():
+    	
+     def __init__(self):			Nos sirve para definir el estado inicial de nuestra clase(también se pueden pasar mas parametros) 			
+
+	self.largoChasis=250
+	self.anchoChasis=120
+    	self.__ruedas=4				al poner los 2 subguiones antes indicamos que estamos encapsulando esta propiedad
+						para que no sea modificada desde el exterior, pero si del interior.
+    	self.enmarcha=False
+
+    def arrancar(self,arrancamos):		también se le puede pasar parametros al metodo.
+        self.enmarcha=arrancamos
+        chequeo=self.__chequeo_interno()
+	if (self.enmarcha and chequeo):
+            return "El coche esta en movimiento"
+	elif self.enmarcha and chequeo==False:        
+	    return "Algo falla en el chequeo"
+	else:
+            return "El coche esta parado"
+
+    def estado(self):
+        return print(f"El coche tiene {self.__ruedas} ruedas. Un ancho de {self.anchoChasis} y un largo de {self.largoChasis}")
+				 *al encapsular una propiedad, cambia también el nombre de la propiedad
+
+
+    def __chequeo_interno(self):		los 2 subguiones indican que estamos encapsulando este metodo, para que solo sea 							accesible internamente, también cambia el nombre del metodo. 		
+	print("Realizando un chequeo...")
+	self.gasolina="ok"
+	self.aceite="ok"
+	self.puertas="cerradas"
+	
+	if(self.gasolina==""ok and self.aceite=="ok" and self.puertas=="cerradas"):
+		return True
+	elif:
+		return False
+
+
+herencia
+---------
+*Se trata de trasladar la herencia que ocurre entre personas, a código de programación.
+*Sirve para reutilizar código en caso de crear objetos similares.
+
+
+class Vehiculos():						Aquí estamos creando la clase de la cual vamos a heredar
+    def __init__(self,marca,modelo):
+        self.marca=marca
+        self.modelo=modelo
+        self.enmarcha=False
+        self.acelera=False
+        self.frena=False
+
+    def arrancar(self):
+        self.enmarcha=True
+
+    def acelerar(self):
+        self.acelera=True
+
+    def frenar(self):
+        self.frena=True
+
+    def estado(self):
+        print(f"Marca: {self.marca}\nModelo:{self.modelo}\nEn Marcha: {self.enmarcha}\nAcelerando: {self.acelera}"
+              f"\nFrenado: {self.frena}")
+
+
+class Moto(Vehiculos):					Aquí estamos creando una clase y de parametros ponemos el nombre de la clase de la cual 							queremos heredar(se heredara las propiedades y comportamiento de la clase Vehiculos)
+    							(esto es una herencia simple, ya que solo hereda una vez)
+
+
+    hcaballito=""
+    def caballito(self):
+	hcaballito="Voy haciendo el caballito"
+	
+    def estado(self):					cuando un metodo tiene el mismo nombre que el de su padre, se sobreescribe sobre el metodo 		pass						padre (este pesa más que el del padre(jerarquia de clases	))
+	
+	
+class squad(Moto):					Heredaria las propiedades y comportamiento de la clase Moto, y a la vez de Vehiculo
+	pass						(heredaria el metodo estado de Moto(por jerarquia de clases))
+
+
+class Furgoneta(Vehiculos):				Furgoneta hereda de la clase Vehiculo
+    def carga(self,cargar):				definimos un nuevo comportamiento
+        self.cargado=cargar
+        if(self.cargado):
+            return "La furgoneta esta cargada"
+        else:
+            return "La furgoneta no esta cargada"
+
+class vElectricos():					creamos una nueva clase
+    def __init__(self):
+        self.autonomia=100
+
+    def cargarEnergia(self):
+        self.cargando=True
+
+class BicicletaElectrica(Vehiculos,vElectricos):	creamos una nueva clase. Esta clase hereda 2 clases (herencia muliple)
+	pass						Aquí también indicamos que constructor tiene prioridad, la gerarquia de las clases es de
+							izquierda a derecha, en caso de que ambas clases tengas metodos con el mismo nombre, se dara
+							prioridad al de la clase izquierda (gerarquia de clases) y luego se procede a heredar todo
+							lo demás siempre y cuando no tenga el mismo nombre.
+							
+miBici=BicicletaElectrica("Orbea","HC1030")		esto es correcto por que esta clase principal que hereda constructor tiene parametros. 
+
+miFurgoneta.carga(True)
+miMoto=Moto("Honda","CBR")
+miMoto.estado()
+
+
+EJEMPLO:
+--------
+*super().__init__(parametros)			Nos permite utilizar el constructor de nuestra herencia padre(pasando sus parametros)
+*super().descripcion()				Nos lleva al metodo de nuestra herencia padre, lo ejecuta y continua
+
+
+
+class Persona():
+    def __init__(self,nombre,edad,Lugar_residencia):
+        self.nombre=nombre
+        self.edad=edad
+        self.Lugar_residencia=Lugar_residencia
+
+    def descripcion(self):
+        print(f"Nombre: {self.nombre}\nEdad: {self.edad}\nLugar de residencia: {self.Lugar_residencia}")
+
+class Empleado(Persona):
+    def __init__(self,salario,antiguedad,nombre,edad,lugar_residencia):
+        super().__init__(nombre,edad,lugar_residencia)				Nos permite utilizar el init de nuestra herencia padre
+        self.salario=salario
+        self.antiguedad=antiguedad
+
+
+     def descripcion(self):
+        super().descripcion()							Nos lleva al metodo de nuestra herencia padre, lo ejecuta y continua
+        print(f"Salario: {self.salario}\nAntiguedad: {self.antiguedad}")
+
+Antonio=Empleado(1500,15,"kevin",26,"Pangoa")
+Antonio.descripcion()
+
+ejemplo2:
+---------
+
+class abc():
+    def __init__(self,n1,n2,n3):
+        self.m1=n1
+        self.m2=n2
+        self.m3=n3
+    def __str__(self):
+        return "hola mamá, voy en ruta"         #se llamara siempre y cuando solo se llame a la clase
+
+milista=[abc("a","b","c"),abc("d","e","f")]
+
+for i in milista:
+    print(i.m1)
+
+
+principio de la sustitución:
+----------------------------
+*es siempre un/una
+*Un objeto de la sub clase siempre sera un objeto de la super clase. Un empleado es siempre una persona, al reves no cumple
+
+isinstance(instanciaClase,ClaseConcreta)		devuelve True o False dependiendo si pertenece a una clase en concreto o no.
+
+isinstance(Antonio,Empleado)				True
+isinstance(Antonio,Persona)				True
+
+
+
+polimorfismo:(Muchas formas)
+-------------
+*Un objeto puede cambiar de formas depende a su contexto, al cambiar de forma cambia de comportamiento
+*En python no necesitamos especificar de que tipo es el objeto.
+
+ejemplo:
+--------
+class Coche():
+    def desplazamiento(self):
+        print("Me desplazo utilizando 4 ruedas")
+
+class Moto():
+    def desplazamiento(self):
+        print("Me desplazo utilizando 2 ruedas")
+
+class Camion():
+    def desplazamiento(self):
+        print("Me desplazo utilizando 6 ruedas")
+
+def desplazamientoVehiculo(Vehiculo):			|
+    Vehiculo.desplazamiento()				|
+							|	Aquí ocurre el polimorfismo
+miVehiculo=Moto()					|
+desplazamientoVehiculo(miVehiculo)			|
+
+
+-----------------------------------------------------------------
+			Metodos Cadena				|
+-----------------------------------------------------------------
+*en python todo es tomado como un objeto de tipo string
+
+Metodos de clases de objeto:
+----------------------------
+variable.upper()				convierte en masyuculas todas las letras de un string
+variable.isupper()				devuelve un valor booleano dependiendo si todo esta en mayuscula
+variable.lower()				convierte en minusculas todas las letras de un string 
+variable.capitalize()				convierte en mayuscula la primera letra de un string
+variable.count()				cuenta cuantas veces aparece una letra o cadena dentro de una frase
+variable.find()					representa el indice donde aparece un carácter o un grupo de letras 
+variable.isdigit()				devuelve un valor booleano(comprueba), verifica si lo introducido es un digito o no lo es
+variable.isalum()				comprueba si lo introducido es alfa númerico
+variable.isalpha()				comprueba si hay solo letras
+variable.split()				separa por palabras utilizando espacios
+variable.stip()					borra los espacios sobrantes al principio o al final
+variable.replace()				cambia una palabra o una letra por otra dentro de un string
+variable.rfind()				representa el indice donde aparece un carácter o un grupo de letras(pero este lo hace desde atrás)
+
+http://pyspanishdoc.sourceforge.net/lib/string-methods.html	--> para mas metodos de comportamiento para los string
+
+-----------------------------------------------------------------
+			MODULOS					|
+-----------------------------------------------------------------
+*Son archivos con extensión .py o .pyc(Python compilado) o archivo escrito en C para CPython, que posee su propio espacio de nombres y que puede
+contener variables, funciones, clases e incluso otros módulos.
+*Organizar y reutilizar el código (modularización y reutilización del código)
+*modularización es dividir el código en modulos(en pequeñas partes)
+*Python por defecto trabaja con modulos que esten en el mismo directorio.
+
+sintaxis:
+---------
+supongamos que tenemos una función "suma" en otro archivo
+
+-
+import nombrearchivo		--> importamos el archivo(modulo) sin su extensión, esto nos permitira usar las funciones del módulo
+-			
+
+ejemplo:
+nombrearchivo.suma()		--> Lo llamamos de la misma forma que llamamos a un objeto
+
+-
+from nombrearchivo import "NombreDeLaFuncion"		--->esto nos permite ya no poner el nombre del modulo, solo directamente el nombre de la -							    función.
+ejemplo:
+	suma
+
+
+from nombrearchivo import *				---->con esto indicamos que queremos utilizar todas las funciónes de ese modulo (lo malo es 								     que utiliza mas espacio en memoria)
+							     *Si una función tiene el mismo nombre que el del módulo padre y estas chocan por asi 								     decirlo, la función del modulo padre tiene prioridad (pasa lo mismo que en las herencias)
+
+
+---------------------------------------------------------
+			paquetes:			|
+---------------------------------------------------------
+*Directorios donde se almacenarán módulos relacionados entre sí.
+*Sirven para organizar y reutilizar el código
+*la Ruta comienza desde el paquete principal(es decir desde el paquete principal hacia los sub paquetes)(para avanzar en la ruta se usa la nomenclatura del punto)
+*para crear un paquete hay que crear una carpeta y para que esta funcione como paquete debe tener en su interior un archivo
+con nombre __init__.py
+
+
+sintaxis:		empezando con una carpeta padre(la carpeta a acceder esta dentro de la carpeta padre)
+---------
+
+from Ruta.nombreModulo import NombreFuncion	   ----> Nos permite usar el módulo perteneciente a un directorio que pertenezca a nuestro 									 directorio
+
+from Ruta.nombreModulo import *	 		   ----> usamos todas las funciones del modulo
+
+
+-----------------------|
+paquetes distribuibles:|
+-----------------------|
+*Es instalar un paquete en el sistema de python para poder utilizarlo desde cualquier lugar.
+
+pasos para crear un paquete:
+----------------------------
+
+paso1: creamos un archivo con nombre setup.py (el directorio donde lo hayamos creado, sera el directorio raíz)
+paso2: el archivo contiene esto:
+
+	from setuptools import setup
+
+setup(
+    name="nombre que le pondras a tu paquete",
+    version="la versión de tu paquete",
+    description="información de tu paquete",
+    author="nombre del autor",
+    author_email="correo del autor",
+    url="url del autor",
+    packages=["Nombrepaquete","NombrePaquete.NombrePaquete2"]	--->dependera en que raíz creaste tu setup.py
+)
+
+ejemplo:
+
+from setuptools import setup
+
+setup(
+    name="paquettecalculos",				->nombre de nuestro paquete
+    version="1.0",					->la versión
+    description="Paquete de redondeo y potencia",	->la descripción
+    author="Kevin Dax",					->el autor
+    author_email="kevindaxvz@gmail.com",		->el email del autor
+    url="www.facebook.com/kevindax.vz",			->la url del autor
+    packages=["calculos","calculos.redondeo_potencia"]	->la ruta del paquete y la ruta completa del subpaquete
+)
+
+
+paso3: Irnos al directorio raiz en consola(bash,cmd,powershell,terminal,etc)
+paso4: escribimos en la consola:
+	python setup.py sdist
+	(en Linux sera a veces necesario instalar el pip3 y el comando "from distutils.core import setup" en el modulo setup.py)
+
+
+	Si todo va bien nos creara 2 carpetas "dist" y "nombreModulo.egg-info"	(dist y paquettecalculo.egg-info)
+
+paso5: vamos al directorio en consola de la carpeta creada "dist" y dijitamos el siguiente comando "pip3 install nombredelmodulo"(que pusimos en el 	    setup)"  luego procedera a instalarse el paquete y podremos usarlo.
+
+paso6: para desinstalar un paquete usamos el comando "pip3 unisntall nombreModulo"
+
+
+-------------------------------------------------
+		Archivos externos(io)		|
+-------------------------------------------------
+*Obejtivo: persistencia de datos (almacenar datos que fuimos utilizando durante la ejecución del programa)
+*el archivo que vayasemos a crear sera guardado en el mismo directorio.
+*para guardar datos hay dos alternativas:
+	*Manejo de archivos externos
+		-hay muchos tipos de archivos externos, entre ellos: los binarios, texto plano,etc.		
+
+	*Trabajo con BBDD 
+
+
+
+fases necesarias para guardar información en archivos externos (creación, apertura, manipulación, cierre)
+	*creación: creamos el archivo
+	*apertura: lo abrimos
+	*manipulación: una vez abierto manipularemos el archivo o bien para introducir información o para leer.
+	*cierre: cuando ya terminamos de manipular cerramos el archivo
+
+
+sintaxis:
+---------
+from io import open			-->importamos el modulo "io" y su metodo "open" para abrir un archivo externo 
+
+
+nombreArchivo=open("nombreDelArchivoaAbrir","modo de abrir")	--> abrira el archivo y el modo de hacerlo, en caso de haber uno, lo creara y lo abrira
+ (como programa)    (como archivo a guardar)			    en memoria(solo lo crea si el modo es "w") 
+								    (los modos son: write("w"), read("r"), append("a"),read and write("r+")  )
+
+"w":	para escribir
+"wb":	para escribir en el fichero en binario
+"r":	para solo lectura
+"rb": 	para que sea capaz de leer archivo binario
+"a":	para añadir contenido
+"r+":	para leer y escribir
+"ab+":	para agregar información binaria
+
+nombreArchivo.write(variable)			-->escribira el contenido de "variable" en nuestro archivo
+nombreArchivo.close()				-->cerrara nuestro archivo que esta abierto en memoria. Una vez cerrado no se le puede manipular
+
+variable=nombreArchivo.readlines()		-->nos permite leer el archivo linea por linea y almacenarla linea por linea en forma de lista. 					
+ejemplo:
+--------
+archivo_texto=open("archivo.txt","w")	-->Creara un archivo de nombre "archivo.txt" en caso de no haber uno con ese nombre, caso contrario lo abrira 
+					   y lo creara o abrira en modo "w"(escritura), si abres un archivo que ya existe con "w"(se borrara todo)
+					   
+
+archivo_texto=open("archivo.txt","r")	--> Abrira el archivo en modo lectura (aquí se puede aprovechar y las variables copiar el contenido del 					    archivo)
+
+archivo_texto=open("archivo.txt","a")	--> Abre el archivo en modo extensión o añadir o agregar  
+
+frase="Te amo Dax"		
+archivo_texto.write(frase)		--> Escribira el contenido de frase en nuestro archivo
+texto=archivo_texto.read()		--> Guardamos el contenido de nuestro archivo en la variable "texto"
+archivo_texto.close()			--> cerramos el archivo que estaba abierto en memoria
+print(texto)				--> imprimimos el contenido del archivo que guardamos en nuestra variable
+
+
+-----------------------------------
+||punteros en ficheros de texto:|||
+-----------------------------------
+*Al abrir el archivo por defecto el puntero esta al comienzo(es algo similar que el cursor del mouse)
+*cuando usamos un read leera hasta el final del archivo y si volvemos a leer no leera nada por que el cursor quedo en el final.
+
+-----
+seek:			metodo para indicar donde queremos que se situe el puntero.
+-----
+sintaxis:
+---------
+
+NombreArchivo.seek(i)		-->indicamos el indice donde queremos que se situe el puntero.
+NombreArchivo.read(i)		-->indicamos hasta donde queremos que lea y se situe el puntero, desde donde esta
+
+
+ejemplo:
+--------
+from io import open
+
+archivo_texto=open("Archivo.txt","r")
+
+archivo_texto.seek(11)
+archivo_texto.seek(len(archivo_texto.read())/2)
+archivo_texto.seek(len(archivo_texto.readline()))
+
+archivo_texto=open("Archivo.txt","r+")			-->abrimos el archivo en modo leer y escribir
+archivo_texto.write("Comienzo del texto")		-->como el puntero por defecto esta al principio, empezara a escribir desde ahí, remplazando
+							   incluso hasta el carácter en indice que ocupe.
+
+
+lista_texto=archivo_texto.readlines()			-->guarda el contenido de linea por linea en forma de lista en "lista_texto"
+lista_texto[1]="Esta linea ha sido incluida desde el exterior\n" 	-->remplaza el contenido de la lista de indice 1
+archivo_texto.seek(0)			-->situa el puntero al inicio
+archivo_texto.writelines(lista_texto)	-->este metodo nos pide por parametro una lista, escribe en cada linea el contenido de cada indice de dicha 						   lista
+archivo_texto.close()			-->cierra 
+
+
+---------------------------------------------------------
+		Serialización				|
+---------------------------------------------------------
+*La serialización consiste en guardar en un fichero externo un diccionario, un objeto,etc. La particularidad consiste en guardar en el fichero externo códificado en código binario.
+*El proposito de serializar es: La distribución es mas rápida, guarda de forma mas comoda en una base de datos,etc.
+
+Pickle		-->utilizaremos esta biblioteca y sus 2 principales metodos
+	metodo dump(): volcado de datos al fichero binario externo	-->
+	metodo load(): carga de los datos del fichero binario externo	-->
+
+
+sintaxis:
+---------	
+	pickle.dump("variable","nombreFichero")	   ---> variable viene a ser la información que queremos volcar y el nombreFichero es al fichero que 							      	queremos volcar
+f
+
+ejemplo:
+
+import pickle					-->esta bibliote nos permite usar metodos para serializar un archivo
+from io import open				-->esta bibliote nos permite crear y manipular archivos
+
+lista_nombres=["Pedro","Ana","Maria","Isabel"]	-->creamos una lista de 4 elementos
+fichero_binario=open("listaNombres","wb")	-->creamos un archivo fiechero_binario y lo guardamos como listaNombres y escribiremos en forma binaria
+
+pickle.dump(lista_nombres,fichero_binario)	-->vulcanizamos el contenido de la lista a nuestro fichero binario
+
+fichero_binario.close()				-->cerramos el archivo(fichero)
+			
+fichero=open("lista_nombres","rb")		-->abrimos el archivo en una nueva variable en modo lectura binaria(para poder leer archivos binarios)
+lista=pickle.load(fichero)			-->cargamos la información de "fichero" que estaba en binario a lectura normal y lo guardamos en una 							   lista(recuerda que antes de vulcanizar el contenido era una lista)
+print(lista)					-->imprimimos la el contenido de lista y como podemos apreciar, es la información que tuvimos antes de 							   vulcanizar el archivo
+
+del (fichero_binario)				-->Eliminamos el uso del fichero_binario de la memoria
+
+
+ejemplo 2:
+import pickle
+from io import open
+
+
+
+
+class Vehiculos():
+    def __init__(self,marca,modelo):
+        self.marca=marca
+        self.modelo=modelo
+        self.enmarcha=False
+        self.acelera=False
+        self.frena=False
+
+    def arrancar(self):
+        self.enmarcha=True
+    def acelerar(self):
+        self.acelera=True
+    def frenar(self):
+        self.frena=True
+    def estado(self):
+        print(f"Marca: {self.marca}\nModelo: {self.modelo}\nEn marcha: {self.enmarcha}\nAcelerando: {self.acelera}\n"
+              f"Frenando: {self.frena}")
+
+coche1=Vehiculos("Mazda","MX5")
+coche2=Vehiculos("Seat","Leon")
+coche3=Vehiculos("Renault","Megane")
+
+coches=[coche1,coche2,coche3]
+
+fichero=open("losCoches","wb")
+pickle.dump(coches,fichero)
+fichero.close()
+del (fichero)
+
+
+fichero_res=open("losCoches","rb")
+lista_re=pickle.load(fichero_res)
+
+for i in lista_re:
+   print(i.estado())
+
+-----------------------------------------------------------------
+			Guardado permanente			|
+-----------------------------------------------------------------
+*utilizaremos un fichero para ir guardando información dentro de él paulatinamente para tenerla siempre disponible
+*def __str__(self): -->Metodo especial que convierte la información de un objeto en cadena de texto  
+*def __str__(self): -->Sirve también para usar el self en otro metodo y se le llamara cuando se llame al objeto o clase sin pedir un metodo o valor
+
+ejemplo:
+--------
+
+import math
+import pickle
+from io import *
+
+from io import open
+
+class Persona():
+    def __init__(self,nombre,genero,edad):
+        self.nombre=nombre
+        self.genero=genero
+        self.edad=edad
+        print(f"Se ha creado una persona nueva con el nombre de {self.nombre}")
+
+    def __str__(self):
+        return f"{self.nombre} {self.genero} {self.edad}"
+
+class ListaPersona():
+    personas=[]
+    def __init__(self):
+        listaDePersonas=open("ficherosExterno","ab+")
+        listaDePersonas.seek(0)
+
+        try:
+            self.personas=pickle.load(listaDePersonas)
+            print(f"Se cargaron {len(self.personas)} personas del fichero externo")
+
+        except:
+            print("El fichero esta vacio")
+
+        finally:
+            listaDePersonas.close()
+            del(listaDePersonas)
+
+    def agregarPersonas(self,p):
+        self.personas.append(p)
+        self.guardarPersonasEnFicheroExterno()
+
+    def mostrarPersonas(self):
+        for p in self.personas:
+            print(p)
+
+    def guardarPersonasEnFicheroExterno(self):
+        listaDePersonas=open("ficherosExterno","wb")
+        pickle.dump(self.personas,listaDePersonas)
+        listaDePersonas.close()
+        del(listaDePersonas)
+    def mostrarInfoFicheroExterno(self):
+        print("La información del fichero extremo es la siguiente")
+        for p in self.personas:
+            print(p)
+
+miLista=ListaPersona()
+p=Persona("Ana","femenino","26")
+miLista.agregarPersonas(p)
+miLista.mostrarInfoFicheroExterno()	
+
+
+-----------------------------------------------------------------------------------
+||				Interfaces gráficas				|||
+-----------------------------------------------------------------------------------
+*Son ventanas para que nuestro usuario pueda interactuar con nuestro programa(GUI).
+*Suele tener muchos elementos como ventas,botones,menús,casillas de verificación,etc.
+*Para poder construir interfaces gráficas en python trabajaremos con la libreria "Tkinter", existen muchas mas librerias como: "Tkinter","WxPython","PyQT","PyGTK",etc.
+*Tkinter es un "puente" entre Python y la libreria TCL/TK(que es la libreria de Rubi,perl)
+*Si no tienes Tkinter en linux, puedes instalarla usando el comando "sudo apt-get install python3-tk"
+*En windows cuando nosotros damos 2 clic sobre el archivo.py(con interfaz gráfica esta), nos abrira la ventana de consola por defecto. Para evitar eso
+guardaremos el archivo con la extensión "archivo.pyw" (la 'w' viene de window)
+*Una vez empiezas a trabajar con el grid, tienes que seguir trabajando para los demas widgets con grid
+
+
+
+La estructura de una interfaz gráfica en python es:
+	*La raiz(tk)  	-->es una ventana principal, en esta habrá muchos elementos
+	*frame      	-->es habitual que dentro de la ventana haya un frame como organizador o aglutinador de elementos
+	*widgets	-->a los elementos se les conoce como widgets(botones,menus,casillas desplegables,etc), incluso un frame viene ser un widgets
+	
+
+construcción de la raíz(tk):
+----------------------------
+sintaxis:
+---------
+from tkinter import *		-->importamos todo los metodos y modulos de la libreria de tkinter
+variable=Tk()			-->Damos un nombre a nuestra raiz "variable" y utilizamos la clase Tk() para ello (aquí creamos la intefaz gráfica)
+variable.mainloop()		-->El metodo mainlopp() es necesario por que. Para que una ventana pueda estar en ejecución, debe estar en un 					   bucle infinto (es como un bucle infinito), es importante que el metodo mainloop este en el ultimo lugar
+extras:
+-------
+variable.title("NombreVentana")		--> Dara un nombre a nuestra ventana
+variable.resizable(valor,valor)		--> En valor pondremos un valor Booleano (False,True o también 0,1), para elegir si la ventana se expande o no
+variable.iconbitmap("ruta/archivo.ico")	--> pondremos una imagen pequeña a nuestro cuadro (Si usas linux prueba con imagenes .xbm o .gif)
+					    ejemplo: @hola.xbm	(si usas 'xbm' antepon un '@')
+variable.geometry("Valor1xValor2")	-->el Valor1 corresponde al ancho y el Valor2 a la altura del tamaño en pixeles de la ventana. 
+variable.config(bg="valor")		-->bg hace referencia al color de fondo, el valor sera en "hexadecimal" o el nombre del color en ingles
+
+
+manejo de frames:
+-----------------
+*por defecto un frame viene anclado y centrado dentro de la ventana raiz.
+*Es preferible lo darle una medida fija a nuestra ventana raiz, ya que esta se habitua al tamaño de nuestros frames.
+*Los metodos que estamos usando sirven tanto para el frame como para la raíz.
+
+sintaxis:
+---------
+variable=Frame()					-->Creamos el frame de nombre variable
+variable=Frame(NameDeLaRaiz,width=valor,height=valor)	-->Nombre de la raiz donde queramos empaquetar luego, sus medidas de nuestro frame
+
+variable.pack()					-->Empaquetamos el frame a nuestra ventana raiz(se empaquetera con su comportamiento por defecto)
+variable.pack(side="valor",anchor="cardinal")
+	"side" tiene por valor: right(derecha), left(izquierda), bottom(abajo), top(arriba)
+	"anchor" tiene por valor: n(norte),s(sur),e(este),w(oeste)
+
+variable.pack(fill="x")				-->hace que nuestro frame se expanda de manera horizontal pegada al top de la ventana
+variable.pack(fill="y",expand="valor")		-->si el valor de expand es True, hace que nuestro frame se expanda de manera vertical
+variable.pack(fill="both",expand="valor")	-->valor=True hara que nuestro frame se expanda por toda la ventana por mas que la estiremos
+						   de forma centrada						
+
+variable.pack(relief="tipoValor")			-->
+ 
+variable.config(bg="valor1")			-->damos un color de fondo a nuestro frame
+variable.config(width="valor1",height="valor2")	-->especificamos las medidas de nuestro frame en pixeles
+variable.config(relief="valor")			-->aquí especificamos el tipo de borde que queremos tener. Ejmplo(groove,sunken,etc)
+variable.config(bd=valor)			-->bd hace referencia borde, en valor especificamos el grosor del borde, por defecto es 0
+variable.config(cursor="valor")			-->Aquí especificamos el tipo de puntero que tendra el mouse al estar encima de nuestro frame
+
+
+
+widget label:(Pertenecientes a la libreria tkinter)
+-------------
+*Son objetos 
+*Sirve para introducir texto o imagen estatico
+*widgets utilizados para mostrar texto o imagenes
+*tienen como unica finalidad mostar texto, imagenes, etc. Pero no se puede interactuar con él (borrar, arrastrar,etc)
+
+Sintaxis:
+---------
+variableLabel=Label(contenedor,opciones)	-->creamos un widgets. "contenedor" sera el nombre del frame donde luego empaquetaremos nuestro Label
+variableLabel.pack()				-->empaquetamos nuestro label (Comentar que con pack el frame padre se adecuara al tamaño de nuestro 							   widgets)
+
+variableLabel.place(x=valor,y=valor)		-->place respetara la dimención de su contenedor, en x,y pondremos el valor de sus coordenadas donde 							   ira el texto.
+
+
+
+algunas valores mas utilizados para "opciones" son:
+
+text		->Texto que muestra en el label
+anchor		->Controla la posición de texto si hay espacio suficiente para él (center por defecto)
+bg		->Color de fondo
+bitmap		->Mapa de bits que se mostrara como gráfico
+bd		->Grosor del borde(2 px por defecto)
+font		->Tipo de fuente a mostrar
+fg		->color de fuente
+Width		->Ancho de Label en caracteres(no en pixeles)
+Height		->Altura de Label en caracteres(no en pixeles)
+Image		->Muestra imagen en el label en lugar de texto
+justify		->justificación del texto del Label(la posición)
+padx,pady	->Indicamos el margen que habra entre el contenido y su contenedor(funciona en grid)
+
+
+
+*podemos meter muchas opciones si deseamos:
+*tkinter solo trabaja por defecto con .png .gif, si queremos que trabaje con otras extensiones deberiamos importar modulos
+*Para meter una imagen hacemos:
+
+variable=PhotoImage(file="ruta")		-->hacemos esto para rescatar a la imagen
+nombreLabel=Label(nombreFrame,image=variable)	-->usamos la opción image e igualamos a la variable donde rescatamos a la imagen
+
+
+Ejemplo:
+from tkinter import *
+root=Tk()
+miFrame=Frame(root,width=640,height=640)
+miFrame.pack()
+
+miImagen=PhotoImage(file="Daphi.gif")
+
+#miLabel=Label(miFrame,text="Hola alumnos de Python",fg="red",font=("verdana",18))
+miLabel=Label(miFrame,image=miImagen)
+miLabel.place(x=0,y=0)
+
+root.mainloop()
+
+#Label(miFrame,text="Hola alumnos de Python").place(x=100,y=200)	Una forma abreviada de crear un Label
+
+
+
+
+Widget Entry:
+------------------
+*Sirven para pulsar sobre el y que el usuario introduzca un texto
+*Su uso es similar al Label lo cambiamos por Entry
+
+variable.grid(row=valor,column=valor)	     -->Indica la posición que ocupara nuestro widgets variable ("row" hace referencia la fila y "colum" a la 							columnas), también empaqueta como pack()
+
+
+variable.grid(row=,column=,sticky="punto cardinal")  --> 'sticky' indica la posición donde ira el contenido del grid (puntos cardinales 
+							"n","s","e","w") recordar que también se puede combinar (ne,se,nw,sw) 
+				 
+
+variable.grid(row,column,sticky,padx=valor,pady=valor)	--> con padx,pady indicamos el margen de espacio horizontalmente,verticalmente que habra entre 								    el contenido y su contenedor
+
+
+variable.config(fg="valor",justify="lugar")	-->valor="color" o "valorhexadecimal",lugar="right" o "left" o "center"
+
+variable.config(show="carácter")		-->Util para transformar todo lo que escribamos en el 'carácter' que pusimos (se usa para contraseñas)
+
+
+Ejemplo:
+
+from tkinter import *
+raiz=Tk()
+raiz.title("Uso de grid y entry")
+
+miFrame=Frame(raiz,width=1200,height=600)
+miFrame.pack()
+
+#Nombre
+cuadroNombre=Entry(miFrame)
+cuadroNombre.grid(row=0,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Nombre")
+miLabel.grid(row=0,column=0,sticky="e",padx=10,pady=10)
+cuadroNombre.config(fg="blue",justify="center")
+
+#Contraseña
+labelPass=Label(miFrame,text="Contraseña:")
+labelPass.grid(row=0,column=2,sticky="e",padx=10,pady=10)
+cuadroPass=Entry(miFrame)
+cuadroPass.grid(row=0,column=3,padx=10,pady=10)
+cuadroPass.config(show="*")
+
+#Apellido
+cuadroApellido=Entry(miFrame)
+cuadroApellido.grid(row=1,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Apellido")
+miLabel.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+
+#Dirección Casa
+cuadroDireccion=Entry(miFrame)
+cuadroDireccion.grid(row=2,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Dirección Casa")
+miLabel.grid(row=2,column=0,sticky="e",padx=10,pady=10)
+
+
+
+raiz.mainloop()
+
+
+widgets text y button:
+----------------------
+*el widgets text: Sirve para construir cuadros de comentarios, cuadros de textos largos, biografias, etc.
+*el widgets button: Crea botones para interactuar con la interfaz
+
+sintaxis de widgets text:
+-------------------------
+variable=Text(FrameNombre)					-->Creara un cuadro de texto(cuadro por ejemplo para comentar)
+variable=Text(FrameNombre,width="",height="",)			-->crea un cuadro de texto con dichas medidas
+variableScroll=Scrollbar(FrameNombre,command=variable.yview)	-->(crea un scroll vertical para desplazarse)
+variableScroll.grid(row=,column=,sticky="nsew")			-->(el scroll se adecua al tamaño del cuadroTexto)
+variable.config(yscrollcommand=variableScroll.set)		-->Permite que el posicionador del scroll siga al cursor
+
+widgets button:
+---------------
+*sirve para crear botones e interactuar con el usuario.
+
+sintaxis:
+---------
+variable=Button(raizName,text="",command=namefunción)	     -->raizName hace referencia la frame al que pertenece, en text pondremos el texto que
+								queremos que muestre el boton y en command lo que queremos que pase si pulsamos en el 									boton.
+variable.pack()						     -->Empaquetamos
+variable.grid(row,column)				     -->Empaquetamos y lo posicionamos
+
+
+*una vez creado el boton creamos la función(la función debe ir antes que se le invoque)
+
+def namefunción():
+	variable1.set(variable2)			     -->aquí indicamos lo que queremos enviar
+
+*como vemos utilizamos una variable1, esta debe ser creada antes ya que python lee de arriba hacia abajo
+
+variable1=StringVar()				--> Aquí indicamos que nuestra variable sera de "tipo Variable de control de cáracter"
+
+*ahora seleccionaremos el entry(cuadro) donde queremos que se rellene, agregamos a ese cuadro un tercer parametro: 
+textvariable=variable1	--> con esto, una vez precionemos el boton, el boton llamara a la función, la función enviara el contenido del .set
+
+
+ejemplo:
+--------
+
+from tkinter import *
+raiz=Tk()
+raiz.title("Uso de grid y entry")
+
+miFrame=Frame(raiz,width=1200,height=600)
+miFrame.pack()
+
+minombre=StringVar()
+
+#Nombre
+cuadroNombre=Entry(miFrame,textvariable=minombre)
+cuadroNombre.grid(row=0,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Nombre")
+miLabel.grid(row=0,column=0,sticky="e",padx=10,pady=10)
+cuadroNombre.config(fg="blue",justify="center")
+
+#Contraseña
+labelPass=Label(miFrame,text="Contraseña:")
+labelPass.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+cuadroPass=Entry(miFrame)
+cuadroPass.grid(row=1,column=1,padx=10,pady=10)
+cuadroPass.config(show="*")
+
+#Apellido
+cuadroApellido=Entry(miFrame)
+cuadroApellido.grid(row=2,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Apellido")
+miLabel.grid(row=2,column=0,sticky="e",padx=10,pady=10)
+
+#Dirección Casa
+cuadroDireccion=Entry(miFrame)
+cuadroDireccion.grid(row=3,column=1,padx=10,pady=10)
+miLabel=Label(miFrame,text="Dirección")
+miLabel.grid(row=3,column=0,sticky="e",padx=10,pady=10)
+
+#comentarios
+LabelComentario=Label(miFrame,text="Comentarios")
+LabelComentario.grid(row=4 , column=0, sticky="ne", padx=10, pady=10)
+cuadroComentario=Text(miFrame,width=50,height=10)
+cuadroComentario.grid(row=4,column=1,padx=10,pady=10)
+
+
+#creación del scroll vertical
+scrollv=Scrollbar(miFrame,command=cuadroComentario.yview)
+scrollv.grid(row=4,column=2,sticky="nsew")
+cuadroComentario.config(yscrollcommand=scrollv.set)
+
+def codigoBoton():
+    minombre.set("Kevin")
+
+
+#Creación de un boton
+botonEnvio=Button(miFrame,text="enviar",command=codigoBoton)
+botonEnvio.grid(row="5",column="1")
+                              
+raiz.mainloop()
+
+
+
+radiobutton:
+------------
+*botones de selección para preguntas de respuestas únicas
+*podemos crear un boton sin guardarlo en una variable
+
+sintaxis:
+---------
+
+Radiobutton(nombreFrame,text="",variable=variableButton,value=valor,command=funcion).pack 
+							-->nombreFrame: hace referencia al frame que empaquetaremos
+							-->text="":pondremos el mensaje que estara junto al radiobutton
+							-->variable:variableButton hace referencia al nombre de nuestra variable que recogera el valor
+								    de value (previamente definida nuestra variableButton como variable de control)
+							-->value:valor de seleccionar nuestra opción
+							-->command: nombre de la función que llamaremos al seleccionar nuestra opción
+							-->.pack: empaquetaremos nuestro botton al frame
+
+ejemplo:
+--------
+
+def imprimir():                                                                                                                                        
+    if variableOpc.get()==1:                                                              
+        etiqueta.config(text="Masculino")                                                 
+    elif variableOpc.get()==2:                                                            
+        etiqueta.config(text="Femenino")                                                  
+    else:                                                                                 
+        etiqueta.config(text="Otros")                                                     
+                                                                                          
+Label(miFrame,text="Genero:").pack()                                                      
+Radiobutton(miFrame,text="Masculino",variable=variableOpc,value=1,command=imprimir).pack()
+Radiobutton(miFrame,text="Femenino",variable=variableOpc,value=2,command=imprimir).pack() 
+Radiobutton(miFrame,text="Otros",variable=variableOpc,value=3,command=imprimir).pack()    
+etiqueta=Label(miFrame)                                                                   
+etiqueta.pack()                                                                           
+                                                                                          
+root.mainloop()                                                                           
+
+
+CheckButtons:
+-------------
+*Botones de selección para preguntas de respuestas multiples
+
+sintaxis:
+---------
+variable=Checkbutton(frame,text)		-->Creamos nuestro Checkbutton pero aun falta empaquetar
+Checkbutton(frame,text).pack()			-->Creamos nuestro Checkbutton ya empaquetado con .pack()
+
+ejemplo:
+
+from tkinter import *
+root=Tk()
+root.title("Ejemplo")
+
+foto=PhotoImage(file="Daphi.gif",height=400)
+Label(root,image=foto).pack()
+
+playa=IntVar()
+Montagna=IntVar()
+turismoRura=IntVar()
+
+frame=Frame(root)
+frame.pack()
+Label(frame,text="Elije tu destino",width=50).pack()
+
+
+widgets menú:
+-------------
+*Barra en la parte superior con opciones de sub-menú
+
+Sintaxis:
+---------
+nombreMenu=Menu(frame)						-->Creamos nuestro menú y lo asociamos a nuestro frame
+frame.config(menu=nombreMenu,width,height)			-->damos un tamañana a nuestra barra nombreMenu
+nombreSubmenu=Menu(nombreMenu,tearoff=0)			-->desactivamos la linea que nos aparece al crear una opción
+nombreSubmenu.add_commend(label="texto2")			-->añadimos subopciones "text2" a nuestra opción 
+nombreSubmenu.add_separate()					-->creamos una linea útil para separar subopciones distintas
+nombreMenu.add_cascade(label="texto1",menu=nombreSUbmenu)	-->creamos una opción "texto1" para nuestra barra nombreMenu(si queremos mas repetimos
+								   este código)
+ejemplo:
+--------
+
+from tkinter import *
+root=Tk()
+
+barraMenu=Menu(root)
+root.config(menu=barraMenu,width=300,height=300)
+
+archivoMenu=Menu(barraMenu,tearoff=0)
+archivoMenu.add_command(label="Nuevo")
+archivoMenu.add_command(label="Guardar")
+archivoMenu.add_command(label="Guardar como")
+archivoMenu.add_separator()
+archivoMenu.add_command(label="cerrar")
+archivoMenu.add_command(label="salir")
+barraMenu.add_cascade(label="Archivo",menu=archivoMenu)
+
+archivoEdicion=Menu(barraMenu,tearoff=0)
+archivoEdicion.add_command(label="copiar")
+archivoEdicion.add_command(label="cortar")
+archivoEdicion.add_separator()
+archivoEdicion.add_command(label="pegar")
+
+
+archivoHerramientas=Menu(barraMenu)
+
+archivoAyuda=Menu(barraMenu,tearoff=0)
+archivoAyuda.add_command(label="Documentation")
+archivoAyuda.add_command(label="Enter license")
+archivoAyuda.add_command(label="About of program")
+
+
+barraMenu.add_cascade(label="Edición",menu=archivoEdicion)
+barraMenu.add_cascade(label="Herramientas",menu=archivoHerramientas)
+barraMenu.add_cascade(label="Ayuda",menu=archivoAyuda)
+
+root.mainloop()
+
+
+Ventanas emergentes:
+--------------------
+*Ventanas modales para informar, avisar o permitir realizar tareas al usuario.
+*para usar ventanas emergentes importaremos el metodo messagebox de la libreria tkinter(que no viene por defecto al importar todos los metodos con *)
+*existen muchos metodos mas para messagebox, nosotros usaremos unos cuantos.
+
+Sintaxis:
+---------
+from tkinter import *
+from tkinter import messagebox			-->importa metodos de messagebox
+
+messagebox.showinfo("titulo","mensaje")		-->Mostrara un mensaje informativo y un simbolo (i)
+messagebox.showwarning("titulo","mensaje")	-->Mostara un mensaje advertino y un simbolo de advertencia (⚠)
+messagebox.askquestion("titulo","mensaje")	-->Dara un mensaje y nos dara 2 opciones "Sí" y "No". Luego devolvera un valor "yes" o "no"  (?)
+messagebox.askokcancel("titulo","mensaje")	-->Dara un mensaje y nos dara 2 opciones "Aceptar" y "Cancelar". Luego devolvera True o False (?)
+messagebox.askretrycancel("titulo","mensaje")	-->Dara un mensaje y nos dara 2 opciones "Reintentar" y "Cancelar". LUego devolvera True o False (⚠)
+nombreFrame.destroy()				-->cerrara el programa o nombreFrame
+	
+Ejemplo:
+--------
+from tkinter import *
+from tkinter import messagebox
+
+root=Tk()
+
+barraMenu=Menu(root)
+root.config(menu=barraMenu,width=300,height=300)
+def infoAdition():
+    messagebox.showinfo("Procesador de Juan","Procesador de textos 2018")
+
+def avisoLicencia():
+    messagebox.showwarning("Licencia","Producto bajo licencia GNU")
+
+def salirApp():
+    valor=messagebox.askokcancel("Salir","Deseas salir de la aplicación")
+    if valor==True:
+        root.destroy()
+
+def cerrarDocument():
+    valor = messagebox.askretrycancel("Reintentar","No es posible cerrar. Documento bloqueado")
+    if valor==False:
+        root.destroy()
+
+def nuevo():
+    valor=messagebox.askquestion("Salir","Deseas salir de la aplicación")
+    if valor=="yes":
+        root.destroy()
+    else:
+        print(valor)
+
+archivoMenu=Menu(barraMenu,tearoff=0)
+archivoMenu.add_command(label="Nuevo",command=nuevo)
+archivoMenu.add_command(label="Guardar")
+archivoMenu.add_command(label="Guardar como")
+archivoMenu.add_separator()
+archivoMenu.add_command(label="cerrar",command=cerrarDocument)
+archivoMenu.add_command(label="salir",command=salirApp)
+barraMenu.add_cascade(label="Archivo",menu=archivoMenu)
+
+archivoEdicion=Menu(barraMenu,tearoff=0)
+archivoEdicion.add_command(label="copiar")
+archivoEdicion.add_command(label="cortar")
+archivoEdicion.add_separator()
+archivoEdicion.add_command(label="pegar")
+
+
+archivoHerramientas=Menu(barraMenu,tearoff=0)
+
+archivoAyuda=Menu(barraMenu,tearoff=0)
+archivoAyuda.add_command(label="Documentation")
+archivoAyuda.add_command(label="Enter license",command=avisoLicencia)
+archivoAyuda.add_command(label="About of program",command=infoAdition)
+
+
+barraMenu.add_cascade(label="Edición",menu=archivoEdicion)
+barraMenu.add_cascade(label="Herramientas",menu=archivoHerramientas)
+barraMenu.add_cascade(label="Ayuda",menu=archivoAyuda)
+
+root.mainloop()
+
+
+ventanas emergentes de dialogo:
+-------------------------------
+*from tkinter import filedialog		-->importa la libreria filedialog y sus metodos
+filedialog.askopenfilename(title="texto1",initialdir="ruta",filetypes=(tupla)) 	-->  	Abrira el cuadro de diaologo para buscar y abrir archivos, 												este cuadro tendra de titulo texto, lo abrira en el directorio 												ruta, en tuplas: en la primera tupla especificaremos el 											mensaje y en el segundo la extensión, si ponemos mas tuplas 												dara mas opciones a elegir. (para poner mas extensiones 											podriamos poner tuplas dentro de otras tuplas)
+
+Ejemplo:
+--------
+from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
+
+root=Tk()
+
+def abreFichero():
+    fichero=filedialog.askopenfilename (title="Abir",initialdir="/home",filetypes=(("Ficheros de excel","*.xlsx"),
+                                                        ("Ficheros de texto","*.txt"),("Todos los ficheros","*.*")))
+    print(fichero)
+
+Button(root,text="Abrir Fichero",command=abreFichero).pack()
+
+
+
+root.mainloop()
+
+
+
+
+
+-----------------------------------------------------------------
+		Creando una calculadora				|
+-----------------------------------------------------------------
+comentarios:
+------------
+*En python cuando nosotros a un command=Unafunción() le ponemos los parentesis, obliga a que la función se ejecute automaticamente y lo guarde en command.
+
+
+variables nuevas que usaremos:
+------------------------------
+columnspan				-->con esto indicamos cuantas columnas ocupara un widget
+rowspan					-->con esto indicamos cuantas filas ocupara un widget
+variable.get()				-->lo que haya en pantalla
+variable.set(variable.get()+"text")	-->Lo que haya ya en pantalla concatenado con un "text"
+global variable				-->indicamos que usaremos la variable globa para uso en cualquier metodo, función,etc.
+
+
+funciones lambda: (Funciones anonimas)
+-----------------
+*Para que una función no se ejecute automaticamente nosotros usaremos la función lambda
+
+sintaxis:
+---------
+lambda:Nombrefunción(paremtros)		-->Esto nos permitira pasar parametros y que la función se ejecute automatimente
+
+
+Los ejemplos estan guardados en la carpeta calculadora
+
+
+-------------------------------------------------------------------
+|||			BBDD					|||
+-------------------------------------------------------------------
+*pasos a seguir para conectar con BBDD
+	1.Abrir-conexión
+	2.crear un puntero
+	3.ejecutar query(consulta)SQL
+	4.manejar los resultados de la query(consulta)
+		4.1 Insertar,leer,actualizar, borrar(create,read,update,delete)
+	5.cerrar puntero
+	6.cerrar conexión
+
+
+Sintaxis:
+---------
+import sqlite3
+variableConexion=sqlite3.connect("Basedatosname")	-->creamos a la conexión a nuestra base de datos Basedatosname, en caso de no haber una base 								   de datos crea uno y le da el nombre "Basedatosname"
+nombreCursor=variableConexion.cursor()			-->creamos el cursor para nuestra base de datos (cursor es lo mismo que puntero)
+nombreCursor.execute("CREATE TABLE nombretabla(campo1 tipodato(longitud),campo2 tipodato,campo3 tipodato,...)")--> en caso de querer muchos campos
+														   creamos campos para nuestra tabla 								  							   una vez ejecutado lo vamos a 														   comentar
+
+		tipodato puede ser:VARCHAR(longitud)-->con varchar indicamos que nuestro capo alvergara carácteres, en longitud indicamos el número de 							       carácteres
+				   INTEGER	    -->con esto indicamos que nuestro campo alvergara valores enteros. 
+
+
+
+nombreCursor.execute("INSERT INTO nombretabla VALUES('valorCampo1','valorCampo2','valorCampo3',...)")	-->aquí metemos valores a cada campo (la 														   cantidad de valores debe ser igual al 														   número de campos)
+
+variableConexion.commit()				-->con esto confirmamos que enviaremos los datos
+
+variableConexion.closer()				-->cerramos la conexión a nuestra base de datos
+
+
+ejemplo:
+
+import sqlite3
+#importamos la libreria sqlite3
+
+miConexion=sqlite3.connect("PrimeraBase")
+
+miCursor=miConexion.cursor()
+
+#miCursor.execute("CREATE TABLE PRODUCTOS(NOMBRE_ARTICULO VARCHAR(50),PRECIO INTEGER, SECCION VARCHAR(20))")
+miCursor.execute("INSERT INTO PRODUCTOS VALUES('BALON',15,'DEPORTES')")
+miConexion.commit()
+
+
+
+miConexion.close()
+
+
+Inserción de varios registros y recuperación:
+---------------------------------------------
+*para insertas registros:
+
+nombreCursor.executemany("INSERT INTO nombretabla VALUES (?,?,?)",funcion)	-->digitamos "?" tantas veces como campos tengamos, en funcion ponemos 											   el nombre de nuestra variable o funcion de la quien obtuvimos los 											   datos
+
+*para recuperar datos de la base de datos:
+
+nombreCursor.execute("SELECT * FROM nombretabla")		--> Seleccionamos a nuestra base de datos con nuestro cursor
+variable=nombreCursor.fetchall()				--> guardamos todos los valores de nuestra base de datos(datos en forma de tuplas) en 									    nuestra variable
+
+
+
+
+ejemplo:
+--------
+from tkinter import *
+from tkinter import message
+import sqlite3
+
+miCursor.execute("SELECT * FROM PRODUCTOS")
+
+muchosProductos=miCursor.fetchall()
+
+for producto in muchosProductos:
+    print(producto[0:3])
+
+
+miConexion.close()
+
+
+
+Gestionar claves principales de nuestra BBDD:
+---------------------------------------------
+PRIMARY KEY 	---> Esto se agrega al campo que queremos que sea clave, que clave tendra un unico valor(no se pueden repetir valores)
+AUTOINCREMENT	---> Esto se agrega al campo clave para que se autoincremente automaticamente solo su valor.
+
+
+nombrecursor.executemany("INSER INTO nombretabla VALUES(NULL,?,?,?,..)")  --> El null indica que a nuestro primer campo no le queremos pasar nada ya 										      que solo se autoincrementara 
+
+''' '''		-->Nos sirve para ordenar nuestro valor en tablas.
+
+ejemplo:
+--------
+
+import sqlite3
+miConexion=sqlite3.connect("GestionProductos")
+miCursor=miConexion.cursor()
+
+miCursor.execute('''					--->Estas comillas '''sintaxis''' nos sirven para ordenar nuestro código en tablas  
+    CREATE TABLE PRODUCTOS(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NOMBRE_ARTICULO VARCHAR(50),
+    PRECIO INTEGER, 
+    SECCION VARCHAR(20))
+''')
+productos=[
+    ("pelota",20,"jueguetería"),
+    ("pantalón",15,"confección"),
+    ("destornillador",25,"ferreteria"),
+    ("jarrón",45,"cerámica")]
+
+miCursor.executemany("INSERT INTO PRODUCTOS  VALUES (NULL,?,?,?)",productos)
+
+
+
+miConexion.commit()
+miConexion.close()
+
+
+Claúsula UNIQUE y operaciones CRUD:
+-----------------------------------
+*f'"variable"'			-->este metodo hasta ahora me va siento util al momento de querer usar variables dentro de los comandos Sqlite3
+				  SELECT, UPDATE y DELETE
+
+
+nombrecampo UNIQUE		--->con esto obligara a que los valores de nuestro nombrecampo no se puedan repetir. 
+
+read:
+-----
+nombreCursor.execute("SELECT * FROM nombretabla WHERE nombrecampo="valor de campo"")	-->con la instrucción WHERE indicamos el campo y con el valor 												   del campo indicamos que registro queremos seleccionar 
+variable=nombreCursor.fetchall()			-->Guardamos los valores seleccionados de nuestra base de datos a nuestra variable
+
+
+update:
+--------
+nombreCursor.execute("UPDATE nombretabla SET nombrecampo1=valor WHERE nombrecampo2='valor del campo'")	
+		-->Esto se traduce como que le indicamos que vamos a actualizar el valor de un campo nombrecampo1=valor y donde el otro campo 			   nombrecampo2='valor del campo'(el WHERE hace referencia al criterio)
+
+
+delete:
+-------
+nombreCursor.execute("DELETE FROM nombretabla WHERE ID='5'")
+
+
+Ejemplo:
+--------
+
+import sqlite3
+miConexion=sqlite3.connect("GestionProductos")
+miCursor=miConexion.cursor()
+
+#miCursor.execute("UPDATE PRODUCTOS SET PRECIO=35 WHERE NOMBRE_ARTICULO='pelota'")
+miCursor.execute("DELETE FROM PRODUCTOS WHERE ID=5")
+
+
+miConexion.commit()
+miConexion.close()
+ 
+Ejemplo2:
+---------
+'''a=5
+for i in range(0,a):
+    if(i==3):
+        j=4
+
+print(j)
+'''
+import sqlite3
+
+miConexion=sqlite3.connect("prueba")
+miCursor=miConexion.cursor()
+
+
+
+#miCursor.execute('CREATE TABLE prueba01 (ID INTEGER PRIMARY KEY, NOMBRE VARCHAR(40),PASSWORD VARCHAR(10))')
+#miCursor.execute('INSERT INTO prueba01 VALUES(NULL,"Yefe","Malta")')
+#miCursor.execute("SELECT * FROM prueba01")
+
+vari=miCursor.fetchall()
+for i in vari:
+    if(i[0]==a):
+        print(i)
+
+Dax='Elmer'
+kevin=f'"{Dax}"'
+a=5
+name='NOMBRE'
+miCursor.execute(f"UPDATE prueba01 SET  {name}={kevin} WHERE ID={a}")
+miConexion.commit()
+miConexion.close()
+
+
+Ejemplo3:
+---------
+import sqlite3
+from tkinter import *
+from tkinter import messagebox
+from io import open
+root=Tk()
+root.resizable(0,0)
+
+idcuadro=IntVar()
+nombrecuadro=StringVar()
+passwordcuadro=StringVar()
+apellidocuadro=StringVar()
+direccioncuadro=StringVar()
+
+
+#--------------Creando las funciones para las ventanas emergentes--------
+#--funciones para Ventanas emergentes: BBDD
+
+miConexion = sqlite3.connect("Usuarios")
+miCursor = miConexion.cursor()
+
+def Deletes():
+
+    n=f'"{idcuadro.get()}"'
+    miCursor.execute(f"DELETE FROM DATOUSUARIOS WHERE ID={n}")
+    miConexion.commit()
+    Borrar()
+
+def Data():
+
+    return [(nombrecuadro.get(),passwordcuadro.get(),apellidocuadro.get(),direccioncuadro.get())]
+
+def Conectar():
+    try:
+        miCursor.execute('''
+            CREATE TABLE DATOUSUARIOS(
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            NOMBRE_USUARIO VARCHAR(50) UNIQUE,
+            PASSWORD VARCHAR(50),
+            APELLIDO VARCHAR(10),
+            DIRECCION VARCHAR(50))
+        ''')
+        messagebox.showinfo("BBDD", "BBDD creada con éxito")
+    except:
+        messagebox.showwarning("BBDD", "BBDD ya esta creada")
+
+
+def Salir():
+    salir=StringVar()
+    salir=messagebox.askquestion("Salir","Desea salir del programa?")
+    if salir=="yes":
+        miConexion.close()
+        root.destroy()
+    else:
+        pass
+
+#--funciones para Ventanas emergentes: Borrar
+def Borrar():
+    idcuadro.set("")
+    nombrecuadro.set("")
+    passwordcuadro.set("")
+    apellidocuadro.set("")
+    direccioncuadro.set("")
+
+#--funciones para Ventanas emergentes: CRUD
+def Crear():
+    try:
+        dato=StringVar()
+        dato=Data()
+        miCursor.executemany('INSERT INTO DATOUSUARIOS VALUES(NULL,?,?,?,?)',dato)
+        miConexion.commit()
+    except:
+        messagebox.showwarning("Error","Usuario ya registrado")
+
+def Leer():
+    miCursor.execute("SELECT * FROM DATOUSUARIOS")
+    lectura=miCursor.fetchall()
+    for i in lectura:
+        if(i[0]==idcuadro.get()):
+            idcuadro.set(i[0])
+            nombrecuadro.set(i[1])
+            passwordcuadro.set(i[2])
+            apellidocuadro.set(i[3])
+            direccioncuadro.set(i[4])
+
+
+
+def actualizar(n1,n2):
+    n3=idcuadro.get()
+    miCursor.execute(f"UPDATE DATOUSUARIOS SET {n1}={n2} WHERE ID={n3}")
+    miConexion.commit()
+
+def Update():
+    miCursor.execute("SELECT * FROM DATOUSUARIOS")
+    lectura=miCursor.fetchall()
+    try:
+        for i in lectura:
+            if(i[0]==idcuadro.get()):
+                    if(i[0]!=idcuadro.get()):
+                        n1='ID'
+                        n2=f'"{idcuadro.get()}"'
+                        actualizar(n1,n2)
+                    if(i[1]!=nombrecuadro.get()):
+                        n1='NOMBRE_USUARIO'
+                        n2=f'"{nombrecuadro.get()}"'
+                        actualizar(n1,n2)
+                    if(i[2]!=passwordcuadro.get()):
+                        n1='PASSWORD'
+                        n2=f'"{passwordcuadro.get()}"'
+                        actualizar(n1,n2)
+                    if(i[3]!=apellidocuadro.get()):
+                         n1='APELLIDO'
+                         n2=f'"{apellidocuadro.get()}"'
+                         actualizar(n1,n2)
+                    if(i[4]!=direccioncuadro.get()):
+                         n1='DIRECCION'
+                         n2=f'"{direccioncuadro.get()}"'
+                         actualizar(n1,n2)
+    except:
+        messagebox.showwarning("Usuario","Ya existe un usuario con ese nombre")
+
+
+#--------------------------------------CREANDO LA BARRA MENÚ-----------------------
+barraMenu=Menu(root)
+root.config(menu=barraMenu,width=300,height=300)
+#----opcion BBD----
+menuBBDD=Menu(barraMenu,tearoff=0)
+menuBBDD.add_command(label="Conectar",command=Conectar)
+menuBBDD.add_command(label="Salir",command=Salir)
+barraMenu.add_cascade(label="BBDD",menu=menuBBDD)
+#----opcion Borrar Campos----
+barraOpcion=Menu(root,tearoff=0)
+barraOpcion.add_command(label="Borrar campos",command=Borrar)
+barraMenu.add_cascade(label="Borrar",menu=barraOpcion)
+#----opcion CRUD------
+barraCRUD=Menu(barraMenu,tearoff=0)
+barraCRUD.add_command(label="Crear",command=Crear)
+barraCRUD.add_command(label="Leer",command=Leer)
+barraCRUD.add_command(label="Actualizar",command=Update)
+barraCRUD.add_command(label="Borrar",command=Deletes)
+barraMenu.add_cascade(label="CRUD",menu=barraCRUD)
+#----opcion Ayuda-----
+barraAyuda=Menu(barraMenu,tearoff=0)
+barraAyuda.add_command(label="Licencia",command=lambda:messagebox.showinfo('Licencia',"hola"))
+barraAyuda.add_command(label="Acerda de...")
+barraMenu.add_cascade(label="Ayuda",menu=barraAyuda)
+
+#--------------------Creando el cuerpo-----------------------------------
+miFrame1=Frame(root,width=300,height=500)
+miFrame1.pack()
+miFrame2=Frame(root,width=300,height=50)
+miFrame2.pack()
+
+#-----ID
+labelcuadro=Label(miFrame1,text="Id:")
+labelcuadro.grid(row=0,column=0,padx=10,pady=10)
+cuadroID=Entry(miFrame1,textvariable=idcuadro)
+cuadroID.grid(row=0,column=1,padx=10,pady=10)
+#-----Nombre
+labelnombre=Label(miFrame1,text="Nombre:")
+labelnombre.grid(row=1,column=0,padx=10,pady=10)
+cuadronombre=Entry(miFrame1,textvariable=nombrecuadro)
+cuadronombre.grid(row=1,column=1,padx=10,pady=10)
+cuadronombre.config(fg="blue",justify="center")
+#-----Password
+labelpassword=Label(miFrame1,text="Password:")
+labelpassword.grid(row=2,column=0,padx=10,pady=10)
+cuadropassword=Entry(miFrame1,textvariable=passwordcuadro)
+cuadropassword.grid(row=2,column=1,padx=10,pady=10)
+cuadropassword.config(show="*")
+#-----Apellido
+labelapellido=Label(miFrame1,text="Apellido:")
+labelapellido.grid(row=3,column=0,padx=10,pady=10)
+cuadroapellido=Entry(miFrame1,textvariable=apellidocuadro)
+cuadroapellido.grid(row=3,column=1,padx=10,pady=10)
+#-----Dirección
+labeldireccion=Label(miFrame1,text="Dirección:")
+labeldireccion.grid(row=4,column=0,padx=10,pady=10)
+cuadrodireccion=Entry(miFrame1,textvariable=direccioncuadro)
+cuadrodireccion.grid(row=4,column=1,padx=10,pady=10)
+#-----Comentarios
+labelcomentarios=Label(miFrame1,text="Comentarios:")
+labelcomentarios.grid(row=5,column=0,padx=10,pady=10)
+cuadrocomentarios=Text(miFrame1,width=20,height=10)
+cuadrocomentarios.grid(row=5,column=1,padx=10,pady=10)
+
+comentarioscroll=Scrollbar(miFrame1,command=cuadrocomentarios.yview)
+comentarioscroll.grid(row=5,column=2,sticky="nsew")
+cuadrocomentarios.config(yscrollcommand=comentarioscroll.set)
+
+#-------Creando los botones---------------
+#-------------ventanas emergentes----------------------
+
+#----boton Create
+botoncreate=Button(miFrame2,text="Create",command=Crear)
+botoncreate.grid(row=6,column=0,padx=6,pady=6)
+#----boton Read
+botonread=Button(miFrame2,text="Read",command=Leer)
+botonread.grid(row=6,column=1,padx=6,pady=6)
+#----boton Update
+botonupdate=Button(miFrame2,text="Update",command=Update)
+botonupdate.grid(row=6,column=2,padx=6,pady=6)
+#----boton Delete
+botondelete=Button(miFrame2,text="Delete",command=Deletes)
+botondelete.grid(row=6,column=3,padx=6,pady=6)
+
+
+root.mainloop()
+
+
+
+
+
+
+
+---------------------------------------------
+Operadores:				|||||
+---------------------------------------------
+
+Aritmeticos:
+------------
++		Suma
+-		resta
+*		multiplicación
+/		división
+%		módulo
+//		división entera
+**		Exponente
+
+Comparación:
+------------
+==		igual que
+>		mayor que
+<		menor que
+>=		mayor o igual que
+<=		menor o igual que
+!=		diferente que
+
+Lógicos:
+--------
+AND		disyuntiva 
+NOT		negación
+OR		conjuntiva
+
+Asignación:
+-----------
+=		Igual a 
++=		Incremento
+-=		Decremento
+*=		Multiplo
+/=		Divisor 
+//=		Divisor entero
+%=		residuo		
+**=		igual a una potencia
+
+
+Especiales:
+-----------
+IS		
+IN			Sirve para comprobar si un elemento pertenece a una lista, devuelve un valor booleano
+IS NOT 
+NOT IN
+del			Para borrar información que esta en la memoria
+
+
+
+
+
+tipos de datos:
+---------------
+int			valores enteros
+string			valores textos
+float 			valores con decimales
+boleano			True o False
+
+
+
+Almohadillas y comentarios:
+---------------------------
+*Python es un lenguaje fuertemente tipado, es decir hace distinción fuerte con varios tipos de datos. 
+*Python es case sensitive (es decir distingue mayusculas de minusculas)
+*en Python se utiliza la identación, es decir código con la misma sangria pertenece al bloque
+*si al momento de querer llamar a una función le ponemos su parentesis(esta tratara de ejecutarse), en cambio si no ponemos su parentesis tratara de 
+verse como una variable mas.
+
+"""				Sirve para escribir comentarios y hacer saltos de linea
+type()				sirve para ver la clase de nuestra variable
+#Comentario			se utiliza # para poder escribir un comentario
+\				sirve para hacer una almohadilla y seguir escribiendo en la siguiente linea
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+						PRACTICA GUIADAS						  ||
+--------------------------------------------------------------------------------------------------------------------
+*Crearemos una aplicación gráfica de tipo CRUD (create,read,update,delete)
+
+
+cosas nuevas que usamos:
+------------------------
+cuadrocomentario.delete(x,y)		-->Se usa para borrar el contenido de un cuadroComentario, desde el carácter x hasta el carácter y 
+					   si y=END, borrara desde el carácter x hasta el ultimo carácter
+cuadrocomentario.get(x,y)		-->Se usa para capturar texto dentro de un cuadrocomentario, (x,y)
+
+cuadrocomentario=Text(root)		-->El contenido de un cuadro comentario ya es de tipo texto, por ende no se necesita usar la variable 
+					   textvariable, 
+
+
+cuadrocomentario.insert(x,variable)	-->que inserte el contenido de variable desde la posición x en el cuadrocomentario
+
+miCursor.execute("SELECT * FROM nombretabla WHERE ID="+variable)	--->Útil para usar variables en esta expresión (se entiende así, el valor de 										    ID=" concatenado con el valor de variable)
+
+
+miCursor.execute("UPDATE nombretabla SET namecampo1='"+variable1+"',namecampo2='"+variable2...) ---> sirve para actualizar varios datos de campos a la 													     vez
+
+miCursor.execute(f"UPDATE nombretabla SET namecampo1={variable1},namecampo2={variable2}... WHERE ID={idvalor}")	
+---> otra forma de actualizar varios datos de campos a la vez
+
+
+
+
+
+consultas parametrizadas.
+------------------------------------
+*Sirve para evitar que nuestra base de datos reciba un inyect sql
+
+
+dato=Data()
+miCursor.executemany('INSERT INTO DATOUSUARIOS VALUES(NULL,?,?,?,?,?)',dato) 	-->a esta forma en sql se le conoce como consultas parametrizadas.
+
+miCursor.execute("UPDATE nombretabla SET campo1=?,campo2=?,campo3=?...."+"WHERE ID="+valorID,variabledatos)	
+
+Los ejemplos estan guardados en la carpeta PRACTICAGUIADA
+
+
+
+-----------------------------------------------------------------------------------------------------------	
+					FUNCIONES ESPECIALES						|||
+-----------------------------------------------------------------------------------------------------------
+
+
+-----------------
+FUNCIONES LAMBDA:
+-----------------
+*Conocidas también como 'on the go','función incognita', 'on demand','online'
+*Es una función anonima que se utiliza para abreviar la sintaxis y sea mas ligera
+*Todo lo que hacemos con una función lambda, se puede hacer con una función normal, pero no al revez. No todo lo que hacemos con una función normal se puede hacer con una función lambda
+*En funciones complejas no se puede reducir a funciones lambda
+
+sintaxis:
+---------
+nombefunción=lambda parametro1,parametro2: operacion ---> 'nombrefunción' hace referencia al nombre de nuestra función
+					  	  'parametro1,parametro2...' hace referencia a los parametros que recibira nuestra función 
+								':' hace referencia a los return de las funciones tradicionales
+							'operacion' Es la operación que realizara la función y luego devolvera
+
+
+ejemplo1:
+---------
+	area_triangulo=lambda base,altura:(base*altura)/2
+	print(area_triangulo(5,7))
+
+
+ejemplo2:
+---------
+	destacar_valor=lambda comisión:"¡{comision}! $"! €".format(comision)
+	comision_ana=15585
+	print(destacar_valor(comision_ana))
+
+ejemplo3:
+---------
+	print(lambda numero:numero%2==0)
+
+---------------
+FUNCIÓN FILTER:
+---------------
+*Forma parte de las funciones de orden superior
+*verifica que los elementos de una secuencia cumplen una condición, devolviendo un iterador con los elementos que cumplen dicha condición 
+ (útil para comprobar si los elementos de listas,tuplas,etc. cumplen una confición, en caso de cumplirlas devuelve dichos valores como sublistas)
+*se usa generalmente para filtrar objetos no funciones
+
+Sintaxis:
+---------
+filter(nombrefuncion,parametro)		--->la función filter recibe como parametros a una función y su parametro
+
+
+
+
+ejemplo1:
+---------
+
+
+'''def numero_par(num):
+    if num%2==0:
+        return True
+
+'''
+
+numeros=[17,24,7,39,8,51,92]
+
+
+#print(list(filter(numero_par,numeros)))
+print(list(filter(lambda num:num%2==0,numeros)))
+
+
+
+ejemplo2:
+---------
+
+
+class Empleados():
+    def __init__(self,nombre,cargo,salario):
+        self.nombre=nombre
+        self.cargo=cargo
+        self.salario=salario
+    def __str__(self):
+        return f"{self.nombre} ocupa el cargo de {self.cargo} y tiene un salario de {self.salario} €"
+
+empleados=[
+    Empleados("Juan","Director",75000),
+    Empleados("Ana","Presidente",85000),
+    Empleados("Antonio","Administrativo",25000),
+    Empleados("Sara","Secretaria",57000),
+    Empleados("Mario","Botones",21000)]
+
+salario_alto=filter(lambda empleados:empleados.salario>50000,empleados)
+
+for empleado in salario_alto:
+    print(empleado)
+
+
+
+ejemplo 3:
+----------
+
+class persona():
+    def __init__(self,a,b):				-->el constructor permite que nuestro objeto sea dinamico y pueda recibir valores
+        self.name=a
+        self.peso=b
+    def __str__(self):
+        return f"El candidato {self.name} pesa {self.peso}"		-->se ejecutara si solo llamamos al objeto
+
+
+gente=[persona("Kevin",80)]				-->creamos una lista de objetos
+
+candidato=filter(lambda a:a.peso>50,gente)		-->filtramos de nuestra lista de objetos 'gente' y lo pasamos como para parametro para ver  								   aquellos que cumplen la condición de nuestra función lambda y lo guardamos en otra lista 								   llamada 'candidato'.
+
+
+for i in candidato:					-->De nuestra nueva lista vemos con un iterador aquellas que cumplieron la condición
+    print(i)
+
+
+
+-------------------------------------------------
+		Función Map			:
+-------------------------------------------------
+*Aplica una función a cada elemento de una lista iterable (listas, tuplas, etc) devolviendo una lista con los resultados.
+
+Sintaxis:
+---------
+
+
+map(nombrefuncion,nombrelista)		-->la función que especifiquemos se aplicara a cada elemento de la lista, la lista vendria a ser el parametro.
+					   (Esto también lo podemos igualar a una variable que contenga la nueva lista despues de aplicarle la función)
+
+
+Ejemplo:
+--------
+
+class Empleados():
+    def __init__(self,nombre,cargo,salario):
+        self.nombre=nombre
+        self.cargo=cargo
+        self.salario=salario
+    def __str__(self):
+        return f"{self.nombre} ocupa el cargo de {self.cargo} y tiene un salario de {self.salario} €"
+
+empleados=[
+    Empleados("Juan","Director",6700),
+    Empleados("Ana","Presidente",7500),
+    Empleados("Antonio","Administrativo",2100),
+    Empleados("Sara","Secretaria",21500),
+    Empleados("Mario","Botones",1800)]
+
+def calculo_comision(empleado):
+    if(empleado.salario<=3000):
+        empleado.salario=empleado.salario*1.03
+
+    return empleado
+
+listaEmpleadosComision=map(calculo_comision,empleados)
+
+for i in listaEmpleadosComision:
+    print(i)
+
+print(listaEmpleadosComision)
+
+
+---------------------------------------------------------------------------------
+|			EXPRESIONES REGULARES O REGEX				|
+---------------------------------------------------------------------------------
+*Las expresiones regulares son una secuencia de caracteres que forman un patron de búsqueda.
+*Sirven para el trabajo y procesamiento de texto:
+        ejemplo:-Buscar un texto que se ajusta a un determinado formato(correo electrónico).
+		-Buscar si existe o no una cadena de caracteres dentro de un texto.
+		-Contar el número de coincidencias dentro un texto
+		-etc.
+
+*Para trabajar con regex importaremos la libreria RE.
+
+
+-------------------------
+algunos metodos de regex:
+-------------------------
+
+re.search(texto,variable)	-->buscara dentro de la "variable" las palabras que contenga "texto", si encuentra texto devolvera un objeto, si no lo 					   encuentra devolvera "None" (solo la primera que encuentre)
+
+textoBuscado=re.search(texto,variable)	-->primero buscamos la palabra y almacenamos el objeto en textoBuscado
+	textoBuscado.start()		-->En caso de encontrarlo devuelve el indice desde donde comienza el texto buscado
+	textoBuscado.end()		-->En caso de encontrarlo devuelve el indice donde termina el texto buscado
+	textoBuscado.span()		-->Devolvera una tupla (n1,n2) n1 donde comienza y n2 donde finaliza el texto buscado
+
+re.findall(texto,variable)		-->buscara dentro de la "variable" las palabras que contengan "texto" y devolvera una lista con las palabras 						   que coincidieron en la busqueda
+
+
+ejemplos:
+---------
+import re
+cadena="Vamos a aprender expresiones regulares en Python. Python es un lenguaje de sintaxis sencillo"
+
+textoBuscar="Python"
+texoBuscado=re.findall(textoBuscar,cadena)  #Nos devolvera una lista, dentro de la lista iran los string que coincidieron con la busqueda
+
+
+print(len(texoBuscado))
+
+#textoBuscado=re.search("Python",cadena)
+
+#1.print(re.search("aprender",cadena))
+'''
+textoBuscar="aprender"
+
+textoEncontrado=re.search(textoBuscar,cadena)
+
+#El indice comienza desde 0
+print(textoEncontrado.start())  #En caso de encontrarlo devuelve el indice desde donde comienza el texto buscado
+print(textoEncontrado.end())    #En caso de encontrarlo devuelve el indice donde termina el texto buscado
+print(textoEncontrado.span())   #Devolvera una tupla (n1,n2) n1 donde comienza y n2 donde finaliza el texto buscado
+'''
+'''.2
+if re.search(textoBuscar,cadena) is not None:
+    print("He encontrado el texto")
+
+else:
+    print("No he encontrado el texto")
+'''
+
+
+
+---------------
+Metacaracteres:	(conocido por algunos como carácteres comodín)
+---------------
+*aquí veremos: las anclas y clases de caracteres
+*recordar que debemos importar el metodo re
+
+anclas:
+-------
+
+^palabra (simbolo: acento circunflejo): Sirve para indicar que nuestre elemento(tipo texto) comienza con dicha palabra
+$palabra (simbolo: el dolar): Sirve para indicar que nuestro elemento(tipo string) finaliza en dicha palabra
+[caracteres]		: poner un caracter entre corchetes nos verificara si dicho caracter se encuentra en cierto texto
+.  	remplaza a un carácter cuando vayamos a buscar un texto, ejemplo: .texto1
+
+ejemplos:
+---------
+import re
+
+listas_nombres=['hombre','mujeres','niños','niñas','camion','camión']
+
+for i in listas_nombres:
+    #if re.findall("niñ[ao]s",i):
+     if re.findall("cami[oó]n",i):
+        print(i)
+
+
+
+'''
+listas_nombres=["http//informaticaenespaña.es",
+               "http//pildorasinformaticas.es",
+               "http//informaticaenespaña.com"]
+
+for elemento in listas_nombres:
+     if re.findall('[ñ]',elemento):
+         print(elemento)
+
+
+listas_nombres=['Ana Gómez',
+                'María Martín',
+                'Sandra López',
+                'Santiago Martín',
+                'Ricardo Sandra']
+for i in listas_nombres:
+    if re.findall("^Sandra",i):
+        print(i)
+
+
+
+for i in listas_nombres:
+    if re.findall("Martín$",i):
+        print(i)
+listas_nombres=['https://pildorasinformaticas.es',
+                'ftp://pildorasinformaticas.es',
+                'http://pildorasinformaticas.com',
+                'ftp://pildorasinformaticas.com'] 
+
+for i in listas_nombres:
+    if re.findall("^Sandra",listas_nombres)     
+        print(i)
+
+'''
+
+rangos:
+-------
+*los rangos deben ir en la misma naturaleza por así decirlo (mayus-mayus o minus-minus o tilde-tildo numero-numero, etcs)
+
+re.findall('[n1-n2]',variable)		-->indicamos que queremos que nos muestre todas las palabras, listas, etc. que contengan algún carácter
+					   perteneciente al rango n1-n2.
+
+re.findall('texto[n1-n2],variable')	--> combinando texto y rango
+
+re.findall('texto[^n1-n2]',variable)	--> combinando texto y el antirango.
+
+re.findall('texto[n1-n2m1-m2]')		-->indicamos que queremos que nos muestre todas las palabras, listas, etc. que contengan algún carácter
+					   perteneciente al rango n1-n2 o m1-m2 despues de 'texto'.
+
+re.findall('texto[.:]')			-->la palabra 'texto' luego contendra '.' o ':'
+
+*Luego podemos ir jugando con todas estas carácteristicas
+
+ejemplo:
+--------
+
+import re
+lista_nombres=['Ana','Pedro','Maria','Rosa','Celia','óntas','tiempo']
+
+for elemento in lista_nombres:
+    if re.findall('[o-t]',elemento):    #Mostrara las palabras que contengan algún carácter comprendido en este rango
+        print(elemento)
+
+
+for elemento in lista_nombres:
+    if re.findall('^[o-t]',elemento):   #Mostrara todas las palabras que comiencen con algún carácter comprendido en este rango
+        print(elemento)
+
+for elemento in lista_nombres:
+    if re.findall('[o-t]$',elemento):  # Mostrara todas las palabras que terminen con algún carácter comprendido en este rango
+        print(elemento)
+
+print("--------------------------------------------------------------")
+
+lista_name=["Ma1","Se1","Ma2","Ba1","Ma3","Va1","Va2","Ma4"]
+for elemento in lista_name:
+    if re.findall("Ma[0-3]",elemento):
+        print(elemento)
+
+print("--------------------------------------------------------------")
+
+lista_name=["Ma1","Se1","Ma2","Ba1","Ma3","Va1","Va2","Ma4","MaA","Ma5","MaB","MaC"]
+for elemento in lista_name:
+    if re.findall("Ma[^0-3]",elemento):         #si antemos ^ al rango, hacemos referencia a nos devuelva el rango negado
+        print(elemento)
+
+print("---------------------------------------------------------------")
+
+lista_name=["Ma1","Se1","Ma2","Ba1","Ma3","Va1","Va2","Ma4","MaA","Ma5","MaB","MaC"]
+for elemento in lista_name:
+    if re.findall("Ma[0-3A-B]",elemento):         #si antemos ^ al rango, hacemos referencia a nos devuelva el rango negado
+        print(elemento)
+
+print("--------------------------------------------------------------")
+
+lista_name=["Ma1","Se1","Ma2","Ba1","Ma3","Va1","Va2","Ma4","MaA","Ma5","MaB","MaC","Ma1A"]
+for elemento in lista_name:
+    if re.findall("Ma[0-3][A-B]",elemento):         #si antemos ^ al rango, hacemos referencia a nos devuelva el rango negado
+        print(elemento)
+
+
+
+-----------------------
+modulos Match y Search:
+-----------------------
+match:
+------
+*Busca si hay coincidencias en un patron de busqueda al comienzo de una cadena de texto
+
+Sintaxis: re.march(variable1,variable2,flag)
+---------
+re.match("texto",variable):			-->compara si la variable comienza con una cadena de caracteres==texto
+re.match("texto",variable,re.IGNORECASE):	-->hace que ignore si hay masyusculas o minusculas y los compara como igual
+re.match("/d",variable)				-->compara si la variable comienza con un digito
+
+
+ejemplo:
+--------
+
+import re
+nombre1="Sandra Lopez"
+nombre2="Anthonio Gómez"
+nombre3="maría López"
+nombre4="Lopez Sandra"
+nombre5="sandra Lopez"
+nombre6="2Candra ssq"
+
+if re.match("\d",nombre6,re.IGNORECASE):
+    print("Hemos encontrado el numero")
+
+else:
+    print("No le hemos encontrado")
+
+
+
+re.search('cadenaAbuscar',variable,flag)		-->busca en toda la variable a ver si la cadenaCarácteres se cumple, también podemos agregar 								   un flag
+
+
+-------------------------------------------------------------------------------------------------
+					DECORADORES						|
+-------------------------------------------------------------------------------------------------
+*Son funciones que a su vez añaden funcionalidades a otras funciones. Por eso se les llama 'decoradores', por que 'decoran 'a otras funciones. Les añade funcionalidades.
+*Estructura de un decorador: 
+	#3 funciones (A,B,C) donde A recibe como parametro B para devolver C
+	#Un decorador devuelve una función
+
+Sintaxis:
+-----------
+
+def funcion_decorador(función_parametro):
+	def función_interna():
+		código de la función interna		-->código que agregaremos a la función para decorarlo por arriba
+		funcion_paremetro()			-->la función parametro viene a ser la función que queremos decorar(nombrefuncion)
+		codigo de la función interna		-->código que agregaremos a la función para decorarlo por abajo
+	return función interna
+
+
+@funcion_decorador					-->aquí se antepone @ y la función decoradora que aplicaremos a la función que esta debajo
+def nombrefuncion():					-->ya quedaria decorada nuestra función
+	codigo
+
+
+nombrefuncion():				-->si ejecutamos nuestra función nos daremos cuenta que nuestra función ya esta decorada.
+
+
+ejemplo:
+--------
+
+def funcion_decoradora(funcion_parametro):
+    def funcion_interior():
+        #Acciones adicionales que decorar
+        print("vamos a realizar un calculo")
+        funcion_parametro()
+        # Acciones adicionales que decorar
+        print("Calculo Finalizado")
+
+    return funcion_interior
+
+@funcion_decoradora
+def suma():
+    print(15+20)
+
+
+@funcion_decoradora
+def resta():
+    print(30-10)
+
+suma()
+resta()
+
+
+
+
+Sintaxis para funciones con parametros:
+---------------------------------------
+*args: con *args indicaremos que nuestra función recibira un número ilimitado de parametros (permite trabajar con parametros)
+
+def funcion_decorador(función_parametro):
+	def función_interna(*args):
+		código de la función interna		-->código que agregaremos a la función para decorarlo por arriba
+		funcion_paremetro(*args)			-->la función parametro viene a ser la función que queremos decorar(nombrefuncion)
+		codigo de la función interna		-->código que agregaremos a la función para decorarlo por abajo
+	return función interna
+
+
+@funcion_decorador					-->aquí se antepone @ y la función decoradora que aplicaremos a la función que esta debajo
+def nombrefuncion(n1,n2...):				-->ya quedaria decorada nuestra función
+	codigo
+
+
+nombrefuncion(n1,n2...):				-->si ejecutamos nuestra función nos daremos cuenta que nuestra función ya esta decorada.
+
+
+ejemplos:
+---------
+def funcion_decoradora(funcion_parametro):
+    def funcion_interior(*args):
+        #Acciones adicionales que decorar
+        print("vamos a realizar un calculo")
+        funcion_parametro(*args)
+        # Acciones adicionales que decorar
+        print("Calculo Finalizado")
+
+    return funcion_interior
+
+@funcion_decoradora
+def suma(n1,n2,n3):
+    print(n1+n2+n3)
+
+
+@funcion_decoradora
+def resta(n1,n2,n3):
+    print(n1-n2)
+
+suma(7,5,8)
+resta(12,1,2)
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+**kwargs: usamos este parametro en la función interior y al llamar la función parametro en caso de que al llamar a nuestra funcion que vamos a decorar su parametros sean de tipo "clave=valor"
+
+ejemplo:
+--------
+
+def funcion_decoradora(funcion_parametro):
+    def funcion_interior(*args,**kwargs):
+        #Acciones adicionales que decorar
+        print("vamos a realizar un calculo")
+        funcion_parametro(*args,**kwargs)
+        # Acciones adicionales que decorar
+        print("Calculo Finalizado")
+
+    return funcion_interior
+
+@funcion_decoradora
+def potencia(base,altura):
+    print(pow(base,altura))
+
+potencia(base=5,altura=3)
+
+
+---------------------------------------------------------------------------------------------
+					DOCUMENTACIÓN					    |
+---------------------------------------------------------------------------------------------
+*Es incluir comentarios en clases, métodos, módulos, etc.
+*Para ayudar en el trabajo en equipo. Especialmente útil en aplicaciones complejas.
+*nos da información de que hace cada clase, metodo, función,etc.
+
+Sintaxis:
+---------
+nombreFuncion.__doc__			-->Nos mostrara la documentación(comentario) que introdujimos dentro de la función.
+nombreClase.__doc__			-->Nos mostrara solo la documentación de la clase (no de sus metodos)
+nombreClase.nombreFuncion.__doc		-->Nos mostrara la documentación de un metodo perteneciente a la clase
+
+help(nombreFuncion)			-->Nos mostrara la documentación que introdujimos incluidos datos de la función.
+help(nombreClase)			-->Nos mostrara la documentación de toda la clase y la de sus metodos
+help(nombreClase.nombreFuncion)		-->Nos mostrara la documentación de un metodo perteneciente a la clase
+
+podemos importar un modulo y con help ver su documentación:
+
+from nameDirectorio import namemodulo
+
+help(namemodulo)			-->nos mostrara toda la documentación del modulo, sus metodos y ubicación de directorios
+
+
+Ejemplo1:
+---------
+from tkinter import messagebox
+from tkinter import *
+from io import *
+import re
+import math
+from io import open
+import pickle
+import sqlite3
+from setuptools import  setup
+from Modulos import funciones_matematicas
+
+class Areas():
+    '''
+    La clase esta formada por metodos que calculan Areas
+    '''
+
+
+    def areaCuadrado(lado):
+        '''Calcula el área de un cuadrado
+        elevando al cuadrado el lado pasado por parámetro'''
+
+        return "El area del cuadrado es: "+str(lado*lado)
+
+
+    def areaTriangulo(base,altura):
+        '''Calcula el area de un triangulo
+        utilizando los parametros base y altura'''
+        return  "El area del triangulo es: "+str(base*altura/2)
+
+
+#print(areaCuadrado(2))
+#print(areaCuadrado.__doc__)
+#print(Areas.__doc__)
+#print(Areas.areaTriangulo.__doc__)
+
+#help(areaCuadrado)
+#help(Areas)
+#help(Areas.areaTriangulo)
+help(funciones_matematicas)
+
+
+
+
+--------------------------------
+	documentación y pruebas:
+--------------------------------
+*Utilizaremos la documentación para realizar pruebas.
+  
+
+Módulo doctest:
+---------------
+Se usa el simbolo >(parentesis angularas) pero así >>>   
+
+
+sintaxis:
+---------
+'''
+Documentación				-->ponemos la documentación que queremos indicar
+>>> nombrefuncion()			-->ponemos la función a la vamos a realizar un test(dejamos un espacio en blanco) 
+valor					-->aquí ponemos el valor que deberia devolver nuestro test
+'''
+
+import doctest				-->importamos esta libreria necesaria para hacer el test
+doctest.testmod()			-->aquí realizamos el test, en caso de fallar el test, nos devolvera información de la ruta del archivo, la 						   función que fallo, el valor que esperaba devolver y el valor que devolvio (Tener cuídado con los string)
+
+Ejemplo:
+--------
+
+def compruebaMail(mailUsuario):
+    """
+    la función compruebaMail evalua un email recibido en busca de la @. Si tiene una @ es correcto,
+    si tiene mas de una @ es incorrecto, si la @ esta al final es incorrecto.
+    >>> compruebaMail('juan@cursos.es')
+    True
+
+    >>> compruebaMail('juancursos.es')
+    False
+
+    >>> compruebaMail('juan@cur@sos.es')
+    False
+
+    >>> compruebaMail('juancursos.es@')
+    False
+    """
+    arroba=mailUsuario.count('@')
+
+    if(arroba!=1 or mailUsuario.rfind('@')==(len(mailUsuario)-1) or mailUsuario.find('@')==0):
+        return False
+    else:
+        return True
+
+import doctest
+doctest.testmod()
+
+
+'''
+def areaTriangulo(base,altura):
+    """
+    Calcula el area de un triángulo dado
+
+    >>> areaTriangulo(3,6)
+    'el area del triangulo es: 9.0'
+
+    >>> areaTriangulo(4,5)
+    'el area del triangulo es: 11.0'
+
+    >>> areaTriangulo(9,3)
+    'el area del triangulo es: 13.5'
+    """
+    return "el area del triangulo es: "+str((base*altura)/2)
+
+import doctest
+doctest.testmod()
+'''
+
+
+
+Ejemplo2:
+---------
+
+import math
+import doctest
+def raizCuadrada(ListaNumeros):
+    """
+    La función devuelve una lista con la raíz cuadrada de los elementos
+    númericos pasados por parámetros en otra lista
+
+    >>> lista=[]
+    >>> for i in [4,9,16]:
+    ...     lista.append(i)				#Nos permite anidar expresiones dentro de nuestra documentación(como sangrias)
+    >>> raizCuadrada(lista)
+    [2.0, 3.0, 4.0]
+
+    >>> lista[]
+    >>> for i in [4,-9,16,50,78,-90,125]
+    ...     lista.append(i)
+    >>>raizCuadrada(lista)
+    Traceback (most recent call last):			Se espera esto
+        ...
+    ValueError: math domain error			Se espera esto
+    """
+
+    return [math.sqrt(n) for n in ListaNumeros] #Una nueva forma de utilizar el for, el valor que devuelve el sqrt es un double
+
+#print(raizCuadrada([9,16,25,36]))
+#doctest.testmod()
+
+
+-------------------------------------------------------------------------------------------------
+				Creación de ejecutables						|
+-------------------------------------------------------------------------------------------------
+*Tomara el formato nativo de tu sistema operativo
+
+*para crear un ejecutable lo primero que haremos es instalar "pyinstaller"
+	en consola: pip install pyinstaller
+
+
+Pasos para crear un ejecutable:
+-------------------------------
+paso1: instalar pip install pyinstaller
+paso2: ir al directorio donde estara nuestro programa a convertir
+paso3: pyinstaller nombreArchivo	#Esto digitamos en consola	#Nos aparecera el ejecutable acompañado de otros archivos para que funcione
+									 nos aparecera a parte del programa, la ventana de consola
+									#La extensión que tenga sera en base a tu sistema operativo.
+									#En linus ejecutaremos el programa así ./nombreArchivo
+ 
+paso4: pyinstaller --windowed nombreArchivo				#Esta vez no nos aparecera la ventana de consola
+paso5: pyinstaller --windowed --onefield nombreArchivo			#Nos comprimira el programa en un solo archivo
+paso6: pyinstaller --windowed --onefield --icon=RutaImagen		#Le pondra una imagen a nuestro archivo
+
+
+
+
+
+
