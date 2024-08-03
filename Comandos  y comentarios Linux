@@ -1,0 +1,4133 @@
+	 =================================================================================================================================================================================================
+|										SECCION 1: PRESENTACION DEL CURSO										|
+=================================================================================================================================================================================================
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 2: ¿QUE ES LINUX?											|
+=================================================================================================================================================================================================
+
+*Estructura de un sistema Linux
+
+							           APLICACIONES
+
+
+									^
+									V
+
+											->GRUB
+								     KERNEL		->EFI
+
+
+						^			^			   ^
+						V			V 			   V
+						CPU		     MEMORY			DEVICES
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 3: PREPARACION DEL ENTORNO DE APRENDIZAJE								|
+=================================================================================================================================================================================================
+*Hay 3 distribuciones en Linux que son las mas usadas:
+		- Debian
+		- Slackware
+		- Redhat
+*
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 4: LA SHELL DE LINUX											|
+=================================================================================================================================================================================================
+
+*La prompt de la shell viene con la siguiente estructura:
+	username@nombre_maquina:~$ 
+			~ hace referencia al directorio /home/user (directorio de trabajo del usuario)
+			$ a partir de donde ingresaremos comando
+	
+	root@nombre_maquina:/home/kevin#
+			# hace referencia a que estamos con privilegios de administrador
+
+
+*¿Que es un comando?
+	Son palabras claves que realizan tareas sobre el propio shell o sobre el sistema operativo
+
+	Existen 4 clases de comandos:
+		-comandos implementados en la propia shell (shell builtin).
+		-comandos que se encuentran en ciertas rutas de ficheros (ejemplo /usr/bin/cp) (son codigo fuente externo)
+		-shell funcion (shell script), son comandos escritos en cualquier lenguaje de programación
+		-comandos alias, son referencias que se le hacen a diferentes comandos o combinacion de comandos
+	
+
+	Los comandos en su mayoria estan también complementados con parametros, estos parametros modifican el comportamiento de los comandos
+
+
+
+*Explorando el comando 'HELP'
+	cuando por ejemplo usamos
+		help type						#nos votara informacion del comando type y como se le usa
+			type [-afptP] name [name ...]			#siempre que nos aparezca [], significa que lo que esta adentro es opcional, que no es necesario indicar estos parametros. 
+									[name ...] quiere decir que nosotros podemos pasarle varios nombres de comandos para que nos de información de cada comando indicado a la vez
+
+*Explorando el parametro '--help' o en otras '-h'.
+	Algunos comandos externos no se les puede usar el help COMANDO, en este caso
+	estos mismos comandos tienen un parametro --help que nos explicara como funcionan estos comandos
+	Otros no tienen el --help, sino el -h
+
+
+
+*Explorando el comando 'man COMANDO'
+	Nos dara informacion del comando, 'e' para seguir leyendo, 'q' para salir
+
+
+
+
+
+*Manejo de comandos y expresiones logicas:
+
+\					#Nos permite partir el comando para escribirlos por partes, ejemplo: ls -lah Desktop  , es lo mismo que ls -lah \ Desktop     o lo mismo que    ls \ -lah  \ Desktop
+					(es especialmente util para comandos super largos)
+
+;					#Lo que hace despues de un comando es que nos permite concatenarlo con el siguiente comando, para ejecutar varios comandos a la vez
+&&					#Operacion logica 'and', lo que hace es que ejecuta el segundo comando siempre y cuando el primer comando se ejecuta
+||					#Operacion logica 'or', lo que hace es que ejecuta el segundo comando siempre y cuando el primero falle o no se ejecuta
+
+
+
+
+
+*Atajos de teclado para desplazarnos en la Shell:
+
+ctrl + a				#para ir al inicio de la linea del prompt
+ctrl + e				#para ir al final de la linea del prompt
+ctrl + l				#para limpiar la pantalla (es lo mismo que escribir el comando clear) 
+
+ctrl + p 				#para buscar el ultimo comando ejecutado, al seguir usandolo ira yendo al anterior luego al anteior y asi sucesivamente de los comandos que utilizamos		
+ctrl + r 				#para buscar recursivamente los comando que utilizamos, y dentro de ellos también podemos seguir buscando recursivamente
+					(ctrl + e) para elegir al final y salir de este modo
+
+!REFE					#buscara en tu historial el ultimo comando que comience o tenga la forma indicada en REFE (REFE hace referencia a una palabra )					
+!!					#ejecuta el ultimo comando utilizado
+
+
+ctrl + b				#para desplazarnos hacia atras, b de back (es lo mismo que usar la flecha hacia la izquierda)
+ctrl + f 				#para desplazarnos hacia adelante, f de forward  (es lo mismo que usar la flecha hacia adelante)
+
+alt + .					#referencia al ultimo parametro del comando anterior usado
+!$					#referencia al ultimo parametro del comando anterior usado (lo mismo que arriba)
+
+alt + f					#avanza el cursor una palabra en la linea actual
+alt + b					#retrocede el cursor una palabra en la linea actual
+alt + l/u				#convierte la palabra en mayuscula o minusculas desde la posicion a la derecha del cursor (l para minusculas (lower) y u para mayusculas (upper))
+
+COMAND..				#al presionar la tecla TAB en un comando que estamos escribiendo lo va completar, en caso haya muchas opciones nos mostrara todos los posibles comandos que podrian ser
+
+
+ctrl + k				#corta todo lo que este a la derecha del cursor (esto lo podemos convinar con ctrl+a, ya que se ubicaria el primer punto y luego borrariamos todo el prompt)
+ctrl + y				#pega el contenido que lo tengamos cortado
+
+
+RUEDITA_DEL_MOUSE			#nos es util para pegar lo selecionado en donde este el cursor del raton
+
+
+ctrl + u				#borra todo lo que este a la izquierda del cursor hasta el principio
+ctrl + h 				#borra el caracter anterior a la posicion del cursor (igual que retroceso)
+
+ctrl + c				#interrumpe la ejecucion de un programa
+ctrl + z				#manda el proceso actual a segundo plano
+fg					#trae el proceso de segundo plano a primer plano
+ctrl + d				#cierra la shell actual, o en algunos comando comandos nos permite salir de ellos, indicando que hemos llegado al final del fichero
+
+
+ctrl + w 				#corta la palabra anterior a la posicion del cursor
+ctrl + t				#intercambia los 2 ultimos caracteres anteriores o los 2 en los que se encuentra el cursor
+Esc + t 				#intercambia las 2 ultimas palabras anteriores a la posicion del cursos (lo mismo que ctrl+t pero para palabras)
+
+
+ctrl + flecha_righ			#se desplaza hasta el final de una palabra
+ctrl + flecha_left			#se desplaza hasta el princpio de una palabra	
+
+
+
+**COMANDOS:
+----------------------------
+sudo USER				#cambia de privilegios respecto al usuario indicado, 'su' hace referencia al super usuario
+clear					#sirve para limpiar la pantalla (comando propio de la shell)
+history					#muestra el historial de los comandos que vamos ejecutando
+ls RUTA					#lista los archivos y carpetas en el directorio en el que estamos
+mkdir RUTA				#permite crear un nuevo directorio
+mkdir -m RUTA 755 -o 1000:1000 NAMECARPETA	#crea un carpeta en la ruta dada, indicandole los permisos y el nameuser y namegroup que tendra
+
+
+type COMANDO				#nos permite saber que tipo de comando es el indicado
+help COMANDO				#nos da información del comando indicado
+man COMANDO				#nos da informacion del comando indicado
+whatis COMANDO				#nos da informacion breve de un comando
+info COMANDO				#nos da informacion completa y mas compleja sobre el comando indicado
+apropos QUE_QUEREMOS			#nos mostrara comandos respecto a lo que estamos buscando, buscara la palabra indicada dentro de los manuales de esos comandos y luego mostrara los comando que lo tienen
+
+exit					#para salir del modo root o cerrar la terminal
+
+alias					#nos mostrara todos los alias que hay en nuestra maquina
+alias NAME='Utilidad1;Utilidad2'	#para crear nuestro propio alias, el nombre no debe existir o mejor dicho ser el nombre de algun comando ya existente
+unalias NAME				#para eliminar el alias indicado
+hash					#nos permite ver las comandos que ya estan hashed, esto lo hace la terminal con tal de acceder mas rapido a esos comando memorizando sus rutas. Para eliminar escribir (hashed -r)
+
+
+
+
+
+*ACTIVIDAD:
+-------------------------
+*Crear nuestro propio alias: 
+	Ejemplo alias clist='clear; ls'
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 5: MANEJO DEL SISTEMA DE FICHEROS DE LINUX								|
+=================================================================================================================================================================================================
+
+ejemplos:
+----------
+	tree -L 1 /					#nos mostrara el primer nivel de jerarquia del arbol, en este caso para la raiz, ya que / hace referencia al directorio raiz
+	tree -L 2 /					#nos dara 2 niveles, y asi sucesivamente
+
+
+
+
+
+*viendo a detalles ciertos comandos:
+	comando:
+		ls
+			-t				#lo ordenara respecto a la ultima modificacion que le hice al fichero o directory.
+			-l				#nos mostrara mas detalles, los permisos, los usuarios propietarios, etc.
+			-lh				#formatea cierta informacion para que sea mas facil de leer
+			-a				#nos mostrara archivos o directorios ocultos
+			-d				#lista los directorios y no su contenido
+
+		cd
+			../..				#ve al directorio anterior, el otro anterior
+			.				#ve al directorio actual
+			..				#ve al directorio anterior
+							#cd sin parametros nos devuleve automaticamente al directorio de usuario /home/kevindaxvz
+			~				#los mismo que arriba, nos devuelve al directorio de usuario
+
+			-				#nos devuelve al directorio anterior en el que estabamos trabajando
+
+
+
+		cp
+			FICHERO1 FICHERO2				#copia el contenido del fichero1 al fichero2, si el fichero2 no existia, lo crea
+			FICHERO1 RUTA/DIRECTORIO1/			#copia el fichero1 a la ruta dada
+			FICHERO1 FICHERO2 ... RUTA/DIRECTORIO1/		#copia todos los ficheros al directorio indicado				
+		
+			-i FICHERO1 RUTA				#-i hace que cp sea interactivo, es decir que nos pregunta en caso se vaya a sobreescribir algo
+			-r DIRECTORIO1/ DIRECTORIO2/			#copia el contenido del directorio1 al directorio2, si el directorio2 existe, lo sobreescribe, sino existe lo crea
+
+		mv
+			FICHERO1     RUTA/DIRECTORIO1/			#mueve el fichero a la ruta indicada
+			FICHERO1     RUTA/DIRECTORIO1/FICHERO2		#En este caso movera al fichero a la ruta dada y luego lo renombra como FICHERO2
+			DIRECTORIO1  RUTA/DIRECTORIO2/			#mueve el directorio1 al directorio indicado
+			DIRECTORIO1  RUTA/DIRECTORIO2/DIREC3		#cambia el nombre del directorio y lo mueve a la ruta dada
+
+			FICHERO1  FICHERO2  ../				#tambien se pueden mover muchos ficheros, en este caso se movera al directorio anterior ya que .. no olvidar que hace referencia a aquello
+			
+			-u						#hace que vaya a mover siempre y cuando el fichero que se va mover sea mas actual que uno que tenga el mismo nombre en la ruta dada
+
+
+		rm
+			FICHERO1 FICHERO2 FICHERO3			#eliminara todos los ficheros indicados (cuidado que no pregunta)
+			
+			-r DIRECTORIO1					#-r nos permite eliminar un directorio
+			-rf DIRECTORIO1					#-rf elimina el directorio indicado si o si sin preguntar, tener cuidado por que puede eliminar hasta un directorio raiz
+			-rf FICHERO1					#lo mismo que se indica arriba, elimina sin preguntar
+
+
+		find
+			-name NAMEFICHERO				#buscara el fichero desde la ruta en la que estamos
+			. -name NAMEFICHERO				#buscara el fichero desde la ruta actual en la que estamos
+			RUTA1 RUTA2 -name NAMEFICHERO			#buscara el fichero en las RUTAS dadas, buscara incluso en los subdirectorios que estos tengan
+
+
+			RUTA1 -name NAMEFICHERO 2> /dev/null		#mostrara solo las rutas en las que nos encuentre, no mostrara ya errores ni permisos, etc
+			RUTA -name NAMEFICHERO -ls			#-ls nos permite ver mas informacion acerca del fichero, como sus permisos que tiene, los propietarios, fechas, etc
+
+			RUTA -name '*.log'				#para indicar que busque cualquier fichero con la extension.log, '*.*' cualquier fichero, 'ab*.*' ficheros que comiencen con ab, en conclusion, se necesita usar '', ya que
+									sino la terminal pensara que se estan usando sus expresiones regulares
+			
+			/ -name NAME -type d				#-type d  esto indicada que lo que estamos buscando es un directorio, busca desde la raiz debido a /
+
+			RUTA -name '*' -user KEVIN			#-user  hara que nos muestre solo aquellos que hayan sido creados por el usuario KEVIN
+
+			RUTA -name ! -path "RUTA/*" 			#! -path "RUTA/*"  excluira de la busqueda todos aquellos ficheros que comiencen con la RUTA indicada
+
+			/ -inum <inodo> 2>/dev/null			#dado un valor del inodo, encontrara todos los enlaces duros a ese inodo (util si en algun caso el inodo contiene virus y se camufla usando enlaces duros)
+
+					
+	
+
+
+
+*rutas absolutas
+	son RUTAS que se indican partiendo desde la raiz
+
+
+*rutas relativas
+	son RUTAS que parten desde el directorio actual en el que estamos.
+
+
+
+
+
+
+
+
+**DIRECTORIOS ESPECIALES EN LINUX:
+--------------------------------------------------------------------------------------------------------------------------------------------
+.					#este directorio hace referencia al directorio actual
+..					#este directorio hace referencia al directorio anterior
+
+.NAMEDIRECTORIO				#cuando un diretorio comience con . , indica que esta oculto
+.NAMEFICHERO				#cuando un fichero comience con ., indica que esta oculto
+
+
+.bash_history				#este fichero contiene el historial de los comandos usados en nuestra shell
+.bashrc					#este fichero contiene informacion de nuestra shell
+.profile				#este fichero contiene informacion de nuestro perfil
+
+
+
+
+
+/						#Referencia a la carpeta raiz
+
+
+/bin -> /usr/bin				#/bin es un directorio que se usaba antes donde se guardaban binarios de ciertos comandos que servian para reparar el sistema principalmente, ahora todas esas caracteristicas estan en el directorio 
+						que indica /usr/bin,   /bin viene pintado de otro color ya que este comando esta linkeado(o enlace simbolico) a lo que indica, linkeado es algo asi como un acceso directo, existe /bin aun para mantener aun 							la recompatibilidad con ciertos programas o funciones o comandos, etc (Este directorio por norma general no se toca, ya que contienen binarios escenciales para sistema operativo)
+
+
+/boot						#Este directorio contiene los archivos escenciales para arrancar el sistema operativo, concretamente contiene archivos del kernel de linux, 
+/boot/grub					#Este es el cargador de arranque a la memoria
+/boot/efi
+ 
+
+/cdrom						#antiguamente aqui es donde se montaba los cds o almacenamiento externos por asi decirlo al conectar a nuestra maquina
+
+
+/dev						#aqui estan las interfaces, como la propia terminal, o impresoras, diversos ficheros especiales, etc. (recordar que en linux todo es ficheros)
+
+
+/etc						#contiene la informacion de configuracion de nuestro sistema operativo, de las aplicaciones en el espacio de usuario, etc etc. aqui esta la informacion de configuracion de casi todo
+
+
+/home						#Aqui se crean las carpetas de los usuarios, las carpetas personales de cada usuario, donde tendran sus privilegios respectivamente
+
+
+/lib -> /usr/lib				#Estas con carpetas de librerias en donde cierto programas cargaran la liberia que usan (actualmente, mayormente aqui se cargan casi todas las librerias)
+/lib32 -> /usr/lib32				#aqui cargaran sus librerias para arquitecturas de 32bits
+/lib64 -> /usr/lib64				#aqui cargaran sus librerias para arquitecturas de 64bits
+/libx32 -> /usr/libx32				(fijate que tambien que estan con enlace simbolico)
+
+
+/lost+found					#fsck , este comando sirve para cuando digamos se nos va la luz y nosotros estabamos ejecutando algun proceso o trabajando con algun directorio, este comando nos recuperara eso y
+						lo guardara en esta carpeta /lost+found
+
+
+/media						#carpeta donde se montan los dispositivos externos (acualemente se puede montar en cualquier fichero, pero por razones historias aun se mantienen estos ficheros)
+
+
+/mnt						#(mount), es un directorio de montaje pero orientado a montar mas de manera manual
+
+
+/opt						#(opcional), aqui venian programas premium para el sistema, es decir software premiun, antes se daba mucho eso, actualmente ya no hay software premiun, pero se le mantiene por razones historicas
+
+
+/proc						#aqui hay ficheros que contienen informacion sobre el kernel, sobre el hardware del sistema y sobre identificadores de procesos, y de como estan funcionando, su estado, etc
+						(aqui hay muchos ficheros de sistema virtual) (significa que se estan ejecutando sobre la marcha)
+
+/root						#este es el directorio de espacio de trabajo del usuario /root
+
+
+/run						#aqui hay ficheros o se cargan ficheros, o programas que se ejecutaran al iniciar el sistema operativo
+
+sbin -> /usr/bin				#aqui al igual que bin, hay archivos que contienen datos binarios, pero estos binarios son super mas escenciales, es decir mas vitales para el sistema y delicados.
+
+
+/snap						#es un directorio que sirve de gestor de paquetes, para instalar paquetes externos.
+
+
+/srv						#contiene datos de servicios, es decir cuando nosotros como servidores o etc, ofrecemos servicios para afuera, si montaramos un servicio por ejemplo FTP, aqui se crearia una carpeta
+						con el nombre FTP
+
+
+/swapfile					#este fichero hace el swap de la memoria RAM a Disco, para no saturar la memoria RAM, es decir cuando se empiece a sobrepasar la memoria RAM, se empezara a volcar la informacion a este fichero
+
+
+/sys						#Nos sirve también de interfaz con el kernel, aqui tambien tenemos algunos ficheros que modificandolos podriamos modificar el funcionamiento del kernel
+
+
+/tmp						#Este es un directorio temporal, aqui se cargan ciertos datos que se usaran de manera temporal, (al reiniciar la maquina se borran todos estos datos)
+
+
+/usr						#este directorio contiene toda clase carpetas y ficheros de programas, configuraciones de todo tipo pero propios de los usuarios que hay en el sistema (es decir solo de los usuarios)
+
+
+/var						#(variable) aqui hay datos que son variables, como informacion de mail, backups, logs, cache, datos que van cambiando o actualizandose, diferentes aplicaciones, trazas, etc.
+
+
+
+**EDITORES DE TEXTO EN LINUX:
+-----------------------------
+pico
+nano
+/
+vi
+vim
+gvim
+emacs
+
+
+
+pico NAME_FICHERO
+
+
+
+
+
+
+
+
+COMENTARIOS:
+-----------------------------------
+*En linux, el shell no toma en cuenta las extensiones, ya para ciertas extensiones necesitamos de certos programas
+*Linux es case sensitive, diferencia mayusculas y minusculas.
+*^ este simbolo en linux hace referencia 'ctrl'
+
+
+**COMANDOS:
+----------------------------
+tree							#nos muestra el arbol de los directorios y ficheros en linux
+tree RUTA						#nos mostrara el arbol para la ruta dada
+pwd							#(print working directory), nos muestra el directorio actual en el que estamos
+cd RUTA							#nos permite movernos entre directorios
+mkdir NAME						#para crear un directorio
+mkdir RUTA/NAME						#para crear un directorio en la ruta dada
+file NAMEFICHERO					#para ver que tipo de fichero es el indicado
+cat NAMEFICHERO						#vuelca por pantalla la informacion que contenga un fichero
+more NAMEFICHERO					#nos muestra el contenido de un fichero pero lineas por lineas (util para ficheros largos)
+less NAMEFICHERO					#es la evolucion de more (tiene ademas diversas funcionalidades asi como si fuera VIM)
+
+cp RUTA/NAMEFICHERO RUTA2				#Diciendolo de la forma mas simple, su funcion principal es copiar de una ruta a otra ruta indicada un fichero, directorio, etc. )
+mv RUTA/FICHERO1 RUTA2/FICHERO2				#Su funcion principal es mover de una ruta a otra ruta indicada
+mv RUTA/DIRECTORIO1  RUTA/DIRECTORIO2			#tambien puede mover directorios
+
+rm FICHERO1						#elimina el fichero indicado
+rm -r DIRECTORIO					#elimina el directorio indicado
+
+find RUTA -name 'NAMEFICHERO'				#busca el fichero desde la RUTA dada 			
+find 
+
+fsck							#sirve para recuperar algo, un proceso, un archivo, etc. debido a la interrupcion del sistema por algún motivo
+ps							#para ver los procesos actuales que se estan corriendo en la terminal que estamos usando
+prlimit --as=1000 --pid 62358				#para cambiar el valor en bytes maximo que puede ocupar el proceso indicado, cuando supere este valor lo volcara el fichero /swapfile
+
+
+*ACTIVIDAD:
+-------------------------
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 6: CONCEPTOS AVANZADOS DEL SISTEMA DE FICHEROS Y LA SHELL DE LINUX					|
+=================================================================================================================================================================================================
+
+INODOS:
+------------------------------------
+*un inodo se le asocia siempre a un fichero o directorio en linux, es en donde se registra informacion de los metadatos de ese fichero o directorio, metadata asi como la estructura que tiene, el tamaño, los permisos, posicion en memoria, su checksum,
+,file ACL, etc. 
+*existe un limite de inodos que puede tener un sistema operativo linux(no tiene nada que ver con el tamaño en disco)
+*En linus todo es un inodo
+
+
+
+DENTRIES:
+------------------------------------
+*directory entries (entrada de directorios), almacena el nombre de un fichero o directorio, su inodo y la longitud de su nombre.
+
+
+ENLACES SIMBOLICOS: (soft links)
+------------------------------------
+*Es como un acceso directo de un fichero a otro, uno de los posibles usos es la recompatibilidad
+*Los enlaces simbolicos tienen su propio inodo, cuando veamos permisos notaremos que los enlaces simbolicos empiezan con un a 'l', ejemplo:  lrwxrwxrwx
+*Los enlaces simbolicos no tienen el peso ni la informacion del fichero real o directorio al que apuntan, su peso solo es el nombre en byte de la RUTA a la que apuntan
+*cuando nosotros hacemos por ejemplo cd a un enlace simbolico que apunta a otro directorio, y luego hacemos pwd, nostaremos que saldra /RUTA/ENLACE_SIMBOLICO pero realmente 
+estaremos en la ruta a la que apunta el enlace simbolico.
+*Se recomienda usar una RUTA ABSOLUTA cuando usaremos un enlace simbolico que cambiaremos de carpeta
+
+
+
+ENLACES DUROS: (Hard links)
+------------------------------------
+*Son como los enalces simbolicos pero se aplican unicamente a ficheros
+*Aqui cuando veamos permisos no nos indicara que sera un enlace simbolico
+*Estos enlaces apuntan al mismo INODO que su fichero, si se borra el fichero estos enlaces siguen teniendo la capacidad de acceder a la informacion del fichero debido a que se sigue apuntando en memoria
+al INODO original
+
+
+
+
+WILCARDS
+-------------------------------------
+*Son expresiones que nos ayudan a referenciar cualquier fichero, directorio, etc. (son parecidos a expresiones regulares)
+*Se pueden usar con cualquier comando que acepte ficheros como argumento
+
+
+*					#indica cualquier caracter o cualquier numeros de caracteres, 0 a mas veces
+?					#cualquier caracter pero unicamente un caracter, 1 vez
+[abcd]					#cualquier de esos caracteres escritos, 1 vez 
+[!abcd]					#la negacion, cualquier caracter que no coincida con los escritos, 1 vez por lo menos
+
+[[:class:]]				#podriamos indicar también, en vez de escribir manualmente, el conjunto de datos dependiendo a la clase, como se indica en el siguiente ejemplo
+	[[:digit:]]			#hace referencia a datos numeros (0-9)
+	[[:alpha:]]			#hace referencia a los caracteres del abecedeario (a-z) o (A-Z)
+	[[:alnum:]]			#hace referencia a los caracteres del abecedeario o numericos 
+	[[:upper:]]			#que el caracter es mayuscula
+	[[:lower:]]			#que el caracter es minuscula
+
+[![:class:]]				#que no contenga el caracter de la clase indicada
+
+{a,b,c,d}				#alguno de esos caracteres
+{1..100}				#algun caracter entre 1 y 100
+
+{01..14}				#posibles caracteres, 01, 02, 03... 09, 10, 11.. 14
+{A..Z}					#algun caracter de la A a la Z
+{A{1,2},B{3,4}}				#tambien se puede anidar, A1 A2 B3 B4
+
+
+ejemplos:
+----------
+ls -d D*			
+cat fichero*
+ls fichero?
+{2020..2024}				#del año 2020 al 2024
+{2020..2024}-{01-12}			#del año 2020-01 hasta 2024-12
+
+
+
+
+SHELL EXPANSIONS:
+--------------------------------------
+echo					#Nos permite hacer expansiones, es decir, realmente cuando nosotros usamos por ejemplo WILCARDS, realmente por atras lo que estamos haciendo es usar expansiones. Nos permite también
+					 hacer operacines matematicas
+echo ARGUMENTO				#Nos saca por pantalla lo que le demos por argumento, realmente lo que hace este comando es redigir el ARGUMENTO por el standar output
+echo $(OPERACION)			#$ para hacer operaciones matematicas
+
+
+COMMAND SUBSTITUTION:
+----------------------------------------
+*Es simplemente utilizar recursivamente los valores de ciertos procesos. Se apoyan generalmente de $ y de `` (esto es lo que se usaba antiguamente las ``)
+
+Ejemplos:
+
+	ls -la $(which cat)					#which cat mostra la ruta del comando cat y con ls -la veremos sus permisos y demas metadatos
+	ls -la `which cat`					#which cat mostrara la ruta del comando cat y con ls -la veremos sus permisos y demas metadatos (asi se hacia antiguamente)
+
+	python3 -c 'print("hola mundo")'			#mostrara 'hola mundo' por pantalla debido a lo que hablamos de shell expansions
+	echo $(python3 -c 'print("hola mundo")')		#es lo mismo que de arriba
+
+	
+
+
+COMILLAS EN LA SHELL DE LINUX (SIMPLES VS DOBLES):
+----------------------------------------------------
+*La shell por defecto elimina los espacios entre comandos o parametros de una misma linea, si hay muchos al final lo considera solo como si hubiera uno o mejor dicho lo reduce a uno, ya sean espacios por salto de linea, etc.
+No es lo mismo: echo $(ls)     que     echo "$(ls)"
+*
+
+
+Comillas dobles ""
+---------------------
+*Sirve para pasar como un solo argumento una serie de palabras.
+
+			"ARGUMENTO"				#Hace que todo caracter ubicado entre las "" pierdan su valor excepto $ \ ``
+			echo $(ls)		
+			echo "$(ls)"				#
+
+
+Comillas simples ''
+----------------------
+*Sirve como las "", pero a diferencia estas comillas eliminan el comportamiento de todos los carácteres especiales
+
+
+			echo "esto es ''"
+			echo 'esto es ""'
+
+
+COMENTARIOS:
+-----------------------------------
+*ls -l
+	drwxrwxrwx 2 kevin root 4096 sep 27 2022 Descargadas			#El segundo valor (2) en este caso, indica cuantos enlaces ya sean simbolicos o duros en total hay referenciados a esa ruta.
+
+
+*cuando creamos un directorio este por defecto ya tiene 2 enlaces indicandolos, ya que uno es la misma ruta del directorio y otro es su subdirectorio . , ya que todo directorio tiene 2 enlaces duros por defecto 
+los cuales son, . y .. 
+
+
+
+ESCAPANDO CARACTERES ESPECIALES:
+-------------------------------------
+*Sirven para hacer perder su comportamiento a los caracteres especiales.
+*Incluso le quita el significado a los espacios como veremos en los ejemplos.
+
+Ejemplo:
+	sea fichero prueba.txt un fichero
+
+		ls -la fichero\ prueba.txt	#hara que el espacio piera su valor como separador de argumentos y solo se interprete como un caracter.
+		echo "hola \$(which cat)"	#hara que $ pierda su valor y se le interprete como un caracter
+
+
+*Tambien sirve para usarlo como caracteres de control
+
+Ejemplo:
+	echo -e "\a"				#\a tiene un comportamiento de alerta o bell, emite un pitido o sinido
+	echo -e "\t"				#\t tiene un comportamiento de tabulado
+	echo -e "\n"				#\n tiene un comportamiento de salto de linea
+	echo -e "\b"				#\b tiene un comportamiento de backspace (retroceso de carro, es decir borrar un caracter)
+
+
+
+
+	echo -n "STRING"			#omite los \n (salto de linea)  al final del string
+
+
+**COMANDOS:
+----------------------------
+df -i						#para ver el total de inodos que tiene nuestro sistema, de los directorios, etc
+ls -i NAMEFICHERO				#mostrara el numero de inodo para este fichero
+ls -lid RUTA/DIRECTORIO				#mostrara el numero de inodo para este directorio
+stat NAMEFICHERO				#mostrara informacion de los metadatas del fichero indicado
+sudo debugfs -R "stat <355297>" /dev/sda3	#mostrara informacion mas precisa de los metadatas acerca de ese inodo que se encuentra en aquella ruta (/dev/sda3), muestra en donde esta su contenido en memoria usando extensiones,etc.
+ln RUTA/NAMEFICHERO NAMEDURO			#el comando ln se usa para crear enlaces duros, se le da una RUTA y el NAMEdelENLACEDURO
+ln -s RUTA/NAMEFICHERO  NAMESIMBOLICO		#el comando ln se usa para crear enlaces simbolicos, -s indica que sera simbolico, se le da una RUTA y el NAMEdelSIMBOLICO
+echo ARGUMENTO					#manda por el standar output el ARGUMENTO (es decir lo manda por pantalla)					
+which COMANDO					#nos mostrara la ruta en la que se encuentra el comando
+which ARGUMETN					#no solo nos muestra la ruta de un comando, sino tambien de un fichero, directorio, enlace, y demas componentes, etc.
+
+
+
+
+
+
+ACTIVIDAD:
+------------------------------------
+	rm $(find / -inum <VALORINODO> 2> /dev/null)		#para borrar un inodo y sus enlaces duros (es decir borrar todos los ficheros con ese mismo inodo)
+
+	find /home -xdev -samefile FICHERO | xargs rm		#otras forma
+	find /home -xdev -inum 2655341 | xargs rm		#otra forma usando el inodo
+
+
+
+	find / -type f -perm -4000 2>/dev/null			#buscar archivos que tengan el setuid activado
+	
+	find / -type f -exec COMANDO {} \;			#Para cada fichero ejecutar el comando indicado, esto va vacio {} 
+		find / -type f -exec sha1sum {} \;  | grep -i "7402..."			#para buscar hash desde la raiz en ficheros
+
+
+
+*El comando xargs en Unix y Linux se utiliza para construir y ejecutar comandos a partir de la entrada estándar o de un fichero. Básicamente, xargs toma la salida de un comando (o la entrada desde un fichero) y la usa como argumentos para otro comando.
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 7: REDIRECCIONES Y PIPELINES										|
+=================================================================================================================================================================================================
+
+I/O Redirection: (input o output Redirection)
+-------------------------------------------------------------------------
+
+(Standar Output (stdout) Redirection)
+---------------------------------------
+/dev/stdout					#Es un fichero especial que nos permite mostrar en pantalla el resultado de un comando (Siempre y cuando sea correcto) (Esto es un enlace simbolico a otro fichero mas especial /dev/pts/0)
+
+	ls 					#este comando por ejemplo para mostrar el resultado manda todo el resultado a ese fichero /dev/stdout para poder mostrarlo en pantalla
+
+
+1>					#Esta es la real forma de redirigir el standar output, indicando el file-descriptor (esto se explica en el Standar error de abajito, leer)
+>					#este caracter es el operador redireccion 
+
+
+	COMANDO > NAMEFICHERO.TXT	#por ejemplo aqui estamos indicando que la salida del comando lo redirija al fichero mencionado (crea el fichero en caso no exista)
+	> NAMFICHERO.TXT		#Crea un fichero vacio, ya que redirigimos nada al fichero
+	cat FICHEROS* > Fichero_total	#el contenido de todos los ficheros se lo redirige a Fichero_total
+	cat fichero1 fichero2 > total.txt	#igual, redirige el contenido de ambos ficheros al fichero indicado
+
+
+>>					#redirige la salida pero no elimina el contenido, lo concatena a lo que ya este
+
+	COMANDO >> NAMEFICHERO.TXT	
+
+
+
+
+
+
+
+
+(Standar Error (stderr) Redirection)
+---------------------------------------
+/dev/stderr					#Este es un fichero especial que nos permite mostrar en pantalla cuando un comando falla (Esto tambien es un enlace simbolico a otro fichero mas especial /dev/pts/0)
+
+*File descriptor, cuando un proceso cualquiera abre un fichero, el kernel lo que hace es retornar un descriptor de fichero, el descriptor apunta a un global table, que contiene informacion del inodo del fichero, la restriccion del fichero,etc.
+*Cada standar tiene un file-descriptor asociado.
+
+*cuando hacemos 'ls -l /dev/stdout' notamos que apunta a /proc/self/fd/1 (fd 1 indica que este es su file-descriptor) 
+		'ls -l /dev/stderr' notamos que apunta a /proc/self/fd/2 (fd 2 indica que este es su file-descriptor)
+		'ls -l /dev/stdint' notamos que apunta a /proc/self/fd/0 (fd 0 indica que este es su file-descriptor)
+
+
+2> RUTA/NAMEFICHERO					#usamos el file descriptor para indicar que queremos redirigir toda la salida del standar error al fichero indicado	
+
+
+	COMANDO 2> NAMEFICHERO.TXT			#Redirigira todo el error que produzca el comando al fichero indicado
+
+
+2>> RUTA/NAMEFICHERO					#Al igual que en el standar input, >> para concatenar a la informacion que ya este en el fichero
+
+
+
+	ls -lah > NAMEFICHERO.TXT 2>&1			#Esta es la forma clasica de redirigir la salida standar output y la salida Standar Error al mismo fichero, 2>&1 indica que el Standar Error lo redirija al Standar Output, y esto lo escribe en 
+							el fichero
+
+	ls -lah sdfas &> NAMEFICHERO.TXT		#Esta es la forma moderna de redirigir tanto el Standar Output y el StandarError al mismo fichero.
+
+
+
+
+****
+/dev/null						#Este fichero es como una papelera que todo lo que redirijamos a este fichero se borra automaticamente y no se podra recuperar
+
+	2> /dev/null					#Todo el Standar Error se redirige al fichero donde todo se elimina
+
+
+
+
+
+(Standar Input (stdin) Redirection)
+-----------------------------------------
+/dev/stdin 					#Fichero asociado a la entrada que ciertos comandos nos pediran datos (como input en python) (Esto tambien es un enlace simbolico a otro fichero mas especial /dev/pts/0)
+
+cat						#usar el comando solo invoca al fichero stdin, ya que espera una entrada de datos
+cat > NAMEFICHERO				#podriamos redirigir tambien toda la entrada al fichero que queramos
+
+
+<						#Que la informacion que se va recibir viene del fichero o comando, etc que se te va dar (este es el caracter de stdin) (esto nos permite recibir en ves de darle a mano los datos)
+	cat < NAMEFICHERO			#cat recibira la informacion de NAMEFICHERO y luego lo redirigira al stdout (es decir lo mostrara en pantalla)
+	
+
+
+
+
+PIPELINES:
+---------------------------
+| 						#Este caracter es el carácter tuberia (pipelines) y lo que nos permite concatenar comandos dentro de la shell, de manera que el standar output de un comando sirve de Standar input de otro
+						(ya la shell se encarga de hacer que funcionen ambos correctamente)
+
+
+    COMANDO1   	  |      COMANDO2
+(Standar output) este sirve a  de (Standar input)		#Como vemos la salida de un comando sirve de StandarInput para el otro comando
+
+
+
+
+
+
+
+
+
+
+COMANDOS:
+--------------------------------
+sort								#Sirve para ordenar las lineas de un fichero (por defecto ordena de manera alfabetica) (usar man para ver las demas opciones)
+	
+	Ejemplo:	
+		COMANDO | sort
+		COMANDO | sort | less
+
+		sort -n						3para ordenar en base al valor numerico
+
+uniq								#Sirve para devolver valores unicos	
+	-d							#uniq -d haria que devuelva solo los valores que se repitieron (usar man para ver las demas opciones)
+
+	Ejemplo:							
+		COMANDO | sort | uniq |less			
+							
+
+
+wc								#nos permite contar lineas, palabras y bytes de un fichero	
+	-l							#nos devolvera solo el numero de lienas
+
+	Ejemplo:	
+		wc RUTA/NAMEFICHERO				#devolvera de la siguiente forma  64  779   7118  RUTA/NAMEFICHERO   (siendo 64 las lineas, 779 las palabras y 7118 el total de bytes)
+		
+		COMANDO | sort | uniq | wc -l			
+
+
+
+	wc -c STDOUTPUT						#dado una cadena o lo que sea, devuelve el numero de caracteres 
+
+
+
+grep								#dandole un fichero nos saca la informacion en base a una serie de patrones que nosotros lo pasemos como parametros, también puedne ser expresiones regulares
+	-i							#hace que grep ignore las mayusculas o minusculas al realizar la busqueda
+	-v							#Nos sacara las lineas que no coincide con el patron indicado
+
+	Ejemplo:
+		grep PATRON RUTA/FICHERO			#buscara el patron dentro de las lienas del fichero indicado
+		
+		COMANDO | grep PATRON
+	
+		
+		ls /usr/bin | sort | grep zip			#del ls de la ruta dada, mostrara las lineas que contengan el patron zip	
+	
+
+
+
+
+head								#nos mostrara las 10 primeras lineas de un fichero
+	-n 5							#head -n 5 sacara solo las primeros 5 lineas
+
+	Ejemplo:
+		head NAMEFICHERO
+		COMANDO | head
+
+
+tail								#nos mostrara las ultimas 10 lineas de un fichero
+	-n 5							#tail -n 5 sacara las ultimas 5 lineas de un fichero
+	-f 							#mostrara en tiempo real las lineas que se van escribiendo en este fichero
+
+	Ejemplo
+		tail NAMEFICHERO
+		COMANDO | tail
+
+
+
+tee								#Nos permite volcar el standar output a un fichero y a la vez mandar el standar output al siguiente pipeline
+
+	Ejemplo:
+		COMANDO | tee NAMEFICHERO | COMANDO2		#el standar output que produzca el primer COMANDO lo escribira en el fichero indicado y a la vez manda este Standar output al siguiente fichero,
+								de modo que no interrumpe los pipe lines, y nos permitiria en algun punto ver si algo estaria fallando
+
+
+unique								#asi solo nos permite ver las opcione que tiene (este comando nos es util para poder ver lineas unicas)
+	
+unique -inp='fichoro' fichero_salida.txt
+
+
+
+CURIOSIDAD:
+----------------
+crwxrwxrwx				#cuando en los permisos veamos una c, esto indica que es un fichero especial entre la pantalla y la terminal (caracter device file)
+
+
+>
+1>
+>>
+
+2>
+2>>
+
+&>
+&>>
+> NAMEFICHERO 2>&1
+>> NAMEFICHERO 2>&1
+
+COMANDO1 | COMANDO2
+
+
+<					#para el standar input
+
+
+
+ACTIVIDAD:
+---------------------------------------------
+1. Ordena tu directorio en base al peso de los ficheros.
+
+
+	ls -l Escritorio/ | sort -nk5			# -nk5  , -n indica en comparacion de numero, -k indica al campo, -k5 indica el campo 5
+	ls -l Escritorio/ | sort -h -k5			#-h compara usando MegaByte las nomeclaturas, Gigabyte, kiloByte, etc.
+	ls -l Escritorio/ | sort -rnk5			# -r indica de forma reversa
+
+	du -sh RUTA					#Mostrara realmente el tamaño que tienen los directorios
+
+
+2. Ordena un fichero csv por su segundo campo
+
+	cat fichero.csv | sort -t ',' -nk2		#-t 'VALOR', nos permite indicar el campo que usaremos como delimitador, que por defecto es ESPACIO, y -nk2 nos permitira indicar el segundo
+
+	cat fichero.csv | sed 's/,/ /' 			#cambia el primer , por un ESPACIO en cada linea
+	cat fichero.csv | sed 's/,/ /3'			#remplaza la tercera , en la linea por un ESPACIO
+	cat fichero.csv | sed 's/,/ /;s/,/ /;'		#remplaza las 2 primeras comas por espacios
+	
+
+
+	cat fichero.csv | sed 's/,/ /g3'		#para cambiar las , por espacios a partir de la 3 coma
+	cat fichero.csv | sed 's/,/ /g' | sort -nk2	# sed 's/,/ /g , nos permite cambiar todas las , por ESPACIOS
+		
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 8: PERMISOS Y USUARIOS DE LINUX										|
+=================================================================================================================================================================================================
+*Linux es un sistema que sigue tradicion de Unix, Linux es un sistema multitarea y multiusuario  (Esto quiere decir que multiples usuarios pueden estar usando el mismo sistema a la vez)
+	
+
+
+PERMISOS Y USUARIOS: FICHEROS passwd, shadow, group
+-------------------------------------------------------------------------
+
+id						#Este comando nos devolvera la información de que usuario somos y demas
+						devuelve algo asi: uid=1000(kevindax) gid=1000(kevindaxvz) groups=1000(kevindaxvz),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),121(lpadmin),132(lxd),133(sambashare)
+
+							el valor de uid (identificador de usuario), es lo que realmente usa el sistema para realizar tareas con nuestro usuario
+							el valor de gid (identificador de grupo)
+							groups=1000 y lo demas que sale, hace referencia a todos los grupos que pertenece este usuario en concreto que es uid=1000 en concreto
+							
+
+/etc/passwd					#En este fichero se guarda toda la informacion sobre los usuarios que tenemos en la maquina linux
+						Los valores de este fichero sueles tener la siguientes estructura:
+
+							user:password:uid:gid:NAMECUENTA,,,:RUTA/USER/:SHELLdelUSUARIO
+							
+							kevindaxvz:x:1000:1000:kevindaxvz,,,:/home/kevindaxvz:/bin/bash
+							
+								la contraseña aparece como 'x' por que se almacena hasheada en otro fichero /etc/shadow
+								NAMECUENTA se refiere al nombre real de la cuenta, ya que algunas cuentas podrian tener un alias	
+
+
+
+/etc/group					#En este fichero se guarda la informacion sobre los grupos que tenemos en el sistema
+						Los valores de este fichero suelen tener la siguiente estructura:
+	
+							NAMEGROUP:PASSWOD:GID
+
+							kevindaxvz:x:1000
+
+								La contraseña aparece como 'x' por que también esta oculta en el fichero /etc/shadow
+								(aunque no sea usa mucho contraseñas para grupo, esto serviria para que un usuario que no pertenezca al grupo pueda tener los privilegios de ese grupo poniendo la contraseña)
+		
+
+						Estructura de las lineas del archivo /etc/shadow:
+
+							nombre_usuario:contraseña:última_cambiada:min_días:max_días:días_aviso:expira_inactivo:expira_fecha:reservado
+
+								nombre_usuario:					#
+								contraseña:					#
+								última_cambiada:				#
+								min_días:					#
+								max_días:					#
+								días_aviso:					#
+								expira_inactivo:				#
+								expira_fecha:					#
+								reservado					#
+
+								root:$1$FTpMLT88$VdzDQTTcksukSKMLRSVlc.:14529:0:99999:7:::
+								harold:$1$7d.sVxgm$3MYWsHDv0F/LP.mjL9lp/1:14529:0:99999:7:::
+
+
+
+
+LECTURA(R), ESCRITURA(W), EJECUCION(X)
+-------------------------------------------------------------------------
+ls -lh
+		-rwxrwxrwx 2 kevindaxvz kevindaxvz 4,0K sep 21 11:51 fichero.txt			#devolvera algo asi: estudiemos esta estructura
+														-rwxrwxrwx 	> tiene que ver con los permisos ()
+																 el primer '-' significa que es un fichero regular, 
+																 si fuera  'd' que es un directorio, 
+																 si fuera  'l' enlace simbolico
+																 si fuera  'c' singificaria que es un fichero especial, etc.
+
+																> el primer  rwx , Los permisos que tendra el dueño (owner) 
+																  el segundo rwx , Los permisos que tendra el grupo (group)
+																  el tercer  rwx , Los permisos que tendra el mundo (world), es decir cualquier usuario externo 
+		
+																	siendo: r = 4  (read) 	
+																		w = 2  (write)
+																		x = 1  (execution)
+																		- = 0  (que no tendra ese permiso)
+
+
+														2		> numero de enlaces duros
+														kevindaxvz	> nombre del propietario, el dueño, que normalmente se relaciona al usuario que lo creo
+														kevindaxvz 	> grupo dueño del fichero
+
+
+Conclusión de Permisos en directorios:
+
+	- El permiso de ejecución en los directorios permite acceder a los archivos dentro del directorio.
+
+	- El permiso de lectura permite enumerar las entradas del directorio.
+
+	- El permiso de escritura permite crear y eliminar entradas en el directorio.
+
+
+		---: sin acceso
+
+		--x: puede acceder a los archivos cuyo nombre se conoce
+		
+		r-x: acceso normal de sólo lectura
+
+		rwx: acceso normal de lectura y escritura
+
+
+
+
+
+
+
+
+EL USUARIO ROOT:
+-------------------------------------------------------------------------
+*El usuario ROOT se denomina superUsuario en el sistema Linux, tiene privilegios para realizar casi cualquier accion, es el primer usuario que se crea al crear un sistema, tiene UID=0 y GID=0
+*El usuario ROOT se utiliza mayormente para tareas, modificaciones concretas, etc. Tener cuidado de usar siempre este usuario ya que tiene maximos privilegios, y si digamos nosotros ejecutamos un programa con este usuario
+y un atacante se vulnera este programa y se conecta, este atacante tendra todos los privilegios de este usuario root
+
+*Se recomienda no usar este usuario por mas que nosotros seamos administradores, es conveniente crearnos un usuario y gestionarnos los permisos
+
+
+
+
+MODIFICACION DE PERMISOS EN OCTAL:
+----------------------------------------------------------------
+*Para poder modificar los permisos de un fichero o directorio en linux tenemos que ser el propietario(owner) de ese fichero o directorio o ser el usuario ROOT
+
+	rwx = 111 en binario, en octal o decimal seria (7)
+	r-- = 100 en binario, en octal o decimal seria (4)
+
+
+
+	chmod 777 NAMEFICHERO				#notacion octal
+
+
+
+
+
+MODIFICACION DE PERMISOS SIMBOLICA:
+------------------------------------------------------------------
+u (user owner)
+g (group property)
+o (others)
+a (all, hace referencia los 3 grupos anteriores)
+
+
+
+
+chmod a=rwx NAMEFICHERO 
+
+chmod u+w,g+w NAMERFICHERO
+
+chmod g-w NAMEFICHERO	
+
+
+chmod u+s,g+s NAMEFICHERO
+chmod +t NAMEFICHERO
+
+
+
+
+PERMISOS POR DEFECTO UMASK:
+---------------------------------------------
+*Al crear un fichero por defecto se le asignas estos permisos, -rw-rw-rw-
+*umask nos dira los permisos por defecto que no tendra un fichero.
+	umask 					#umask solo devuelve 0000		-> estando los caracteres en octal y siendo:
+													el 1er caracter: un indicador de si es un fichero especial
+													el 2do caracter: un indicador para el usuario propietario
+													el 3er caracter: para el grupo
+													el 4to caracter: para otros.
+
+		Ejemplo:
+			siendo los permisos por defecto rw-rw-rw	si umask = 002	> entonces los permisos por defecto seran rw-rw-r-- debido a la mascara		
+				
+
+
+
+
+SETUID, SETGID, STICKY BIT:
+---------------------------------------------------
+*umask 0000	, estudiaremos ahora el primer caracter
+
+setuid:
+----------------------------
+*Esto lo que hace o provoca es que cuando un usario ejecuta un archivo que tenga el setuid, adquiere inmediatamente el uid del owner.
+*Esto simplemente permite que un usuario pueda ejectuar un binario o un fichero en el nombre del otro, con los permisos del otro.
+
+
+chmod 4700 NAMEFICHERO				#el 4 por delante indica que nosotros le estamos dando permiso de setuid, el fichero tendria estos permisos al darle el setuid
+							-rws------ , como vemos se cambio la primera x por 's' del owner, esta 's' indica que este fichero tiene un setuid
+						
+
+
+setgid:
+-----------------------------
+*Esto es igual que el setuid, pero esta vez nos permite ejecutar un binario como si pertenecieramos a ese grupo
+
+
+
+
+chmod 2770 NAMEFICHERO				#el 2 por delante indica que nosotros le estamos dando permiso de setgid, el fichero tendria estos permisos al darle el setgid.
+							-rwxrws--- , como vemos se cambio la x ahora del grupo por una 's', esta 's' indica que este fichero tiene un setgid
+		
+
+sticky bit:
+-------------------------------
+*Esto se aplica actualmente sobre directorios
+*Los ficheros dentor de este directorio se trataran de una manera especial, de modo que solo el propietario del directorio o el usuario root, van a poder renombrar los o modificar los archivos
+
+
+chmod 1777 NAMEDIRECTORIO			#el 1 por delante indica que nosotros le estamos dando esta propiedad a este fichero, lo que indica es que, por mas que nosotros por ejemplo le hayamos dado
+						todos los permisos a otros, nadie podria modificar o eliminar este fichero, solo puede hacerlo el usuario propietario y el root
+
+							-rwxrwxrwt	, como vemos la x se cambio por la 't', esta 't' indica que este fichero tiene una sitcky bit.
+
+
+
+rwsrwSrwt					#como vemos cuanod en los permisos sale la s, dependiendo en que grupo, indica si se dio el comportamiento especial del setuid o setgid, la t indica sticky bit
+rwsr-SrwT					#Si sale la 'S' o 'T' como mayuscula indica, que no tienen esos permisos activos pero aún asi se le dio el setuid o setgid, o el sticky bit en caso salga T.
+
+
+
+
+
+
+CAMBIANDO IDENTIDAD: SU
+---------------------------------------------------------------------
+*Existe varias formas de cambiar de identidad teniendo varios usuarios, una es cerrar sesión e iniar sesión con el otro usuario.
+*Otra forma es usar el comando su
+
+
+su NAMEUSUARIO					#nos permitira usar la shell como si fueramos ese usuario
+su - NAMEUSUARIO				#nos pondra por defecto en la ruta /home/NAMEUSUARIO de la SHELL que acabamos de abrir
+su -l NAMEUSUARIO				#estoo es lo mismo que -, solo que -l es igual que -
+
+su -c 'chmod 777 NAMEFICHERO' kevindaxvz	#esto nos permite cambiar los permisos de un fichero usando el nombre del usuario indicado(En este caso kevindaxvz) 
+su -c 'COMANDO' NAMEUSER			#esto es la forma general, nos permite ejecutar comandos como si fueramos otro usario
+
+exit						#para cerrar sesión de la shell de ese usuario que acabamos de cambiar
+
+
+
+su root						#Esto nos pedira la contraseña del usuario root(que por defecto viene bloqueado) (no es lo mismo que usar 'sudo su' ya que aqui solo nosotros nos hacemos pasar por root)
+						(en casi todos los sistemas linux es así y se lo hace por seguridad)
+
+
+
+
+EL COMANDO SUDO:
+-------------------------------------------------
+*Nos permite ejecutar un comando en nombre de otro usuario
+*Concretamente los permisos que nos puede dar estan definidos en el fichero /etc/sudoers
+*Nos permite que ciertos usuarios puedan elevar sus privilegios como si fueran usuario ROOT poniendo su propia contraseña (esto debido a que es super peligroso que cualquier usuario por asi decirlo dentro del sistema
+pueda tener la contraseña del usuario ROOT)
+
+
+
+sudo COMANDO					#Nos permite ejecutar ese comando como si fueras el usuario root
+sudo -i						#Nos permite obtener una Shell interactiva como si fueramos el usuario ROOT.
+
+sudo -l						#dependiendo del usuario donde lo ejecutes, permite ver la lista de comandos que puede ejcutar
+
+
+
+
+EL FICHERO /etc/sudoers
+-----------------------------------------------
+*Aqui estan todas las configuraciones y especificaciones del usuario root
+*No se recomienda editar este fichero con editores de texto (aunque por defecto vendra bloqueado igualmente)
+
+
+sudo visudo						#Nos permite editar el fichero /etc/sudoers (se nos abre este fichero con el editor nano)
+
+
+Analizando algunas configuracion del fichero /etc/sudoers:
+
+	Defaults	env_rest						#Nos permite resetear las variables de entorno (ya veremos lo que es otros modulos)
+	Defaults	mail_badpass						#Nos enviara un email a la cuenta que tengamos configurado en el sistema cuando alguien introduzca erroneamente la contraseña sudo
+	Defaults	secure_path="/usr/local/bin:/usr/bin:/usr/...>"		#Todas las rutas en donde al ejecutar un comando, buscara este comando en estas rutas (fijate que son las rutas binarias del sistema)
+	Defaults	use_pty							#
+
+
+
+	root		ALL=(ALL:ALL)	ALL					#El primer ALL indica todas las maquinas donde se corre el sistema, (ALL:ALL) indica que ROOT puede ejecutar acciones en nombre de todos los usuarios y de los grupos
+										 (El ultimo ALL indica que este usuario puede ejecutar todos los comandos)
+	%admin		ALL=(ALL)	ALL					#En el ficheroSudoers '%' indica grupo, en este caso todos los usuaruios que pertenezcan al grupo %admin tendra esos especificaciones
+	%sudo		ALL=(ALL:ALL)	ALL					#
+
+	%includedir /etc/sudoers.d/ 						#Aqui nos indica que si nosotros quisieramos modificar este fichero, nos sugiere crear ficheros dentro de este directorio sudoers.d/ ya que esto se incluira al final de este 											fichero sudoers
+										
+		EJEMPLO:
+			dentro del directorio /etc/sudoers.d/config creamos un fichero config, al cual agregamos estas lineas
+
+				sudo visudo /etc/sudoers.d/config		#abriendo el fichero que modificaremos 
+
+				testuser ALL=(ALL:ALL) /usr/bin/cat		#En este caso al usuario testuser le decimos que se puede comportar como cualquier usuario pero solo puede ejecutar ese comando indicado que es cat, siendo su ruta 											/usr/bin/cat	
+				
+				
+
+
+
+GESTION DE USUARIOS Y GRUPOS: useradd, groupadd, usermod, deluser
+-----------------------------------------------------------------------------------------
+*todas las modificaciones que hagamos sobre ficheros del sistema, vamos a tener que necesitar privilegios elevados
+*Cuando creamos un fichero o directorio, el grupo primario es el que saldra en la parte de group del fichero o archivo creado
+
+
+sudo adduser NAMEUSER						#agrega un nuevo usuario al sistema (este comando esta en algunas distribuciones de linux) (se crea un directorio de trabajo en la carpeta /home) (Este comando se ejecuta encima
+								del comando useradd utilizando un envoltorio)
+sudo useradd PAREMTROS NAMEUSER					#este comando esta en casi todas las distribucion de linux, tiene muchos parametros interesantes (bajo nivel)
+
+
+sudo groupadd PARAMETROS NAMEGRUPO				#agrega un nuevo grupo al sistema (bajo nivel)
+sudo addgroup NAMEGRUPO						#agrega un nuevo grupo al sistema (alto nivel)
+
+
+sudo usermod -a -G NAMEGRUPO NAMEUSER				#agrega el usuario indicado al grupo indicado
+
+sudo usermod -ag NEWNAMEGROUP NAMEUSER				#cambia el grupo primario del usuario indicado 
+
+sudo usermod -al NEWNAMEUSER NAMEUSER				#cambia el nombre del usuario indicado
+
+sudo usermod -d RUTA NAMEUSER					#cambia la ruta home del usuario indicado
+
+sudo usermod -u VALOR NAMEUSER					#cambia el uid del usuario indicado al valor señalado	
+
+sudo usermod -L NAMEUSER					#bloquea el usuario indicado
+sudo usermod -U	NAMEUSER					#desbloquea el usuario indicado
+
+
+sudo passwd NAMEUSER						#cambia el password del usuario indicado(te pedira la cotraseña para entrar a SUDO)
+sudo gpasswd -d NAMEGROUP NAMEUSER				#para quitar de un grupo a un usuario indciado
+
+sudo delgroup NAMEGROUP						#elimina el grupo indicado
+
+sudo deluser NAMEUSER						#elimina el usuario indicado
+sudo deluser --remove-home NAMEUSER				#elimina el usuario indicado y su carpeta home también
+sudo deluser --remove-all-files NAMEUSER			#elimina todos los ficheros creados por el usuario indicado, elimina también al usuario
+
+
+
+
+
+CAMBIO DE PROPIETARIO: 	chown y chgrp:
+-------------------------------------------------------
+sudo chown NEWOWNER NAMEFICHERO			#Cambiara el dueño del fichero indicado
+sudo chown :NEWGROUP NAMEFICHERO		#Cambiara el grupo del fichero indicado
+
+sudo chown NEWOWNER:NEWGROUP NAMEFICHERO	#Cambia el grupo y el dueño del fichero a la vez 
+
+sudo chown NAMEOWNER: 	NAMEFICHERO		#Asignara un nuevo dueño y a la vez su grupo primario de este fichero
+
+
+sudo chgrp NAMEGRUPO NAMEFICHERO		#Este comando antiguamente se usaba para cambiar el grupo propietario, ya que antes chown no lo hacia, aunque ya no se usa mucho este comando
+
+
+COMANDOS
+------------------------------------------------
+id						#Este comando sin parametros nos devolvera la información de que usuario somos y demas
+	NAMEUSER				#Si le pasamos un USUARIO, nos dira la informacion de ese usuario	
+
+chmod 777 NAMEFICHERO				#Nos permite modificar los permisos de un fichero o directorio, en este caso estamos dando todos los permisos al dueño, al grupo y a los demas
+						(0-7)(0-7)(0-7)
+umask
+umask 0335					#como vemmos podemos cambiar el valor por defecto que tendra la mascara, que es (0002 generalmente)
+
+chmod 7777 NAMEFICHERO				#El primer 7 hace referencia al setuid, setgit, sticky bit. (4 2 1 respectivamente)
+		
+
+su NAMEUSUARIO					#nos permite cambiar la sesión de la shell al usuario indicado, el comando EXIT para salir
+
+
+sudo COMANDO					#Nos permite ejecutar el comando en nombre de los usuarios que pertenecen al grupo sudo, estos usuarios tienen la capacidad de ejecutar comandos como cualquier otro usuario del sistema, en este caso
+						el usuario root.
+
+
+sudo VISUDO 					#nos permite abrir el fichero /etc/sudoers	#donde estan los permisos y esas configuraciones que adquieren los usuarios
+
+sudo usermod -aG NAMEGRUPO NAMEUSUARIO		#agrega el usuario indicado al grupo indicado
+
+
+
+sudo adduser NAMEUSER				#agrega un nuevo usuario al sistema
+
+sudo addgroup NAMEGRUPO				#agrega un nuevo grupo al sistema
+
+groups						#nos muestra todos los grupos del usuario actual
+
+sudo delgroup NAMEGROUP				#elimina el grupo indicado
+sudo deluser NAMEUSER				#elimina el usuario indicado
+
+sudo chown NEWOWNER NAMEFICHERO			#Cambiara el dueño del fichero indicado
+sudo chown :NEWGROUP NAMEFICHERO		#Cambiara el grupo del fichero indicado
+
+sudo chown NEWOWNER:NEWGROUP NAMEFICHERO	#Cambia el grupo y el dueño del fichero a la vez 
+
+sudo gpasswd -d NAMEGROUP NAMEUSER				#para quitar de un grupo a un usuario indciado
+
+
+
+COMENTARIOS:
+------------------------------------------------
+su root						#Esto nos pedira la contraseña del usuario root(que por defecto viene bloqueado) (no es lo mismo que usar 'sudo su' ya que aqui solo nosotros nos hacemos pasar por root)
+
+*El bit setuid o setgid o sticky bit  no funciona cuando el fichero es un fichero de shell script, es decir .sh   , para otros tipos de bits ejecutables o ficheros ejecutables si funciona. Esta es una medida de seguridad de Linux
+*$PATH, aqui estan las rutas donde la terminal buscan donde estarian los ficheros de los comandos que ponemos, estan son sus variables de entorno (se explicara mas adelante)
+
+
+
+ACTIVIDADES:
+----------------------------------------------
+*Obtener una shell interactiva con privilegios de root usando una vulnerabilidad de los 'setuid'. 
+*Usaremos un fichero simple hecho en c llamado test_prueba.c
+
+
+#comandos opcionales que usaremos:
+	gcc NAMEFICHERO.c -o test_prog			#nos compila el fichero para crear un fichero en c ejecutable
+	echo $PATH					#$PATH esta variable contiene todas las rutas en donde estan los comandos de linux, aqui es donde buscan las rutas a los comandos indicados
+	
+	find / -type f -perm -4001 2>/dev/null		#Un atacante buscaria todos los ficheros que tengan los permisos de setuid y ejecutable por lo menos
+	strings /ruta/fichero				#nos permite sacar solo el string que se obtenga de un fichero
+
+	/home/kevindaxvz				#en esta ruta creamos por ejemplo un fichero ls (que sera un script que que nos permita obtener una shell root, aprovechando el setuid)
+							(/bin/bash -i este  comando dentro del script nos hara abrir una terminal como roots)
+
+
+	export PATH=/home/kevindaxvz:$PATH		#aqui indicamos que cuando un fichero trate de buscar ls, primero busque en la ruta que le indicamos y luego busque en las rutas que contiene $PATH
+							(es decir editamos la variable PATH)
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 9: PROCESOS DE LINUX											|
+=================================================================================================================================================================================================
+
+*Procesos en Linux:
+----------------------------------
+*Un proceso es una instancia activa en ejecucion de un programa, los procesos son las estructuras que usa el kernel para ir organizando los recursos del sistema.
+*El kernel tiene toda la informacion de los procesos, esta informacion se almacena en el directorio /proc
+*los procesos tienen su identificador (pid)
+
+
+pidof emacs					#nos mostrara el pid de emacs, suponiendo que lo tenemos en ejecucion, entonces ademas en la ruta /proc/ habra una carpeta el pid que nos indica, y ahi estan los archivos que esta gestionando el kernel
+
+
+
+*Visualización estatica de procesos
+------------------------------------
+ps						#Nos muestra un instantanea de los procesos que estan asociados a la sesion de terminal que estamos usando 
+						
+	PID TTY 	TIME   CMD		#nos votara la informacion en esta estructura, siendo el PID el identificador de procesos, TTY el indentificador de la terminal,  TIME el tiempo que el proceso lleva consumiendo recursos del sistema
+						y CMD el comando que genero estos procesos
+
+
+ps x						#nos mostrara una instancia de todos los procesos que hay en el sistema ejecutandose (y nos agrega una COLUMNA STAT que tendra alguno de estos significados:
+																	S     	que el proceso esta dormido y esta esperando ejecutarse o una accion de usuario
+																	<	este proceso es de alta prioridad
+																	l	que son procesos multihilos
+																	R	que el proceso se esta ejecutando 
+																	T	que el proceso esta parado (es decir que esta en segundo plano)
+man ps						#aqui encontraremos la informacion que nos vota PS
+
+
+ps aux						#nos vota informacion mas completa de los procesos
+
+
+
+*Visualizacion dinamica de procesos:
+-------------------------------------
+top						#Nos muestra los procesos que estan ejecutandose en el sistema en tiempo real, y las caracteristicas y descripciones que tienen
+						(Los ordena en base al mayor consumo de CPU)
+		
+	algunas opciones que tiene top		#para poder mejor ver los procesos, etc
+		h				#nos muestra las teclas que tiene top para poder ver mejor
+		q				#volver o salir
+		s				#actualizar el tiempo de refresco
+		u				#filtra los procesos por usuario
+		e				#nos permite cambiar los valores de bytes a megabytes, giga, teta, peta, etc.
+		o				#nos permite filtrar en base a los campos 
+			PID=2037		#filtra los procesos en base a ese valor de PID indicado		
+			%CPU>2			#en base a que si el consumo de cpu es mayor que 2
+						
+
+
+
+*Interrupcion de proceso:
+---------------------------------------
+ctrl + c					#nos permite interrumpir un proceso 
+
+ctrl + z					#Nos permite parar un proceso
+
+bg %1						#hace que el proceso se siga ejecutando pero en segundo plano, 1 hace referencia al identificador de jobs
+fg						
+
+
+
+
+
+*Procesos en segundo plano
+---------------------------------------
+fg						
+fg %3
+emacs &						#abre el programa en segundo plano
+bg %1						#manda a segundo plano el programa que tenga ese valor de identificador indicado
+
+
+
+*Señales (Signals)
+----------------------------------------
+*Una de las diversas formas de como el sistema operativo se va comunicar con los programas.
+*Los programas por decirlo asi asu vez que se ejecutan estan escuchando las señales que puedan recibir del sistema operativo
+
+
+*señal de INT (2)   (interrupcion)	, este tipo de señal es la que manda por ejemplo 'ctrl + c'
+*señal de TSTP (20) (parada de terminal) , este tipo de señal es la que manda por ejempl 'ctrl + z', detiene procesos y los manda a segundo plano
+*señal de CONT (18) (continuar) , hace que un proceso pueda continuar
+*señal de STOP (19) (parar), le manda una señal al kernel de que pare el proceso si o si
+*señal de KILL (9) (forzar parar),
+*señal de TERM (15) (),
+
+
+kill					#este comando nos permite enviarle señales a un proceso	
+kill -20 3112				#en este caso mandara la señal TSTP al PID indicado   
+kill -TSTP 3112				#en ves de poner el valor de TSTP podemos poner tambien el nombre TSTP, tener en cuenta que dependera del programa si quiere parar o no. Es decir el programa podria ignorar la señal
+
+kill -18 3112				#hara que el proceso del programa pueda continuar
+kill -CONT
+
+kill -STOP 3112				#hace que el programa indicado pare si o si, puede realizar algun accion pero no puede ignorar la señal
+
+kill -2 3112				#
+kill -INT 3112				#interrumpe el programa, pero igual que TSTP podria ignorar la señal
+
+kill -9 3112
+kill -kill 3112				#igual que INT, pero el programa no puede ignorar esta señal, si o si se cerrara el programa casi de forma instantanea
+kill 3112				#kill sin parametro hace lo mismo que si tuviera el parametro -kill
+
+
+kill -TERM 3112				#cierra el programa amigablemente, pero el programa igual no lo puede ignorar
+
+kill -l					#nos permite ver todas las señales que hay en el sistema
+
+
+killall	emacs				#cierra todos los procesos de emacs enviandoles la señal -kill a todos sus PID de procesos
+
+
+
+INIT, DEMONIOS Y SERVICIOS:
+----------------------------------------------------
+*init (iniciar) es el primer proceso que se inicie cuando arranque el sistema, init es lanzado por el kernel, en caso no pueda iniciar, se produce un error llamado
+'kernel panic' , al ser el primer proceso tiene el pid = 1 , se ejecuta en segundo plano hasta que el sistema se apague.
+*Init es el encargado de iniciar todos los demonios y servicios necesarios para el sistema.
+/etc/init.d , aqui en este directorio estan los scripts que se ejecutan al arrancar el sistema
+
+
+*los demonios (daemon) son los procesos que se ejecutan en segundo plano (y que por lo general no reciben entrada de teclado) y que ayudan a mantener el sistema operativo en funcionamiento y en modo interactivo.
+/etc/init.d
+
+
+*Los servicios también son demonios, pero que van a responder a la petición de otros programas a travez de un mecanismo de comunicacion de procesos, como puede ser la red.
+Un servicio puede ser como un servicio como servidores.
+
+
+
+*Scripts de inicio, po lo general hay 2 tipos
+(script k) kill scripts (se ejecuta antes que los script de startup)
+/etc/init/whoopsie.conf
+
+
+(script	s) de startup
+/etc/default	, aqui estan los scripts que ayudan al sistema, scripts de startup
+
+
+
+
+
+GESTION DE SERVICIOS: init.d , systemctl, service:
+--------------------------------------------------------------------
+./namescript  					#asi se ejecuta un script en linux
+./NAMESCRIPT status				#nos indica el estado del scripts, desde cuando se encuentra activo, que es, y mas informacion
+
+./NAMESCRIPT stop				#detiene el script, el demonio, etc
+./NAMESCRIPT start				#arranca el script, el demonio o servicio.
+
+
+*En algunos casos puede funcionar asi:
+
+sudo /etc/init.d/ssh start
+sudo /etc/init.d/ssh stop
+sudo /etc/init.d/ssh restart
+
+
+
+suite de SYSTEMD:
+--------------------------
+	systemctl:				#Controla el sistema systemd y el gestor de servicios
+
+
+		systemctl stop apparmor			#detiene el servicio apparmor
+
+
+
+
+
+service:					#esta herramienta es un framework que nos permite administrar los servicios, demonios, etc. Lo que hace por atras es buscar el programa ups, sino lo encuentra busca systemctl, y si no 
+						lo cuentra se apoya en el directorio /etc/init.d
+
+
+service apparmor stop
+service apparmor status
+service apparmor start
+service apparmor restart
+
+
+
+
+Las 6 etapas del proceso de arranque de Linux
+----------------------------------------------------------------------
+
+				BIOS
+			(Basic input/Output System executes MBR)
+
+				MBR
+			(Master Boot Record executes GRUB)
+
+				GRUB
+			(Grand Unified Bootloader executes Kernel)
+
+				KERNEL
+			(Kernel executes /sbin/init)
+
+				INIT
+			(Executes runlevel programs)
+
+				RUNLEVEL
+			(Runlevel programs are executed from /etc/rc.d/rc*.d/)
+	
+
+
+
+	1. BIOS
+		*Significa sistema basico de entrada/salida
+		*realiza algunas comprobaciones de integridad del sistema
+		*busca, carga y ejecuta el programa cargador de arranque	
+		*busca el gestor de arranque en el disquete, cd-rom o disco duro.
+		 Puede pulsar una tecla (normalmente F1 o F2, pero depende de tu sistema)
+		 durante el arranque de la BIOS para cambiar la secuencia de arranque.
+
+	2. MBR
+		*MBR significa Master Boot Record.
+		*Se encuentra en el primer sector del disco de arranque. Normalmente es 
+		 /dev/hda, o /dev/sda
+		*El MBR tiene un tamaño inferior a 512 bytes. Tiene tres componentes 
+		    1) informacion del cargador de arranque primario en los primeros 446 bytes
+		    2) informacion de la tabla de particiones en los siguientes 64 bytes
+		    3) comprobacion de validacion del mbr en los ultimos 2 bytes.
+
+		*Contiene informacion sobre el GRUB (o LILO en sistemas antiguos)
+		*Asi que, en terminos simples, el MBR carga y ejecuta el cargador de arranque GRUB
+
+	3. GRUB
+		*GRUB significa Grand Unified Bootloader
+		*Si tiene varias imagenes de kernel Instaladas en su sistema, puede elegir cual se ejecutara 
+		*GRUB muestras una pantalla de bienvenida, espera a unos segundos, si no introduce nada, carga la imagen del kernel por defecto
+		 como se especifica en el archivo de configuracion de grub.
+
+		*GRUB tiene el conocimiento del sistema de archivos (el antiguo cargador de Linux LILO no entendia el sistema de archivos)
+		*El archivo de configuracion de GRUB es /boot/grub/grub.conf (/etc/grub.conf  es un enlace a esto)
+		*Asi que, en terminos simples, GRUB solo carga y ejecuta las imagenes del Kernel y del initrd
+
+
+	4. KERNEL
+		*Monta el sistema de archivos raiz como se especifica en el "root="   en grub.conf
+		*el Kernel ejecuta el programa  /sbin/init
+		*Como init fue el primer programa ejecutado por el kernel de linux, tiene el id de proceso (PID) de 1.
+		*initrd  significa  Disco RAM inicial
+
+	5. INIT
+		*Lee el archivo  /etc/inittab  para decidir el nivel de ejecucion de Linux.	
+		*Los niveles de ejecucion disponibles son los siguientes.
+			-0  	halt
+			-1	Modo de usuario único
+			-2	Multiusuario, sin NFS
+			-3	Modo multiusuario completo
+			-4	sin uso
+			-5	X11
+			-6	reinicio
+		
+		*Init identifica el nivel por defecto sus ficheros de configuracion y lo utiliza para cargar el resto de programas.
+		*Ejecuta el comando  runlevel  en su sistema para identificar el nivel de ejecucion por defecto 
+		*Tipicamente, el nivel de ejecución por defecto se establece en 3 o 5.
+
+
+	6. PROGRAMAS DE EJECUCION
+		*Cuando el sistema Linux está arrancando, puede ver que inician varios servicios. Estos son los programas de nivel de ejecución,
+		 ejecutados desde el directorio de nivel de ejecución definido por su nivel de ejecución.
+		
+		*Dependiendo de su configuración de nivel de init por defecto, el sistema ejecutará los programas desde uno de los siguientes directorios:
+			-Nivel de ejecución 0 - /etc/rc.d/rc0.d/
+			-Nivel de ejecución 1 - /etc/rc.d/rc1.d/
+			-Ejecuta el nivel 2 - /etc/rc.d/rc2.d/
+			-Ejecuta el nivel 3 - /etc/rc.d/rc3.d/
+			-Ejecuta el nivel 4 - /etc/rc.d/rc4.d/
+			-Ejecuta el nivel 5 - /etc/rc.d/rc5.d/
+			-Ejecuta el nivel 6 - /etc/rc.d/rc6.d/
+
+		*Ten en cuenta que también hay enlaces simbólicos disponibles para estos directorios bajo /etc  directamente.
+		 Así, /etc/rc0.d está vinculada a /etc/rc.d/rc0.d
+
+		*Bajo los directorios /etc/rc.d/rc*.d/  ,verá programas que comienzan con S y K
+
+		*Los programas que empiezan por S se utilizan durante el arranque. S para el arranque.
+
+		*Los programas que comienzan con K se utilizan durante el apagado. K para matar
+
+		*Hay números justo al lado de S y K en los nombres de los programas. Estos son el número de secuencia en el que los programas deben ser iniciados
+		 o eliminados.
+
+		*Por ejemplo, S12syslog es para iniciar el deamon del syslog, que tiene el número de secuencia 12. S80sendmail es para iniciar el demonio sendmail,
+		 que tiene el número de secuencia 80. Así, el programa syslog se iniciará antes que sendmail.
+
+
+
+
+
+
+APAGADO DEL SISTEMA: halt, poweroff, reboot, shutdown
+------------------------------------------------------------------
+*Estos comandos se ejecutaran con sudo
+
+sudo halt 					#Apaga el sistema
+sudo poweroff					#Apaga el sistema
+sudo reboot					#reinicia el sistema
+sudo shutdown					
+	-h now					#apaga el sistema sin ningun tiempo de espera
+	-r now					#apaga el sistema de inmediato
+
+
+
+
+CAMBIO DE PRIORIDAD: nice, renice:
+-----------------------------------------------------
+*PR (priority), es una caracteristica que indica la prioridad que tiene ese proceso
+
+	Valor de Prioridad:
+		-20: Prioridad más alta.
+		0: Prioridad predeterminada.
+		+19: Prioridad más baja.
+
+
+*NI(nice), es una caracteristica que tienen los procesos para que el kernel determine la cantidad de recursos que se le podria dar, a medida que el nice es mas grance,
+indica que el proceso es mas bueno con el resto de los procesos, es decir que sede sus recursos, en pocas palabras, a mayor nice, menos recursos.
+*Los procesos cuando se inician se ejecutan con una prioridad de 20 y un nice de 0
+
+
+	Valores de Nice:
+		-20 a +19: Rango válido para el valor "nice", donde -20 es la prioridad más alta y +19 es la prioridad más baja.
+
+
+	priority = nice + 20
+
+
+nice 
+	Ejemplo:
+		nice -n 10 NAMEPROGRAM		#El programa se ejecutara con el valor de nice indicado
+
+
+renice 						#Da un nuevo valor de nice para el proceso indicado
+	Ejemplo:
+		renice VALOR -p VALORPID
+		sudo renice -10 -p VALORPID		#requiere privilegios de administrador debiendo a que pondremos un nice bajo (-10 en este caso que le indicamos)
+		sudo renice 15 -p VALORPID		#cuando el nice que vamos a cambiar es mayor o igual que el que tiene, no nos pedira permiso de administrador
+
+
+
+
+taskset						#Nos permite ejecutar un programa determinado en un CPU concreta del sistema
+
+
+	Ejemplo:
+		taskset --cpu-list 1 ./programa.sh &	#que ejecute el programa en la CPU 1 y que con & indicamos que lo haga en segundo plano
+
+		tasket --cpu-list 1 nice -n 10 ./programa.sh &
+
+
+
+
+
+
+
+
+COMENTARIOS:
+----------------------------------------------
+*Nosotros no podemos enviar señales a un programa sino somos el superusuario o el owner de ese proceso (los procesos también son ficheros y tienen propietario)
+*Cuando nosotros iniciamos un proceso se le asigna un cantidad de memoria dentro de nuestra memoria RAM, y lo gestiona mediante estructuras como 
+La pila, el stack (donde se almacenan cosas como las variables, estructuras, etc) o como el heap(donde se asigna memoria de manera dinamica a medida que el proceso
+va incrementando su tamaño)
+
+/proc/VALORPID					#aqui se encuentran todos los procesos
+
+	Ejemplo:
+	    *Por ejemplo iniciamos un proceso de emacs (se creara un directorio virtual)
+
+		/proc/5482 			#dentro de este directorio se crean diversos ficheros que contendran informacion sobre el proceso, como tamaño de memoria asignado y que direccion, etc
+
+				maps		#por ejemplo es un fichero dentro de esta ruta que contiene informacion sobre la memoria RAM que ocupa este proceso (aqui esta el heap)						
+				men		#Nos permite visualizar el contenido que este proceso tiene en memoria
+
+
+COMANDOS:
+----------------------------------------------
+pidof	NAMEPROGAMA				#nos mostrara el pid del programa indicado si esta en ejecucion
+ps						#Nos muestra un instantanea de los procesos que estan asociados a la sesion de terminal que estamos usando 
+ps x
+ps aux
+
+top						#nos permite ver los procesos que estan ejecutandose en el sistema en tiempo real
+
+
+
+NAMEPROGRAMA &					# & hace que el programa indicado se ejecute en segundo plano, y ademas nos muestra el PID y JOBS [i]
+jobs						# Nos muestra los programas en segundo plano que tenemos
+
+bg %i						# le damos le identificador de JOBS para que ese programa se ejecute en segundo plano
+
+fg						#nos trae a primer plano el ultimo i de jobs que tengamos
+fg %i						#nos trae a primer el programa que tenga dicho identificador de jobs
+
+
+kill VALORPID					#nos permite enviarle la señal -KILL al PID del proceso indicado
+kill -NAMESEÑAL VALORPID			#nos permite enviarle una señal especifica al proceso indicado de un programa
+kill -l						#nos permite ver las diferentes tipos de señales que tenemos
+
+killall NAMEPROGRAM				#envia un señal -kill a todos los PID que tengan de nombre el indicado, es decir cierra todos los procesos indicados del programa
+
+
+
+systemctd					#esta suite contiene comandos interesantes como systemctl (que nos permite administrar los servicios del sistema)
+
+	systemctl status NAMESERVICIO		
+	systemctl stop NAMESERVICIO
+	systemctl start NAMESERVICIO
+	systemctl restart NAMESERVICIO
+
+		sudo systemctl status NAMESERVICIO.service		#aqui un ejemplo para ver servicios, se puede poner tanto NAMESERVICIO como NAMESERVICIO.service
+
+		systemctl list-units --type=service			#Muestra todos los servicios que tenemos en nuestra maquina
+
+
+
+
+
+service NAMESERVICIO stop			#puede ser stop, status, start , restart, se apoya primero en el programa ups, sino lo encuentra se apoya en systemctl, sino en /etc/init.d/
+
+
+sudo shutdown 
+		-h now				#apaga el sistema inmediatamente
+		-r now	      			#reinicia el sistema inmediatamente
+
+
+
+ACTIVIDADES:
+----------------------------------------------
+*Hackear la memoria de un proceso
+*Se desarrollo en un script en python, que al final ese script
+
+	sudo python 3./hack_proc.py VALORPID TEXTO NEWTEXTO		#dado un valor de PID, por ejemplo uno de emacs, modifica el texto indicado que debe estar en la memoria del proceso emacs, por
+									el texto nuevo indicado	
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 10: NETWORKING DE LINUX											|
+=================================================================================================================================================================================================
+
+
+INTERFACES DE RED
+----------------------------------------
+*Son los que nos dan acceso a internet
+
+man ip					#nos mostrara informacion del comando ip, concretamente aqui veremos como funciona el networking en linux que es en base  a objetos
+
+ip link help				#mostrara todas las opciones para el objeto link 
+
+ip link					# o (ip l) la mayoria de los objetos tienen una abreviación. Este comando hace referencia a las interfaces que nosotros tenemos dadas de alta.
+
+
+	Ejemplo:
+		votara algo asi
+
+			1: lo: <LOOBACK,UP,LOWER_UP>  				#Esta interfaz de Looback, es una interfaz virtual, hace referencia a nuestra propia maquina
+			2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP>		#Interfaz de red 
+
+			link/ether DIRECCION_MAC 
+
+
+ip l show dev NAMEINTERFAZ						#Nos mostrara solo la información de la interfaz que le estamos indicando
+
+ip -s link								#Nos muestra el trafico que va corriendo por las interfaces activas que tenemos
+
+
+ip l ls up								#Nos mostrara las interfaces de red en funcionamiento.
+
+ip link set NAMEINTERFAZ down						#la interfaz indicada pasa de UP a DOWN, apaga la interfaz en pocas palabras
+ip link set NAMEINTERFAZ up						#activa la interfaz
+
+
+
+
+
+
+DIRECCIONES IP:
+---------------------------------------
+*En este caso usaremos el objeto 'address'
+
+ip address 							# ip address es lo mismo que 'ip addr o ip a' solo son sus formas abreviadas
+ip addr								#
+ip a								#Nos muestra informacion de las interfaces de nuestro sistemas, y también la dirección ipv4 e ipv6 que tienen estas interfaces
+
+
+ip addr show NAMEINTERFAZ					#para la interfaz indicada nos votara su informacion
+
+
+ip -4 a								#muestra la informacion de sus direccion ipv4
+ip -6 a								#muestra la informacion de sus direccion ipv6
+
+
+sudo ip a add 192.168.18.200/24 dev NAMEINTERFAZ		#añade la direccion ip indicada para la interfaz indicada
+sudo ip a del 192.168.18.200/24 dev NAMEINTERFAZ		#Elimina la dirección ip indicada de la interfaz indicada
+
+
+
+
+ROUTING:
+-----------------------------------------------
+*En este caso usaremos el objeto 'route', y veremos tambien la tabla de enrutamiento, que es por donde sabe el dispositivo como comunicarse con redes privadas e internas
+
+
+ip route				
+ip r								#vota algo como:
+									default via 192.168.18.1 dev ens33 proto dhcp metric 100					#default indica todo el trafico va por la interfaz ens33 
+									169.254.0.0/16 dev wlp3s0 scope link metric 1000
+									192.168.18.0/24 de wlp3s0 proto kernel scope link src 192.168.18.132 metric 600			#todo el trafico que vaya a esta red, va por la interfaz indicada
+
+sudo ip route add default via VALORIP dev NAMEINTERFAZ 
+sudo ip route add default via VALORIP dev NAMEINTERFAZ proto static src VALORIP metric 50			#podemos añadir una informacion completa, una similar a la que sale al usar 'ip r'
+
+sudo ip r add default via 192.168.18.15 dev wlan0		#añade una nueva gateway
+sudo ip r del default via 192.168.18.15 dev wlan0		#quita el gateway creado
+
+ 
+sudo traceroute							#nos muestra la ruta que sigue nuestros paquetes 
+	-T  www.namedominio					#intenta seguir la ruta de los paquetes TCP
+
+
+
+
+
+SNIFFER Y TCPDUMP:
+--------------------------------------------
+*Sirven para ver el trafico de red que esta pasando por nuestro sistema.
+
+
+sudo tcpdump							#es un sniffer de terminal
+sudo tcpdump -i NAMEINTERFAZ					#captura el trafico para la interfaz indicada.
+sudo tcpdump -v -i NAMEINTERFAZ					#da mas información sobre los paquetes de red.
+
+sudo wireshark
+
+
+PING Y NAMP:
+--------------------------------------------
+*El comando ping manda un paquete icmp 'echo_request' y le respondes con icmp 'echo_replay'
+
+
+
+ping IP							#hace ping a la IP indicada, puede ser un dominio también, por defecto hace ping usando IP4 o IPV6
+ping -c 5 IP						#Para mandar solo 5 paquetes icmp
+
+
+ping -4 IP						#para protocolos IPv4 en especifico
+ping -6 IP						#para protocolos IPv6 en especifico
+
+
+*nmap nos permite descubir host en nuestra red, utilizando difrentes protcolos de red, y entro otras cosas.
+
+sudo nmap -sS 192.168.18.0/24				#escanea toda la red indicada
+
+
+ping -I NAMEINTERFAZ IPv4				#hace ping usando la interfaz indicada a la ip indicada
+
+
+
+DHCP y DNS:
+----------------------------------------------
+sudo dhclient						#fuerza al servidor dhcp para que nos entregue una direccion ip
+sudo dhclient wlan0
+
+sudo dhclinet -r NAMEINTERFAZ				#libera el IP que tiene, y fueza para que el servidor DHCP nos de una nueva ip
+
+
+
+
+dig							#nos muestra el servidor DNS que usa nuestro computadora
+dig NAMEDOMINIO						#vemos todos los DNS y nuestro DNS que se usaron para resolver ese dominio
+
+/etc/resolv.conf					#esta es la mejor forma de cambiar el DNS de nuestra maquina
+
+
+
+
+
+
+DESCARGA Y SUBIDA DE INFORMACION: curl y wget
+-----------------------------------------------------
+*Sirven para transferir informacion hacia un servidor o como descargar desde un servidor
+
+
+
+curl:
+*Tiene diversas funciones como modificar cabeceras, hacer solicitudes HTTP, descargar, peticiones a API, etc.
+	
+	curl www.nameurl.com				#descaga el codigo fuente de la pagina dada
+	curl www.nameurl.com > namefichero
+	curl www.namurl{1..5} 
+
+	curl -O www.nameurl.com				#descarga la url indicada y lo guarda con el nombre indicado que aparece al final de la url 
+	curl -O https://d.winrar.es/d/97z1713311654/rG4oYqRrF-E3ewyUXYQ7gA/rarlinux-x64-700.tar.gz
+
+	curl -o NAMEFICHERO WWW.URL.COM			#descarga de la url indicada pero esta vez lo guardara con el nombre indicado en NAMEFICHERO
+
+	curl -x PROXY_NAME:port  URL			#en caso queramos que nuestra informacion salga por un proxy indicado y su puerto para descargar esa url
+
+								#primero se autentica en la url y luego descarga
+	curl -u NAMEUSER:PASSWORD -x PROXY_NAME:port  URL	#	
+
+	curl -k URL					#hace que ignore en caso haya problemas por un mal certificado del sitio web
+	curl --insecure	
+
+
+*curl es util para todo, pero wget es mas util para descargar cosas, como cosas grandes, descargas no interactivas, etc.
+*wget nos permite hacer descargas en segundo plano, etc etc
+
+wget:
+	wget URL					#descarga la url indicada, lo guarda con el mismo nombre como con curl -O
+	wget -o NAMEFICHERO URL				#descarga y lo guarda con el nombre indicado, Puede que se volque la informacion de descarga pero nos dira donde se guardara realmente
+	
+
+	wget -b URL					#descarga en segundo plano la URL indicada	
+
+	wget -i NAMEFICHERO 				#hace un wget a cada linea del fichero indicado, podriamos tener una lista de url en el fichero y los descargaria todas
+	wget -i NAMEFICHERO -o nombre
+
+
+
+
+
+
+
+CONEXIONES REMOTAS: sSSH (secure shell)
+---------------------------------------------------------
+*Toda la conexión entre ambos host (cliente - servidor) iran cifradas de punto a punto.
+*Esta comunicacion requiere de un servidor y un cliente SSH
+
+ssh -p 22 NAMEUSER@IPv4 
+ssh -i 
+
+ssh -p 22 NAMEUSER@NAMEDOMINIO					#en caso conozcamos el nombre de dominio
+
+
+*Como conectarnos por ssh usando claves publicadas y privadas, usando RSA
+
+ssh-keygen -t rsa						#generara la clave publica y privada, siendo  id_rsa.pub la clave publica y id_rsa  la clave privada
+cat id_rsa.pub >> authorized_keys				#guardamos la clave publica en el fichero que se indica
+chmod 600 authorized_keys					#damos los permisos necesarios a ese fichero y luego compartimos nuestra clave privada desde donde nos queremos conectar
+
+ssh -i rsa  kevindaxvz@192.168.18.85 -p 22			#nos conectamos mediante ssh usando la clave privada compartida a la ip indicada por el puerto indicado
+
+ssh -i id_rsa u0_a268@192.168.18.145 -p 8022
+	scp id_rsa id_rsa u0_a268@192.168.18.145:/home/
+
+
+ssh -i RUTA/FICHERO NAMEUSER@IPv4 -p PUERTO			#se logea usando SSH al usuario indicado de la ip indicada, mediante el uso de la clave privada (por ejemplo generada por RSA)
+
+
+****mayor informacion para conectarte a termux en:
+	https://chat.openai.com/c/51a9b984-939e-496a-92d9-e32941c50dc5
+	https://chat.openai.com/share/3f6b0ded-7ecf-49b9-9c8d-93abe2b8cee4	
+
+
+pasos:
+	termux-reset
+	pkg update
+	pkg upgrade
+	
+	pkg install openssh
+	pkg install openssh openssl-tool
+
+	
+	forma1:
+	ssh -t rsa 
+	ssh-keygen -A
+	sshd
+
+	forma2:
+	ssh-keygen -t rsa -f ~/.ssh/id_rsa
+	cat id_rsa.pub >> authorized_keys
+
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	chmod 600 ~/.ssh/authorized_keys
+
+	scp id_rsa id_rsa u0_a268@192.168.18.145:/home/kevindaxvz
+
+
+(comentarios), eliminar know_hosts de la maquina Ubuntu en caos salga un error de man in the middle, usa este comando ssh-genkey -f '/home../../.ssh/know_hots	' -R "[192.168.18.145]:8022" o borra directamente estos archivos
+
+ssh-keygen -R [<iptarget>]:<port_target>				#para borrar en tu maquina los certificados ssh para el target indicado, para hacer una nueva conexion
+
+
+
+INTERCAMBIO DE FICHEROS I: ftp (file transfer protocol)
+-----------------------------------------------------------------------
+*Esta comunicación requiere de un servidor y un cliente FTP
+*Ftp es un protocolo antiguo, no va cifrado de punto a punto, va en plano y es facil de ver si se intercepta, e incluso modificando en tiempo.
+
+man ftp
+
+sudo apt install vsftpd						#instala el servidor FTP, existen muchos otros servidores ftp, este paquete en concreto cuenta también ya con SFTP
+
+
+ftp IPv4							#nos conecta al servidor FTP indicado
+	NAMEUSER						#luego de dar enter nos pedira el usuario
+	PASSWORD						#luego nos pedira la contraseña
+
+
+	get NAMEFICHERO						#para extraer el fichero indicado, lo guardara en la ruta que estabamos cuando ejecutamos el cliente FTP
+	put NAMEFICHERO						#transfiere el fichero indicado a la maquina remota (necesitas editar la configuracion en el fichero /etc/vsftpd.conf) (lo guarda en el directorio /home/user/desktop)
+
+
+	help							#nos permite ver todos los comandos que tiene
+	!							#nos vuelve a nuestra terminal pero sin cerrar la conexion, al momento de hacer un exit, vuelve a la temrinal ftp
+	
+	exit							#nos cierra la conexion FTP
+	quit							#nos cierra la conexion FTP
+
+
+-Otra forma de logearnos
+*ftp -n
+	>open IPV4
+	>user NOMBREUSER
+	>close
+
+	>help							#para poder ver otros comandos
+	>quit
+
+
+
+ftp -n << EOF
+
+los comando FTP aqui
+
+EOF
+
+
+
+INTERCAMBIO DE FICHEROS II: sftp (secure file transfer protocol)
+-----------------------------------------------------------------------
+*usa ftp pero de maneral segura, usa  SSH
+
+man sftp
+
+
+sftp NAMEUSER@IPv4
+
+sftp NAMEUSER@NAMEDOMINIO
+
+*Los comandos son los mismos que utiliza la interfaz de FTP
+
+
+
+
+
+
+VISUALIZANDO LAS CONEXIONES ACTIVAS: SS
+-------------------------------------------------------------------------
+*Nos permite visualizar las conexiones activas en nuestro sistema
+*Nos permite investigar sockets 
+
+man ss	
+
+ss								#nos muestra las conexiones establecidas
+ss -a								#nos muestra todas las conexiones
+
+	Netid 		state		Recv-Q		Send-Q			Local Address:port 			Peer Address:Port			Process
+
+   (el protocolo)     (El estado)    (Lo que recibe)  (Lo que envia=               (IP y puerto)	(IP y PUERTO con el que se establecio conexion)
+										192.168.18.5:ssh
+										192.168.18.5:22
+
+
+*Los state pueden ser: UNCONN (no conectada),  ESTAB(Establecida), LISEN(Escuchando)
+*La mayoria son unix_domain_sockets, son conexiones que sirven para el intercambio de datos entre procesos y nuestro sistema este en funcionamiento.
+
+
+ss -x								#muestra informacion local entre los procesos de nuestras maquinas
+
+ss -ta								#muestra las conexiones TCP activas, tanto LISTEN como UNCONN, o ESTAB
+ss -t								#muestra las conexiones TCP establecidas
+ss -l								#muestra las conexiones con state LISTEN o UNCONN
+ss -u								#muestra las conexiones UDP establecidas
+
+ss -help							#muestra de forma basica las opciones que tiene
+
+
+
+NETSTAT
+------------------------------------------
+*Nos permite sacar informacion de las tablas de red, interfaces, conexiones, tablas de routing, arp, etc.
+
+
+man netstat
+
+
+netstat 
+netstat -a 					#Nos muestra todas las conexiones activas, escuchando, conectadas, UNCCON, etc
+netstat -t					#Nos muestra las conexiones establecidas que usan TCP
+netstat -u					#Nos muestra las conexiones establecias que usan UDP
+netstat -l					#Nos muestra solo las que tienen estado LISTEN
+netsat -p					#Muestra el nombre PID/programa para los sockets
+netstat -n					#No se resolveran los nombres de los dominios
+
+sudo netstat -pnltu				#Todas las conexiones actuales que estan en estado de LISTEN, menos las conexiones locales.
+sudo netstat -pnatu				#Todas las conexiones actuales, menos las conexiones locales.
+sudo netstat -pntu				#Todas las conexiones actuales que estan en estado de ESTAB, menos las conexiones locales.
+
+netstat -s					#Estadisticas de que cantidad de protocolos se estan utilizando.
+
+netstat -nr					#Nos muestra el enrutamiento de las interfaces, o mejor dicho nos muestra las tablas de enrutamiento
+
+
+
+netstat -h					#muestra todas la opciones
+
+
+
+COMANDOS:
+----------------------------------------------------------
+ip l
+ip a
+ip r
+
+
+sudo ip route add default via IP 
+sudo ip route del default via IP
+sudo traceroute www.namedominio.com
+
+
+sudo dhclient
+
+ping IP
+sudo nmap -sS IPv4/24						#para descubrir direcciones ip en la red
+sudo nmap -e NAMEINTERFAZ -sS IPv4 				#en este caso hace lo mismo pero con la interfaz indicada
+
+
+scp RUTA/NAMEFICHERO usuario@192.168.18.25:RUTA			#envia el fichero indicado por ssh al usuario indicada dada la ip indicada, y se le guardara en la ruta indicada
+
+
+dig								#nos permite ver el dns de nuestra maquina
+/etc/resolv.conf						#esta es la mejor forma de cambiar el DNS de nuestra maquina
+
+
+
+ss 								#funcioma como netstat en windows,nos muestra los puertos abiertos y demas
+ss -utl								#Muestra los puertos en donde se esta escuchando
+
+
+s
+
+
+netstat -pnatu
+
+
+
+COMENTARIOS:
+------------------------------------------------------------
+%USERNAME%					#ver el usuario en windows
+%COMPUTERNAME%					#ver el nombre de la maquina en windows
+
+
+
+
+ACTIVIDAD:
+-------------------------------------------------------------
+*Despliegue de Linux en la NUBE (AWS)
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 11: GESTION DE PAQUETES Y LIBRERIAS EN LINUX								|
+=================================================================================================================================================================================================
+
+Gestion de paquetes en Linux:
+---------------------------------
+*La gestión de paquetes se corresponde con un método de instalar y mantener el software del sistema linux.
+*Se corresponde con uno de los aspectos más importantes y diferenciadores de una distribución de linux
+*el software en linux cambia con mucha frecuencia
+*Compilar el código fuente e instalar el software cada vez que se realizan actualizacion no es un procedimiento sencillo y práctico.
+*Diferentes distribuciones utilizan diferentes sistemas de gestión de paquetes. Hay
+dos tecnologias principales:
+	-Estilo Debian (.deb): Debian, Ubuntu, Lunux Mint, Raspbian
+	-Estilo RedHat (.rpm): Fedora, CentOS, RedHat, OpenSUSE
+
+
+¿Que es un paquete?
+*Se corresponde con la unidad básica de un sistema de gestión de paquetes
+*Es un fichero comprimido que contiene un conjunto de ficheros relativos a una aplicación software
+*Contiene metadatos
+*Suele contener scripts para la instalación y desinstalación de la aplicación software
+*El paquete no tiene por qué ser creado por el desarrollador de la aplicación software
+*En la mayoria de las ocasiones, el creador del paquete tiene que realizar algunas modificaciones sobre el codigo fuente de la aplicación
+para adaptarlo a una distribución especifica. 
+
+
+¿Que es un repositorio de paquetes?
+*La mayoria de los paquetes se distribuyen a los usuarios a través de repositorios centrales
+*Los repositorios son mantenidos por cada distribución de linux
+*Las distribuciones de linux suelen tener varios repositorios centrales para soportar diferentes fases del ciclo de desarrollo de software (desarrollo, produccion, software de terceros...)
+*Pueden añadirse repositorios de terceros para instalar software que no se encuentre en los repositorios mantenidos por la distribucion
+
+
+
+¿Que es una dependencia?
+*En muchas ocaciones las aplicaciones software comparten algunas funciones que se implementan en librerías o ficheros compartidos.
+*Si una aplicación requiere una libreria o fichero compartida se que tiene una dependencia
+*Los sistemas de gestión de paquetes proporcionan un mecanismo para resolver las dependencias e instalarlas cuando se instala una aplicación software.
+
+
+
+
+Buscar, instalar y actualizar paquetes instalados:
+----------------------------------------------------
+*Para gestionar paquetes, tendremos herramientas de alto y bajo nivel. Por ejemplo una herramienta de bajo nivel
+tenemos al gestor de paquetes 'dpkg' (package manager for Debian) y tenemos también la herramienta de alto nivel 'apt'.
+*los repositorios de paquetes se encuentran en /etc/apt/sources.list
+
+
+*En otras sistemas de Linux, (por ejemplo para red hat) tenemos otras herramientas de bajo de nivel como 'rpm' y de alto nivel como 'yum' 'dnf'
+
+
+
+
+Viendo apt:
+
+	man apt
+
+	sudo apt update					#este comando lo que hace es actualizar nuestro repositorio de paquetes de nuestro sistema linux, por ejemplo si añadimos un paquete nuevo
+							, este comando añadira ese paquete a nuestro repositorio de paquetes, etc.
+
+	sudo apt upgrade
+
+	apt-cache search NAMEPAQUETE			#Nos muestra si el paquete indicado o un paquete que contenga ese nombre esta dentro de nuestro repositorio. O los metadatos que tenemos en nuestro sistema	
+		apt-cache search openssh-server
+
+	sudo apt install NAMEPAQUETE			
+	
+
+
+
+Instalacion manual de paquetes:
+------------------------------------------------------------
+*Descargamos el paquete .deb (este es un paquetito similar a los que tenemos en nuestro sistema)
+*Para descargar paquetes que no esten en nuestro repositorio, podemos usar herramientas de bajo nivel
+
+dpkg man
+
+
+dpkg							#nos permite instalar paquetes por mas que no esten en nuestro repositorio
+sudo dpkg -i NAMEPAQUETE				#-i indica que queremos instalarlo. hara la instalación del paquete indicado
+sudo dpkg -i NAMEPAQUETE				#si intentamos ejecutar este comando para un paquete ya instalado, lo que hara es intentar actualizarlo a la ultima versión (solo actualiza para version mas modernas)
+
+sudo dpkg -l 						#nos muestra todos los paquetes que tenemos instalados tanto internos como externos
+
+dpkg -s NAMEPAQUETE					#Nos da los metadatos del paquete indicado
+dpkg --status NAMEPAQUETE				#es lo mismo que -s
+
+dpkg -S NAMERUTAFICHERO					#Nos dira a que paquete corresponde ese fichero, o que fichero lo creo o lo usa para que funcione, es decir investiga la dependencia. (No funciona con enlaces simbolicos) Tiene que ser
+							la ruta absoluta
+
+
+
+apt show NAMEPAQUETE					#Nos da los metadatos y informacion complementaria del paquete indicado.
+
+
+
+
+
+sudo apt upgrade					#Actualiza todo el software y todos los paquetes a la ultima versión por defecto que hay en el sistema
+
+
+
+
+
+
+
+Eliminar, listar y buscar paquetes instalados:
+----------------------------------------------------------	
+*Una vez que un paquete ya este instalado, podemos eliminar ese paquete instalado con APT o también con DPKG (No importa si este paquete lo hayamos instalado con DPKG)
+
+
+sudo apt remove NAMEPAQUETE
+
+
+
+
+
+
+ACTUALIZAR LA DISTRIBUCIÓN DE LINUX:
+----------------------------------------------------------
+lsb_release -a 						#Nos dice el nombre de la distribucion de linux que estamos usando (ubuntu, debian, etc), la version que usamos, etc
+uname -a						#nos dice la version del kernel y demas
+uname -sr						#nos dice la versión actual de nuestro kernel
+uname -n						#nos muestra el nombre de la maquina
+
+
+hostname						#muestra el nombre de la maquina
+
+sudo apt dist-upgrade					#nos actualizara el kernel a la ultima version (Este comando también a la vez hace todas las funciones que hace el comando 'sudo apt upgrade')
+
+
+
+-pasos para actualizar el sitema:
+	-uname -sr
+	-sudo apt update
+	-sudo apt dist-upgrade
+	-sudo reboot
+	-uname -sr
+
+
+
+Añadir nuevos repositorios de paquetes:
+--------------------------------------------------------
+*No es una buena practica de seguridad añadir un paquete externo a nuestro sistema de repositorios de paquetes. Ya que podria infectar a todos los otros paquetes
+*Para añadir un paquete simplemente copiamos la ruta y lo agregamos al fichero /etc/apt/sources.list
+*Pero lo ideal es no modificar el fichero /etc/apt/sources.list, sino que crear un fichero adicional llamado /etc/apt/sources.list.d/NAMFICHERO.list	(el fichero puede llamarse como sea pero que termine en '.list')
+
+
+sudo add-apt-repository NAMEPAQUETE				#añadira el paquete indicado al repositorio de paquetes de nuestro sistema (en caso ya tengamos, trata de actualizar es repositorio)
+								(hace lo mismo que lo que hariamos manualmente)
+
+
+*Cuando instalemos algunos repositorios, no podrian salir algunos errores como por ejemplo; errores de firmas.
+
+E: The repository.... is not signed				#este es un ejemplo
+W: 								#otro ejemplo
+
+*Lo que tendriamos que hacer es añadir la firma . Por ejemplo la clave publica de un repositorio de Kali linux esta aqui
+
+		https://archive.kali.org/archive-key.asc
+
+
+*Una forma de añadir una clave publica a nuestro repositorio de claves publicas es: (esta forma no es recomendada y sera eliminada en el futuro)
+
+	sudo apt-key add NAMEARCHIVO				#Añade ese fichero a nuestro repositorio de claves
+
+
+*Existe otra forma de añadir una clave publica.
+
+
+
+*Para eliminar un paquete añadido al repositorio de nuetro sistema, simplemente borramos el fichero de la ruta /etc/apt/sources.list.d/
+
+
+
+
+
+
+COMANDOS:
+---------------------------------------------------------
+apt install PAQUETE
+apt update
+apt upgrade
+apt remove PAQUETE
+apt-cache serach PAQUETE
+apt dist-upgrade
+
+
+
+dpkg -i NAMEPAQUTE
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 12: EL ENTORNO DE LINUX											|
+=================================================================================================================================================================================================
+
+EL ENTORNO DE LINUX:
+----------------------------------------------------------
+*Las aplicaciones en linux hacen uso de los ficheros de configuración, también obtienen los parametros de configuración a travez del entorno
+
+
+*El entorno consiste en un conjunto de información que se carga en la RAM, cuando nosotros iniciamos sesión o abrimos una shell, Hay información de distintos tipos, entre ellas tenemos las variables
+tenemos variables de entorno
+variables principales
+variables de configuracion
+variables de la shell, etc
+funciones bash, alias, etc.
+
+
+
+man printenv 						#Este comando nos permite ver parte del entorno de nuestro sistema. Nos sacan distintas variables 
+
+printenv						#Nos mostrara las variables de entornos que tenemos definidas. La mayoria de lineas tendran esta forma (NOMBRE=VALOR) el valor puede ser la ruta, etc
+							(Aqui veremos todas las variables, como el PATH, LOGIN, SHELL, ETC ETC)
+
+printenv PATH						#Nos mostrara exclusivamente PATH, es como si hariamos 'printenv | grep PATH'
+
+
+
+set							#Nos mostrara todas las variables de la shell, del entorno, scripts del sistema, alias etc. Es mas completo que printenv que solo muestra variables de la shell
+
+
+
+alias							#nos permite ver los alias que estamos usando en nuestra shell
+
+
+echo $NAMEVARIABLE					# '$' este simbolito nos permite usar variables
+
+
+
+
+
+¿COMO SE ESTABLECE EL ENTORNO?
+----------------------------------------
+*Cuando nosotros nos logeamos en nuestro sistema, se empiezan a ejecutar unos scripts de arranque llamados STARTUPSCRIPTS, que son los que definen el entorno y las variables que tendremos por defecto, hay 2 tipos de scripts 
+de arranque, uno son los que afectan a todas las sesiones, y otros los que afectan a usuarios concretos.
+
+
+**ficheros que afectan a todos los usuarios:
+
+/etc/environment					#en este fichero se establece las variables de entorno para todos los usuarios
+							(estas variables estan definidas para la shell y tambien para todas las aplicaciones graficas)
+							los valores tendra la siguiente forma:
+								NOMBRE_VARIABLE="/RUTA1:/RUTA2"
+							
+/etc/profile						#Aqui estan todas las configuraciones de las shell para todos los usuarios. (se recomienda no modificar este fichero)
+
+/etc/profile.d/						#En esta ruta estan los scripts que nosotros podriamos crear también para modificar el comportamiento de las variables de las shell de los usuarios que se logean ya sea por login o por ssh
+							, se pueden hacer muchas cosas mas-
+
+
+/etc/bash.bashrc					#Son variables que se ejecutan sobre programas que nosotros utilicemos desde la SHELL, no estan disponibles para programas que se ejecuten desde la interfaz gráfica.
+							Como se dijo, este fichero solo existe para programas que uno habra desde la shell.
+
+
+-Conclusiones:
+	-para agregar cambios o se ejecuten scripts que afecten a todo, lo hariamos en el fichero /etc/enviroment/
+	-para agregar cambios o se ejecuten scripts que afecten solo a login, lo hariamos agregando ficheros en /etc/profile.d/
+	-para agregar cambios que afecten solo a programas no interactivos (es decir que se ejecuten en la shell), lo hariamos en el fichero /etc/bash.bashrc
+
+
+
+**ficheors que afectan a cada usuario
+-Se encuentran en la carpeta /home/NAMEUSER/ para cada usuario
+-Son muchos scripts, solo veremos algunos
+
+
+.profile						#este fichero se ejecuta en una shell con login (por ejemplo a travez con SSH)
+.bash_profile
+.bash_login
+.bashrc
+
+RESUMEN:
+Ficheros con aplicación a todo el sistema (todos los usuarios del sistema)
+
+	/etc/enviroment → Fichero específico para la definición de variables de entorno. No puede contener scripts. 
+	Se ejecuta al iniciar el sistema.
+
+	/etc/profile → Permite definir variables de entorno y scripts, aunque no es apropiado modificar este fichero directamente (debe crearse un nuevo fichero en /etc/profile.d). 
+	Se ejecuta en shells con login.
+
+	/etc/profile.d → Contiene scripts que se ejecutan en shells con login.
+
+	/etc/bash.bashrc → Permite definir variables de entorno y scripts que estarán disponibles para programas iniciados desde la shell bash. Las variables que se definan en este fichero 
+	no van a estar disponibles para programas iniciados desde la interfaz gráfica. No se ejecuta en shells con login.
+
+Ficheros con aplicación a un usuarios específico
+
+	~/.profile → Permite definir variables de entorno y scripts. Este fichero se ejecutará al iniciar la sesión de Escritorio o en una shell con login. Las variables 
+	afectan a todos los programas ejecutados desde el escritorio gráfico o desde la shell.
+
+	~/.bashrc → Permite definir variables de entorno y scripts. Se ejecuta cuando se abre la shell sin necesidad de hacer login. Es un fichero especifico de la shell bash, 
+	lo que quiere decir que las variables definidas solo afectaran a los programas ejecutados desde bash.
+
+	~/.bash_profile, ~/.bash_login → Permiten definir variables de entorno y scripts. Se ejecutan cuando se utiliza una shell con login. Son ficheros específicos de bash, 
+	lo que quiere decir que las variables definidas solo afectaran a los programas ejecutados desde bash.
+
+
+
+A continuación os dejo un listado de variables de entorno interesantes que debéis conocer.
+
+SHELL → El nombre de la shell por defecto del usuario.
+
+HOME → El nombre de la ruta de tu directorio personal.
+
+LANG / LANGUAGE → Define el conjunto de caracteres y el orden de cotejo de su idioma.
+
+PATH → Una lista separada por dos puntos de los directorios que se buscan cuando introducimos el nombre de un programa ejecutable.
+
+PWD → El directorio de trabajo actual.
+
+_ → Una referencia al programa /usr/bin/printenv (prueba a ejecutar el comando $_)
+
+USER → Tu nombre de usuario.
+
+Tened en cuenta que dependiendo de la distribución de Linux que estemos utilizando las variables de entorno que vienen definidas por defecto pueden variar.
+
+
+
+
+
+
+COMANDOS:
+---------------------------------------------------------------
+NAMEVARIABLE=VALOR					#al hacer esto dentro de la shell, creamos una variable y tendra el valor indicado, la variable es de tipo shell y no de tipo entorno
+export NAMEVARIABLE					#la variable indicada ahora pasara a ser parte de las variables de entorno (pero igual se borrara al cerrar la shell)
+
+
+/etc/environment					#agregar variables en este fichero, estas variables seran persistentnes en el sistema (por mas que reiniciamos)
+/etc/profile.d/						#aqui agregamos scripts que queremos modificar nuestro sistema y su shell
+/etc/bashrc
+
+exec bash						#para reiniciar la bash sin salir.
+source  .bashrc						#para que la shell vuelva a leer el fichero .bashrc, es como reiniciar la shell
+
+
+
+
+CASO PRACTICO, PERSONALIZAR LA SHELL DE LINUX:
+----------------------------------------------------------------
+*Vamos a personalizar la shell, en este caso personalizaremos la shell usada en zsh
+
+ls -la /proc/$$/exe					# $$ nos permite ver el proceso actual que esta usando nuestra shell, es decir la shell que fichero 
+
+
+sudo apt install zsh					# Instalara la shell zsh
+zsh
+	2
+
+
+*buscar 'oh my zsh' en google en github y descargar el repositorio. Nos dire pulsar el comando siguiente:
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"	
+
+*ahora instalamos un tema muy conocido llamado (powerlevel10k) (esta en github), estando en la pagina de github nos vamos a la parte de instalar, luego a la parte 'oh my zsh' y seguimos los pasos:
+	
+luego podemos simplemente acceder a la carpeta oh-my-zsh  y ya se activara el script que personalizara nuestra bash zsh
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 13: DISPOSITIVOS DE ALMACENAMIENTO EXTERNO EN LINUX							|
+=================================================================================================================================================================================================
+
+DISPOSITIVOS DE ALMACENAMIENTO EXTERNOS EN LINUX:
+-----------------------------------------------------------
+*Antes uno tenia que hacer procesos para que el sistema linux detecta un dispositivo nuevo que se conecta, actualmente ya no es necesario.
+*Lo que ocurre cuando uno conecta un nuevo dispositivo a linux es lo siguiente:
+	-Lo primero que se hace es montarse,
+	-luego expande nuestro sistema de ficheros principal agregando ese nuevo sistema de ficheros
+
+*Se puede montar un dispositivo en cualquier ruta de ficheros que desees.
+*Cuando tu conectas un dispositivo al sistema linux, este dispositivo es detectate por el sistema aunque a veces no lo monte, para ello lo puedes con 'ls -la /dev'
+ 
+
+MONTAR Y DESMONTAR DISPOTIVIS:
+----------------------------------------------------
+
+man mount						#Nos permite ver el manual del comando
+mount							#mount nos permite ver todo el sistema de ficheros que nosotros tenemos montados (tanto fisicos como virtuales)
+mount NAMEDISPOSITIVO NAMERUTA				#Nos permite montar un dispositivo de manera manual (se indica su sistema de ficheros y luego se indica la ruta dondse montara ese sistema de ficheros) 
+	ejemplo: mount /dev/sdb1
+
+man umount						#Este comando nos sirve para desmontar dispositivos
+sudo umount NAMEDISPOSITIVO				#Nos permite desmontar un dispotivio indicado (se indica su sistema de ficheros)
+	ejemplo: sudo umount /dev/sdb1
+
+
+
+
+
+IDENTIFICANDO EL NOMBRE DEL DISPOSITIVO:
+------------------------------------------------------
+*El punto de montarje se le conoce como el directorio donde vamos a expandir nuestro sistema de ficheros con el fichero de archivos del dispositivo.
+*Una manera de identificar dispositivos es usando los nombres pode defecto que generalmente tienen
+
+/dev/lp*						#Los dispositivos que conectemos y sean impresoras comienzan generalmente con el nombre 'lp*' dentro de /dev
+/dev/sd*						#Podrian indicar dispositivos de almacenamientos externos como disco solidos, disco duros, dispositivos usb, etc. comienzan con 'SD' como 'sd1' o 'sdb1'
+/dev/sr*						#Si conectas un USB, un dipositivo como un celular etc, generalmente el nombre de estos dispositivos comienzan con 'SR'
+
+
+*Otra forma de identificar dispositivos es monitorizar un log del sistema, que es donde se mira lo que sucediendo dentro del sistema. La carpeta es /var/log
+
+/var/log/syslog						#en este fichero es donde se anontan los eventos que ocurren en el sistema
+
+sudo tail -f syslog					#para poder ver lo que sucede en el fichero en tiempo real, y cuando conectemos o desconectemos un USB, podremos ver el nombre del dispositivo.
+
+
+lsblk							#para ver tus particiones de almacenamiento interno
+
+
+
+CASO PRACTICO: (Analisis forense de un dispositivo USB)
+------------------------------------------------------------
+*Cuando tu borras archivos o lo que sea, lo que realmente se elimina son los inodos que apuntan a las determinadas posiciones de memoria, esto no quiere decir
+que también se borren los espacios de memoria asignados. (esta es la base de la informática forense)
+*No es necesario tener montado el dispositivo para hacer la copia
+
+
+man dd							#abre el manual de dd
+dd							#Nos permite hacer una copia o adquisión de una imagen de un fichero o directorio y lo convierte a un formato acordado. (Copia todo incluso lo que tenga en bits borrados)
+
+
+sudo dd if=RUTADELFICHERO of=DONDESEGUARDARA.raw status=progress    #status=progress para que nos muestre como va el avance de la copia, if (input file) of(output file)
+	ejemplo: sudo dd if=/dev/sdc1 of=imagen_usb.raw status=progress		(of donde guardara el la copia y conque nombre) es importante que sea .raw para examinarlo con autopsy
+
+
+*una vez hecha esta copia podemos analizarlo con autopsy y te sorprendera la cantida de ficheros que recupera.
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 14: ARCHIVANDO Y COMPRIMIENDO FICHEROS EN LINUX								|
+=================================================================================================================================================================================================
+
+ARCHIVANDO Y COMPRIMIENTO FICHEROS EN LINUX:
+----------------------------------------------
+hay 2 tipos de compresión de archivos 
+	-Lossy (con perdida) y Lossless (sin perdida)
+
+
+
+
+
+man gzip							#el manual de gzip (gzip es de tipo lossless)
+gzip NAMEFICHERO						#sirve para comprimir ficheros, el fichero indicado tendra el mismo nombre pero con la extensión .gz
+								NAMEFICHERO.GZ
+									gzip		- gz cada programa crea su propia extension
+									winrar		- rar
+									7zip		- 7z
+
+									(por lo que es recomendado descomprimir con su propio programa de descompresión)
+
+gzip -d NAMEFICHERO.gz						#sirve para descomprimir ficheros comprimidos (es mas util para .GZ)
+gunzip	NAMEFICHERO						#otra forma de descomprimir ficheros comprimidos
+
+
+gzip -r NAMEDIRECTORIO						#comprimira todos los ficheros que este dentro del directorio indicado
+	
+
+*En linux hay otra funcionalidad que sirve para archivar, archivar es jungat ficheros en un unico fichero comun, y luego lo que se hace es comprimir ese fichero, por eso es que muchas veces en linux vemos
+archivos como "archivo.tar.gz"
+
+
+
+BZIP2: OTRA SOLUCION PARA COMPRIMIR/DESCOMPRIMIR:
+---------------------------------------------------------
+*Tambien es de tipo Lossless
+
+man bzip2
+
+bzip2 NAMEFICHERO.bz2						#Nos sirve para comprimir ficheros al igual que gzip, pero sus algoritmos aunque son mas lentos, reducen mejor los ficheros.
+
+bunzip2 NAMEFICHEROCOMPRIMIDO.bz2					#Nos sirve para descomprimir el fichero indicado.
+
+
+
+
+
+ARCHIVANDO FICHEROS: tar
+-----------------------------------------------------------
+*Cuando veamos ficheros con la extensión tar.gz posiblemente se correspondan con ficheros que se hayan archivado. (archivar no es lo mismo que comprimir), o tambien tar.bz2
+*archivar es juntar diversos ficheros en un unico fichero (pero el tamaño no se reduce, aumenta como si sumaramos todos los ficheros)
+
+
+man tar
+
+tar -cf NAMEFICHERO.TAR  ./fichero*				#-c indica archivar, -f indica como se va llamar ese fichero archivado, con ./fichero*  (se uso wildcards), indicamos todos esos ficheros que queremos archivar.
+
+tar -xvf NAMEFICHERO.TAR					#-x indica desarchivar, -v indica verbose para que sea bien detallado, -f para indicar el nombre de fichero que queremos desarchivar.
+								(desarchiva los ficheros en el directorio actual)
+
+
+
+tar -czf NAMEFICHERO.tar.gz  LOSFICHEROS			#-Z Le añade el plus que al final de archivar los archivos los comprima usando gzip. (conviene nombrar a los archivos comprimidos con la extension que se muesra,
+								para que otros usuarios sepan lo que hemos hecho)
+ 
+tar -xf	NAMEFICHERO.tar.gz					#TAR ya hace directamente la descompresion y desarchivar el fichero indciado
+
+
+
+tar -cjf NAMEFICHERO.tar.bz2  LOSFICHEROS			#-j hace que use en este caso para la parte de comprimir que sea con bzip2
+
+
+
+*Consejo: Cuando comprimamos con tar, conviene usar GZIP, y para archivos unicos conviene hacerlo con BZIP
+
+
+
+
+
+
+ARCHIVAR Y COMPRIMIR CON ZIP:
+----------------------------------------------------
+*Esta es la utilidad mas potente para compresiones que es ZIP
+*veremos muchos archivos que tienen la extension .zip (esta compresion tambien se utiliza para windows)
+*Esta herramienta archiva y descomprime ficheros, y lo hace de manera transparente
+
+
+man zip
+
+zip NAMECOMPRESION.zip  FICHEROS				#NAMECOMPRESION hace referencia a como se llamara los ficheros a comprimir
+
+zip - r NAMECOMPRESION.zip NAMECARPETA				#comprime ya toda la carpeta y lo guarda como lo indicamos (ya por detras archiva todo su contenido y luego lo comprime)
+
+unzip NAMECOMPRESION.zip					#descomprime el archivo mencionado.zip (si el archivo es una carpeta, respeta esto, es decir se mantienen los directorios)
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 15: EXPRESIONES REGULARES Y BUSQUEDAS AVANZADAS								|
+=================================================================================================================================================================================================
+
+¿QUE SON LAS EXPRESIONES REGULARES?
+----------------------------------------------------
+*Las expresiones regulares son notaciones simbolicas, basadas en caracteres especiales, para poder reconocer patrones en textos, similares a wildcars.
+*Uno de los comandos que nos permite trabajar con expresiones regulares es GREP
+
+man grep
+
+grep (global regular expresion print)
+
+grep [OPTION] regex [FILE..]
+
+grep PATRON RUTA/ficheros					#buscara el patron en cada fichero indicado (en la parte de PATRON podemos usar expresiones regulare), en la parte de (RUTA/FICHERO) ahi van los wildcards
+								(no confundirnos con eso)
+
+grep -i PATRON RUTA/ficheor					#-i permite que ignore mayusculas o minusculas
+
+grep -l PATRON RUTA/FICHERO					#-l permite solo obtener el nombre de los ficheros.
+grep -L PATRON RUTA/FICHEROS					#-L permite obtener en que ficheros no aparece.
+
+grep -n PATRON RUTA/FICHERO					#en que linea del fichero aparece el PATRON indicado o de los ficheros. 
+
+grep -o PATRON RUTA/FICHEROS					#-o permite solo obtener el patron indicado (no la linea entera, solo el patron que cumpla)
+
+grep -E PATRON RUTA/FICHEROS					#-E permite usar los extended regular expresion
+
+
+
+grep -r PATRON RUTA/FICHEROS					#-r nos permite buscar recursivamente, es decir, buscara en directorios, subdirectorios todos los archivos tratando de encontrar el patron indicado.
+
+grep -h PATRON RUTA/FICHEROS					#-h nos permite quitar el fichero donde encontro el patron
+
+
+*ESTOS SON ALGUNOS CARACTERES ESPECIALES QUE FORMAN PARTE DE LAS EXPRESIONES REGULARES:
+------------------------------------------------------------------------------------------
+*Grep por defecto trabaja con 'basic regular expresiones'
+*basic regular expresion (BRE)
+
+[ ] ^ { } - ? * + | \ . $ ( )					#Todo lo que no sea estos caracteres especiales se considera caracteres literales, también son conocidos como metacarácteres.
+								Estos carácteres especiales pueden tener distintos valores que los wildcards.
+
+
+.								# . Sirve para indicar cualquier carácter en esa posición 
+
+	ejemplo: grep 'hola.' ruta/*
+
+
+^								# ^ Sirve para indicar que comience con el patron indicado
+	ejemplo: '^hola'				
+
+$								# $ Sirve para indicar que termine con el patron indicado
+	ejemplo: 'hola$'					
+		 '^hola$'					
+
+
+[]								# [ ] nos sirve para indicar algun caracter que queremos, o una lista, o etc. (dentro de estos caracteres solo - y ^ tienen un valor distinto a caracteres simples)
+	ejmplos:
+		[ab]patron						# a o b o ab
+		[A-Z]patron						# cualquier caracter entre el rango A y Z 
+		[^AB]patron						# cualquier caracter menos A y B
+		[$a]patron						# para usar también metacarácteres tambien lo podemos usar
+		[-ab]patron						# para poder usar el caracter '-' lo podemos adelante
+
+
+*								#que el caracter anterior aparezca 0 o mas veces
+	Ejemplo: [0-9]*
+
+
+
+
+*extended regular expresion (ERE)
+
+
+\								#OJO: este simbolo nos permite usar caracteres de los extended regular expression cuando solo estamos usando los basic regular expresion
+	ejemplo: \|						#en este baso | tomara su valor que tiene en extender regular expresion
+		 \.
+|								#Funcion similar a los corchetes, pero mas completas
+	ejemplo: hola|beso					#alguna de esas palabras o las palabras combinadas.
+		 ho|be|la					#alguna de esas palabras o alguna combinacion de ellas respetando el orden en que se presentan.
+		 ^hola|be$|.zip					#que empiece con hola, o finalice con be, o que tenga .zip (el punto representa algun carácter no lo olvides)
+		 ^(hola|be)					#que comience o bien con hola, o con be, o con holabe
+		 ^(hola|zip$)					#que comience con hola o con finalize y comience con zip.
+
+( )								#tiene un comportamiento igual que en las matematicas.
+
+
+
+
+?								#el carácter que este anterior a el, aparezca 0 o 1 vez. (es decir que es opcional)
+	Ejemplo: hola?						#buscara hol o hola
+		 [A-Z]?
+
+
+*								#que el caracter anterior aparezca 0 o mas veces
+	Ejemplo: [0-9]*
+
+
++								#que el caracter anterior aparezca 1 o mas veces
+	EJEMPLO: [0-9]+
+
+
+{ n }								#que el caracter anterior aparezca 'n' veces.
+{n,m}								#que el caracter anterior aparezca entre 'n' y 'm' veces.
+{,n}								#que el caracter se repita como maximo n veces o menos que n
+{n,}								#que el caracter se repita como minimo n veces o mas que n
+
+*cuantificadores (algunos son parte de BRE y otros del ERE)
+
+
+?								#el carácter que este anterior a el, aparezca 0 o 1 vez. (es decir que es opcional)
+	Ejemplo: hola?						#buscara hol o hola
+
+*								#que el caracter anterior aparezca 0 o mas veces
+	Ejemplo: [0-9]*
+
++								#que el caracter anterior aparezca 1 o mas veces
+	EJEMPLO: [0-9]+
+	
+
+{ n }								#que el caracter anterior aparezca 'n' veces.
+{n,m}								#que el caracter anterior aparezca entre 'n' y 'm' veces.
+{,n}								#que el caracter se repita como maximo n veces o menos que n
+{n,}								#que el caracter se repita como minimo n veces o mas que n
+
+
+
+
+
+
+
+
+grep -E patron FICHEROS						#-E nos permite poder usar caracteres del standar extendido
+
+\								#en este caso, \ tendria el valor opuesto, es decir nos permitiria usar carácteres especiales como carácteres simples.
+
+
+
+caso practico 1 y 2:
+--------------------------------
+https://regex101.com/						#en esta pagina tenemos un software online que nos permite probar nuestro regex en tiempo real sobre un texto.
+
+
+*buscaremos correos electronicos en estos archivos  -> https://github.com/rapid7/metasploit-framework
+
+	git clone https://github.com/rapid7/metasploit-framework	#primero clonamos ese repositorio.
+
+
+
+
+
+
+
+
+
+
+
+
+POSIX Classes:
+--------------------------------------------------------------------------------------------
+
+*El estándar POSIX incluye un número de clases que proporcionan rangos útiles de caracteres que podemos utilizar al construir una expresión regular.
+
+A continuación se describen estas clases:
+
+[:alnum:] → Los caracteres alfanuméricos. En ASCII, equivalen a: [A-Za-z0-9]
+
+[:word:] → Lo mismo que [:alnum:], añadiendo el carácter de subrayado (_)
+
+[:alpha:] → Los caracteres alfabéticos. En ASCII, equivalen a: [A-Za-z]
+
+[:blank:] → Incluye los caracteres de espacio y tabulación
+
+[:cntrl:] →  Los códigos de control ASCII. Incluye los caracteres ASCII 0 a 31 y 127
+
+[:digit:] → Los números del 0 al 9
+
+[:graph:] → Los caracteres visibles. En ASCII, incluye los caracteres 33 a 126
+
+[:lower:] → Las letras minúsculas
+
+[:punct:] → Los caracteres de puntuación. En ASCII, es equivalente a: [-!"#$%&'()*+,./:;<=>?@[\\\]_`{|}~]
+
+[:print:] → Los caracteres imprimibles. Todos los caracteres de [:graph:] más el carácter de espacio
+
+[:space:] → Incluye el espacio, el tabulador, el retorno de carro, la nueva línea, el tabulador vertical y el avance de forma. En ASCII, equivale a: [ \t\r\n\v\f]
+
+[:upper:] → Las letras mayúsculas
+
+[:xdigit:] → Caracteres utilizados para expresar números hexadecimales. En ASCII, equivale a: [0-9A-Fa-f]
+
+
+Ejemplo
+
+grep [[:alnum:]]vece  ./*			#buscara ese patron en todos los ficheros de la ruta indicada
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 16: PARTE II: SHELL SCRIPT										|
+=================================================================================================================================================================================================
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 17: INTRODUCCION A SHELL SCRIPT										|
+=================================================================================================================================================================================================
+
+¿Que es shell script?
+-------------------------------
+*Es un archivo que contiene comandos que se ejecutan de manera secuencial, es una manera de automatizar comandos que hayamos vistos.
+
+
+¿El shell script es un lenguaje de programación?
+------------------------------------------------------
+*Para algunas personas lo es, para otras no.
+
+
+man bash
+
+
+¿shell script == bash script?
+---------------------------------
+*No es lo mismo, shell script se considera aquellos ficheros que contienen comando que se pueden ejecutar en cualquier shell, bash scripts son ficheros especificos para este tipo de shell.
+
+
+
+
+Nuestro primer Shell Scripts: shebang y comentarios:
+-----------------------------------------------------------
+*Por estandar se utiliza la extensión sh en linux, recordar que para linux las extensiones no son relevantes, pero para los editores de textos como emacs si.
+
+
+#!/bin/bash						#el sistema tratara de buscar esta shell para ejecutar el script
+#!/bin/bash						#esta linea en el código de los scripts se denomina shebang, con esto se le indica la shell que linux para utilizar para ejecutar este scripts 
+							 (por norma general ahora en la actualidad se utiliza bash)
+
+
+name_fichero.sh						#cuando nosotros escribimos texto asi, lo que hace el sistema es bucarlo en las variables de entorno y en la variable $PATH
+./name_fichero.sh					#esta es la forma de ejecutar ficheros en linux.
+
+
+
+
+
+variables de la shell:
+-------------------------------------
+variable="CADENA DE TEXTO"				#asi definimos una variable
+$variable						#asi invocamos a la variable
+
+
+
+*En la shell scripts, las variables no definidas no votan error, simplemente tienen valor de vacio.
+*Al momento de definir las variables, no deben haber ningun espacio, por ejemplo: variable1 ="hola mundo", esto nos votara un error
+*Los nombres de las variables pueden tener de caracteres alphanumericos, la unica excepcion es el caracter _ , ejemplo: variable_1
+*El primer caracter de las variables no pueden ser numeros, ejemplos de variables: vari_1 , _variable
+*Las variables todo lo que le des al final lo trata como un strings
+*Trata siempre de poner el valor de las variables entre comillas.
+*Recordar que todo lo que se definio para la bash, funciona tambien para shell scripting
+*Las variable a declarar y su valor no puede haber espacios de por medio, ejemplo: esto es incorrecto variable1= 'hola'   , esto si es correcto  variabl1='hola'
+
+variable1=hola
+variable1="hola"
+variable="mi nombre es $USER"
+variable=$((4*5))
+variable="\t \n" 				#siendo \t tabulado y \n salto de linea
+
+a=15  b="hola amigos"				#como vemos, se pueden definir varias variables en una misma linea
+
+mv "$nombre_fichero" "${nombre_fichero}.new	#podemos usar {} para indicar mejor el nombre de la variable a la cual queremos aplicar shell expansion
+
+
+
+
+
+constantes en la shell:
+-------------------------------------------
+*Una constante es como una variable, pero no cambia de valor a lo largo del programa.
+*Por convencion una constante se escribe todo en mayusculas, ejemplo: VARIABLE1="VALOR", $VARIABLE1 para llamarle
+*Hay otra forma de declarar el valor de una constante y es usando el comando 'declare'
+
+
+declare -r NAMECONSTANTE="VALOR"				#esta es una forma de declarar una constante, sinosotros tratamos de cambiar el valor de la constante nos saltara un error
+
+
+
+
+HERE DOCUMENTS:
+--------------------------------------------
+*Nos permiten sacar texto como el comando 'echo'
+*La diferencia esta en que los here documents nos proporcionan ventajas adicionales, además de que son mejor para ciertas tareas. (Como por ejemplo sacar texto que luego va recibir una aplicacion en 
+tiempo real)
+
+
+
+cat 								#el comando cat sin argumentos nos saca texto a medida que le demos.
+
+cat << TOKEN							#introducimos un token (el token puede ser cualquier valor, lo importante es que no se repita en tu cadena de texto)
+	cat << EOF						#El token en este caso es EOF 
+	 (tu codigo)
+	TOKEN
+
+
+ftp << TOKEN
+	(tu código)
+TOKEN
+
+
+
+ejemplo:
+
+ftp -n << EOF
+	open 192.168.18.162
+	user servervpn
+	abcdefgh12.,	
+	dir
+	close
+	quit
+
+
+
+
+
+
+FUNCIONES:
+----------------------------------------------
+*En shell script el ' return' solo devuelve numeros y sirve para identificar si fue exitoso o no el desarrollo de la funcion, no se puede usar return para devolver cadenas de texto
+como en otros lenguajes de programacion.
+*El return 0 siginfica que fue exitoso, cualquiero otro valor diferente de 0 significa que fue Falso
+*En la shell script la identacion no es relevante como si lo es en python.
+
+
+*Forma 1 de definir una función:
+------------
+function NAMEFUNCION{
+
+	CODIGO
+	return
+}
+
+
+*Forma 2:
+--------------
+NAMEFUNCION(){
+
+	CODIGO
+	return
+
+}
+
+
+Invocar funciones:
+------------------------
+NAMEFUNCION							#Así llamames a las funciones sin importar en la forma que se hayan construido.
+
+
+
+
+
+
+PARAMETROS Y ARGUMENTOS:
+--------------------------------------
+*Los argumentos y parametros son aquellas variables que esperan recibir algún valor al invocar la función, ejemplo: funcion_hola (argumento1) {}
+
+
+*Forma una de dar parametros a una función
+
+NAMEFUNCION(valor1,vlaor2){
+
+	codigo valor1 valor
+	return0
+}
+
+
+NAMEFUNCTION(VALOR1, VALOR)
+
+
+*forma 2:
+
+NAMEFUNcTION (){
+
+	sudo nmap -sV $1 > $2 						#$1 hace referencia al primer parametro que recibira la función, y $2 al segundo, $3 al tercero y asi sucesivamente.
+	echo "hola $1 y $2" 
+	codigo
+	return 
+}
+
+
+#NAMEFUNCTION  $1 $2
+NAMEFUNCTION "VALOR1" "VALOR2"						#donde VALOR1 se corresponderia al primer parametro, VALOR2 al segundo, y así sucesivamente.
+
+
+
+
+
+
+VARIABLE LOCALES:
+-------------------------------
+*Toda variable que uno declare en Linux, se declara de forma global, esto quiere decir que variables declaradas dentro de las funciones, también afectan a todo el programa, para limitar
+y que una variable solo exista dentro de una función o afecta a otra variable externa con el mismo nombre, simplemente declaramos la variable con el comando 'local'
+
+
+
+local VARIABLE=VALOR					#de esta manera se declara una variable local.
+
+
+
+
+CODIGO 1:
+------------------
+#								# esto sirve para hacer comentarios.
+echo "TEXTO"							# esto sirve para sacar por pantalla una cadena de texto
+echo "...							# aprovechando que echo tiene esta funcionalidad, podemos escribir varias lineas y luego recien cerrar comillas
+		
+	"
+
+
+echo "<html>
+	<head>Hola amigos</head>
+		...
+	</head>
+      </html>"
+
+
+
+
+
+
+PROYECTO CON SHELL SCRIPTs:
+----------------------------------
+ip a
+Hacer un 'sudo snmap -sV IPRED/24
+Luego obtener lo hosts que se encuentren activos
+Los puertos que tienen abierto y los servicios que tienen activos 
+y nos muestre todo este formato en formato HTML
+
+
+
+#!/bin/bash
+ 
+# Este programa parse los resultados de nmap y construye un documento html
+ 
+TITULO="Resultados nmap"
+FECHA_ACTUAL="$(date)"
+TIMESTAMP="Informe generado el $FECHA_ACTUAL por el usuario $USERNAME"
+ 
+nmap_exec () {
+    echo "[INFO] Ejecutando nmap en la red $1, por favor espere unos segundos..."
+    sudo nmap -sV $1 > $2
+    echo "[OK] Fichero $2 generado correctamente"
+    return 0
+}
+ 
+generar_html () {
+cat <<EOF
+<html>
+    <head>
+        <title>$TITULO</title>
+   </head>
+  <body>
+    <h1>$TITULO</h1>
+    <p1>$TIMESTAMP</p1>
+  </body>
+</html>
+ 
+EOF
+}
+ 
+#Generamos el reporte raw con nmap
+nmap_exec "192.168.239.0/24" "salida_nmap.raw"
+ 
+# Generamos el reporte con los resultados de nmap en HTML
+echo "[INFO] Generando reporte html..."
+generar_html > resultados_nmap.html
+echo "[OK] Reporte resultados_nmap.html generado correctamente"
+
+
+
+
+
+COMANDOS
+-----------------------------------------
+#								#para hacer comentarios
+echo TEXTO							#para imprimicar caracteres por pantalla
+echo "...
+	""
+variable='VALOR'
+VARIABLE='VALOR'
+declare -r NAMECONSTANTE="VALOR"
+
+
+=================================================================================================================================================================================================
+|										SECCION 18: SHELL SCRIPT: CONTROL DE FLUJO									|
+=================================================================================================================================================================================================
+
+Sentencia if:
+--------------
+*La identacion se respeta
+*En Linux no existe verdadero o falso, se evalua en base  a lo que se retorna, si se retorna un 0 es por que es verdadero, y cualquier otro valor diferente de 0 es Falso.
+*Sin embargo en Linux se emula el valor de true y false, donde true corresponde a 0 y false a 1 (o a cualquier otro valor diferente de 0)
+*Ya que true es una funcion con un return 0 y  falso otra funcion con un return 1
+
+para haya el valor del return de una funcion usamos   echo $?
+
+
+$?								#sirve para hayar el valor del return de las fucniones, las variables retornan por defecto 0.
+
+
+
+
+if EXPRESION; then									#se abre el if y se evalua el valor booleano de la expresion, esto es solo para funciones
+	codigo (que se ejecuta cuando la expresion es verdadera)
+
+else
+	codigo (que se ejecuta cuando la expresion es falsa)
+
+fi											#Para cerrar la estructura del if
+
+
+Curisosidad:
+-------------
+podemos en la shell tambien definirla ejemplo:
+	if true; then echo 'hola amigos'; else echo 'soy el falso'; fi
+
+
+
+
+
+Sentencia if: Comando test:
+-------------------------------
+*test es un comando ubicado en /usr/bin/test , que sirve para hallar el valor de una expresion.
+*[  tambien es un comando ubicado en /usr/bin/[  , que sirve para hallar el valor de una expresion, concretamente es lo mismo que el comando test
+
+
+man test
+
+
+if test EXPRESION; then									#esto si sirve para expresiones
+	codigo1
+else
+	codigo2
+fi
+
+
+
+Ejemplo:
+
+	variable1='hola'
+	if test $variable1='hola; then
+		codigo1
+	else
+		codig2
+	fi
+
+
+
+
+
+*Otra forma de referenciar una expresion y la mas comun, para usarla con el if
+
+[ EXPRESION ]
+
+
+if [ EXPRESION ]; then									#si la expresion fuera una funcion, y la funcion funciona correctamente, por mas que returne 3 u otro valor, para el if la expresion seria verdadera
+	CODIGO1
+else
+	CODIGO2
+fi
+
+
+
+Ejemplo:
+	variable='cadena'
+
+	if [ $variable='cadena' ]; then							# = y ==  en linux sirve para comprar
+		echo 'hola correcto'
+	else
+		echo 'incorrecto'
+	if
+
+
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+
+
+Expresiones para el comando test (o tambien para [])
+Expresiones utilizadas para evaluar condiciones con números:
+
+       Expresión                                    Verdadero si...
+
+integer1 -eq integer2     →     integer1 es igual a integer2
+
+integer1 -ne integer2     →     integer1 no es igual a integer2
+
+integer1 -le integer2     →     integer1 es menor que o igual a integer2
+
+integer1 -lt integer2     →     integer1 es menor que integer2
+
+integer1 -ge integer2     →     integer1 es mayor que o igual a integer2
+
+integer1 -gt integer2     →     integer1 es mayor que integer2
+
+
+
+Expresiones utilizadas para evaluar condiciones con strings:
+
+           Expresión                                    Verdadero si...
+
+string                            →     string no es null.
+
+-n string                         →     La longitud de string es mayor a cero
+
+-z string                         →     La longitud del string es cero
+
+string1 = string2       	  →     string1 y string2 son iguales
+
+string1 == string2      	  →     string1 y string2 son iguales
+
+string1 != string2      	  →     string1 y string2 no son iguales
+
+"fichero1" =~ 1$ 		#aqui estamos comparando un string con una expresion regular ,  1$ indica que el texto termine con 1
+
+
+if [[ " ${array1[@]} " =~ " $valor1 " ]]; then echo "si esta dentro" ; fi			#EJEMPLO para ver si el valor1  esta dentro de un array
+
+if [[ ! " ${array[@]} " =~ " $n " ]]; then CODIGO; fi						# ! para indicar el valor opuesto
+
+Expresiones utilizadas para evaluar condiciones con ficheros:
+
+                  Expresión                                    Verdadero si...
+
+file1 -ef file2      →     file1 y file2 tienen el mismo número de inodo (mismo hard link)
+
+file1 -nt file2      →     file1 is mas nuevo que file2
+
+file1 -ot file2      →     file1 is mas antiguo que file2
+
+-b file                        →     file existe y es un block-special (device) file
+
+-c file                        →     file existe y es un character-special (device) file
+
+-d file                        →    file existe y es un directorio
+
+-e file                        →     file existe
+
+-f file                        →     file existe y es un fichero regular
+
+-k file                        →    file existe y tiene “sticky bit”
+
+-L file                        →    file existe y es un enlace simbólico
+
+-s file                        →    file existe y tiene longitud mayor a cero
+
+-u file                        →     file existe y es setuid
+
+-w file                        →    file existe y se puede escribir (por el usuario efectivo)
+
+-x file                        →    file existe y es ejecutable (por el usuario efectivo)
+
+
+	
+
+*[[]]				#cuando comparemos string, en caso un string este vacio, conviene trabajar con doble corchete para evitar este error.
+[[ string1 == string2 ]]
+
+**********************************************************************************************************************************************
+**********************************************************************************************************************************************
+
+
+Sentencia if: Condiciones avanzadas:
+----------------------------------------------
+*Los [[]] y (( ))) solo funcionan para las versiones modernas de bash, asi que podria haber errores de retrocompatibilidad con versiones antiguas.
+
+[[ ]]						#El funcionamiento es lo mismo que [ ], la ventaja es que nos permite ademas usar tecnologias como expreisones regulares o wildcards
+
+
+	Ejemplo:
+		[[ "fichero1" =~ 1$ ]]		#aqui estamos comparando un string con una expresion regular ,  1$ indica que el texto termine con 1
+
+		
+		variable='fichero.log'
+		[[ $variable == *.log ]]
+
+		
+(( ))						#Nos permite evaluar expresiones numericas que tienen la forma mas clasica o humana vista.
+	Ejemplo:
+		(( 5 < 8 ))			# p
+
+		if (( 4 > 7 )); then ...	#Para expresiones con if tambien se puede usar.
+
+
+
+
+
+
+COMBINANDO EXPRESIONES: AND, OR y NOT
+------------------------------------------------
+AND		-a	 	&&		#Para poder usar el AND dentro de los corchetes, usamos  -a para [] y, && para [[ ]] y (())  (entre las expresiones)
+OR		-o		||		#Para poder usar el OR dentro de los corchetes, usamos -o para [] y, || para [[ ]] y (()) (entre las expresiones)
+NOT		!		!		#Para poder usar el NOT dentro de los corchetes, usamos ! para [] y, para [[ ]] y (( )) (antes de las expreiones)
+
+
+*Para [ ]
+	
+	Ejemplo:
+		[ 4 -lt 10 -a "texto" = "texto"  ]
+		[ 4 -lt 10 -o "texto" = "texto"  ]
+		[ ! 4 -lt 10 ]
+
+
+
+*Para [[ ]]
+
+	Ejemplo:
+		[[ 4 -lt 10 && "texto" = "texto" ]]		
+		[[ 4 -lt 10 || "texto" = "texto" ]]		
+		[ ! 4 -lt 10 ]
+
+
+*Para (( ))
+		[[ 4 -lt 10 && "texto" = "texto" ]]		
+		[[ 4 -lt 10 || "texto" = "texto" ]]		
+		[ ! 4 -lt 10 ]
+
+
+
+
+
+
+
+COMANDO EXIT:
+--------------------------------------------------
+*El comando exit dentro de los shell scripts tiene la siguiente funcion: Cuando nosotros usamos  return  dentro de un if o una funcion, lo que hace es terminar esa funcion
+y luego retorna y continua con las demas lineas del programa, con exit tambien se puede retornar, pero una vez haya retornado, el programa finaliza, es decir ya no continua con
+el resto del programa
+
+
+return 1			#devuelve 1, finaliza la funcion o bucle y continua con el script
+
+exit 1				#devuelve 1, finaliza la funcion o bucle y finaliza el script (cierra todo), como vemos exit tambien se utiliza para devolver valores.
+
+
+*Tanto return y exit por norma general, cuando no se le indica que valor returnar, retornar el ultimo valor que haya retornado un return que tenga el programa
+
+
+
+
+
+
+
+*Podemos comparar cadenas, numeros, etc.
+
+ESQUELO1 de ejemplo
+
+if [ EXPRESION ]; then
+	codigo1
+elif [ EXPRESION ]; then
+	codigo2
+elif [ EXPRESION ]; then
+	codigo3
+	.
+	.
+	.
+else
+	codigo N
+
+
+ESQUELO2 de ejemplo
+
+if [ EXPRESION ]; then
+	coidgo1
+	
+	if [ expresion ]; then
+		codigo2
+			.
+			.
+			.
+	else
+		codigo3
+
+else	
+	codigo4
+
+
+
+
+*Operadores de comparaciones para las expresiones:
+
+
+= o ==					# para hacer comparaciones si son iguales
+-le					# para indicar menor o igual que,   a -le b
+
+
+$((3+2))					#para aritemtica
+$((variable1 + variable2 ))			#para aritemtica
+echo "${variable} b"				#para concatenar variables
+
+
+
+
+
+
+
+BUCLE FOR:
+-----------------------------
+*Los iterables puedes ser listas, wildcards, ficheros, cualquier cosa en resumen.
+
+
+
+sintaxis FOR:
+
+
+for i in ITERABLE; do  CODIGO; done
+
+
+for i in ITERABLE; do
+	CODIGO
+done
+
+
+
+for ((i=0; i<5; i=i+1)); do
+	CODIGO
+done
+
+
+
+	ejemplo:
+		
+		for i in 1 2 3 4; do
+			echo "Esta es la iteracion $i"
+
+		done
+
+
+		for i in 1 2 3 4; do echo "$i"; done
+
+
+		for i in {1..20}; do
+			echo "Esta es la iteracion $i"
+		done
+
+
+		for i in {a..z}; do
+			echo "Esto es $i"
+		done
+
+
+		
+		for i in /var/log/*.log; do
+			echo "Esta iteracion actuara sobre el fichero $i"
+		done
+
+
+
+		for i in $(find /usr/bin -name '*zip'); do
+			echo "este es el fichero $i"
+		done
+
+
+		
+
+		for ((i=0; i<5; i=i+2); do
+			echo "Es es el valor $i"
+		done
+
+
+BUCLE WHILE:
+-----------------------------------------------------
+*Las expresiones son las mismas que IF o FOR.
+
+sintaxis WHILE:
+- - - - - - - -
+while [[ EXPRESION ]];do
+
+	CODIGO
+
+done
+
+
+
+
+Ejemplo:
+
+var=4
+while [[ $var -lt 10 ]];do
+	echo "$var"
+	var=$((var + 1)
+
+done
+
+
+
+
+
+BUCLE UNTIL: (hasta)
+--------------------------------------------------
+*Un bucle visto en shell, las expresiones que usa son las mismas que WHILE FOR IF,etc
+*Es lo contrario al bucle While
+
+
+
+until [ EXPRESION ]; do					#se ejecutara el codigo hasta que la expresion sea verdadera (lo contrario de while como se menciono)
+	CODIGO
+
+done
+
+
+
+
+
+
+
+Sentencia  CASE:
+--------------------------------------------------
+*Es lo mismo que switch de C++, o de python en la ultima versión
+*Se puede usar shell expansiones como vemos en el ejemplo 2
+
+
+Sintaxis:
+---------------------
+case "$VALOR_A_EVALUAR" in
+	VALOR1) codigo ;;			#los ;; es para indicar que hasta ahi se ejecute
+	VALOR2) codigo ;;
+	VALOR3) codigo ;;
+esac
+
+
+case "$REPLY" in				#se evalua en base al valor de la variable
+	1) codigo;;		 		# si es 1, entra en este caso
+	2) codigo2				# si es 2 aqui, y asi sucesivamente
+		;;
+	3) codigo1
+	   codigo2
+		;;
+	4) exit					#para salir si el valor de $REPLY ES 4 ya que aqui pusimos un exit
+
+esac						#para cerrar el case
+
+	
+	
+
+	
+
+ejemplo2:
+
+case "$REPLY" in
+	[[:alpha:]]  	codigo1	;;		#Como vemos valor puede ser [[:alpha:]]
+	*)		codigo2	;;		#Como vemos puede ser cualquier cosa
+	*.txt)		codigo3	;;		#o cualquier cosa que termine en txt
+	*.log)		codigo4	;;		#o en log
+	???)		codigo5	;;		#o 3 caracteres
+	1|2)		codigo6	;;		#1 o 2
+	2)		codigo7	;;		#o 2
+	3|4)		codigo8 ;;&		#&  este simbolito hace que siga evaluando las otras opciones, ya que por defecto si una condicion cumple se cierra el case
+						OJO: que esto aplica solo para lo que este debajo	
+	a)					#si es igual al caracter a
+
+	exit					#para salir del case
+			
+esac
+
+BREAK y CONTINUE
+--------------------------------------------------
+break						#rompe el bucle, es decir, termina el bucle
+continue					#continua con la siguiente iteración, ignorando el resto del codigo del bucle
+
+
+
+Ejemplo:
+
+
+
+#!/bin/bash
+
+
+
+
+while true; do
+    clear
+    cat <<EOF
+
+Por favor seleccione una opcion:
+    1.opcion a
+    2.opcion b
+    3.opcion c
+    4.salir
+EOF
+
+    read -p "Introduce tu opción: "		#Nos permite leer entrada de texto, asi como el input en python, por defecto guarda el valor que introduzcamos en la variable REPLY
+
+    if [ $REPLY = 4 ]; then
+        break
+    else
+        continue
+    fi
+
+done
+
+
+
+
+
+
+
+
+
+
+
+
+Complementando el proyecto:
+-----------------------------------------------------
+
+
+man csplit						#csplit nos permite dividir un fichero en diversas secciones en base a un patron (se puede indicar el patron usando expresiones regulares, etc), es decir con cada patron que cumpla la condicion
+							creara un fichero desde ese punto, estos ficheros empezaran su nombre con 'xx..'
+
+
+^$							#al indicar que empiece con ^  y que finalice con $, estamos indicando indirectamente una linea vacia.
+
+
+csplit NAMEFICHERO PATRON				#Para usar expresiones regulares, debemos indicarlo entre //, entonces si el patron seria expresion regular seria algo asi: /PATRON/
+csplit NAMEFICHERO /PATRONEXPRESIONREGULAR/
+
+cspli NAMEFICHERO /patron/ {2}				#buscara solo las 2 veces que aparece el patron indicado que lo usara para cortar y generar los nuevos ficheros.
+csplit NAMEFICHERO /PATRON/ {*}				#{*} indica que se repita tantas veces como sea posible, (revisa el manual de csplit)
+							(Sino indicaramos con {*}) solo cortaria una vez, en el primero que coincida con el patron
+
+
+
+
+*Como vemos podemos meter codigo shell script dentro de un codigo HTML, llamado también here document
+
+</tr>
+$(
+for i in xx*; do
+	host_ip=$(grep -E 'Nmap scan report' $i | grep -E -o '([0-9]{1,3}\.?){4}')
+
+	if [ $host_ip ]; then
+	    echo "<tr>"
+	    echo    "<td>$host_ip</td>"
+	    echo    "<td>None</td>"
+	    echo    "<td>None</td>"
+	    echo "</tr>"
+fi
+done
+)
+
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 19: SHELL SCRIPT: OTROS COMPONENTES IMPORTANTES								|
+=================================================================================================================================================================================================
+
+LECTURA DE TECLADO:
+---------------------
+*Nos permite ingresar datos por teclado a nuestro programa
+*Si utilizamos un script, estos datos ingresados se mantienen dentro de ese script.
+
+
+read 								#Nos permite ingresar datos por teclado y si no indicamos la variable lo guarda por defecto en la variable $REPLY
+
+	
+read NAMEVARIABLE						#Lo guardara los datos ingresados a la variable indicada
+
+
+read VARIABLE1 VARIABLE2 VARIABL3				#Para guardar datos en las 3 variables, (los datos a designar estan separados por espacio) (si solo damos 1 valor, solo el primero tendra un valor y los demas vacio)
+								(si indicamos mas de 3 datos, los datos restantes los guardara en la ultima variable)
+
+
+
+read -p "MOSTRAR CADENA" VARIABLE				#Para indicar una cadena de texto para que sea mas facil saber que ingresar por teclado -p(-PROMPT)
+
+read -t 5 -p "MOSTRAR CADENA" VARIABLE				#Para indicar un tiempo de espera -t 5(esperara 5 segundos para ingresar cadena de texto, se puede indicar cualquier otro valor)
+
+read -t -s -p "Introduce contraseña" VARIABLE			#-s hace que no se pueda ver la cadena de texto que estamos introduciendo. 
+
+
+
+
+
+ARGUMENTOS DE UN SHELL SCRIPTS:
+----------------------------------------
+*Nosotros podemos al igual que en funciones pasarle argumentos a nuesro script simplemente agregandolos despues del scripts
+
+
+Ejemplo:
+
+	./namescript.sh ARGUMETN1 ARGUMENTO2		#La manera de utilizar estos argumentos dentro del scripts es referenciandolos con $1, $2, $3 ... respectivamente (igual que en funciones)
+							# $#	con esto podemos saber el numero de argumentos que le pasamos a nuestro scripts
+
+
+
+
+$1							#hace referencia al argumento 1
+$2							#hace referencia al argumento 2
+$#							#hace referencia la numero de argumentos
+${10}							#hace referencia al argumento 10, ya que sino esto $10 lo entenderia como argumento 1 concatenado con el 0
+
+$0							#hace referencia al nombre del script que estamos ejecutando
+
+$*							#hace referencia a todos los argumentos que le pasamos (estaran concatenados separandose por un espacio)
+ 
+
+
+ARGUMENTOS Y PARAMETROS: CONCEPTOS AVANZADOS:
+---------------------------------------------------------
+
+./NAMEASCRIPT.SH  SHELLEXPANCION			#s
+	./namescript.sh  /var/log/*.log			#para indicar todos esos ficheros como argumentos podemos usar shell expancion
+
+
+shift							#nos sirve para decrementar los argumentos 
+
+
+while [[ $# -gt 0 ]]; do
+
+	echo "Argumento: $1"
+	shift						#esto lo que hace es a los argumentos pasados al scripts, los va rotando a la izquierda uno a uno. (es como si eliminaramos el primer argumento y el resto se mueve para la izquierda)
+							#esto es una forma de recorrer todos los argumentos pasados, con for también se puede, hay muchas formas
+done
+
+
+
+
+
+
+
+IMPORTANDO OTROS SCRIPTS: source:
+----------------------------------------------------------
+*También llamado programación modular, es importar otros ficheros a nuestro script y utilizar sus funciones o utilizades.
+
+
+source NAMEFICHERO					#nos permite importar el fichero indicado
+source NAMEFICHERO ARGUMENTO1 ARGUMENTO2 ... 		#tambien podriamos importarlo dandole argumentos a ese fichero
+
+. NAMEFICHERO 						#.  es lo mismo que 'source' , es su abreviacion, esta es otra forma de importar ficheros.
+. NAMEFICHERO ARGUMENTO1 ARGUMETNO2 ...			
+
+
+
+
+
+
+
+
+ARRAYS
+-------------------------------------------------------------
+*En Linux los Arrays son unidimensionales. (o bien son una columna o una fila)
+
+a[0]=valor1						#Asi definimos el primer valor del array
+a[1]=valor2						#Asi definimos el segundo valor del array
+a[2]=valor3						#Asi definimos el tercer valor de array
+
+NAMEARRAY=(valor1 valor2 valor3 valor4 ...)		#para definir un array con varios valores
+NAMEARRAY=([1]=valor1 [0]=valor0 [2]=valor3)		#para definir un array con varios valores indicando la posicion que ocuparan los valores
+NAMEARRAY=(*)						#todos los ficheros en la ruta actual (tambien podriamos indicar otra ruta, ejemplo /bin/*)
+
+NAMEARRAY+=(valor5 valor6 valor7 ...)			#para concatenar mas valores a nuestro array, estos se indexan a continuación despues del último valor
+
+
+echo ${a[0]}						#para referencia el primer valor del array
+echo ${a[*]}						#para referenciar todos los valores del array
+echo ${#a[*]}						#para referenciar el numero de valores del array
+echo ${#a[1]}						#para referenciar la longitud del elemento 1 del array
+		
+echo ${!a[*]}						#para saber que posiciones del array estan ocupadas
+
+
+echo ${a[@]}						#para mostrar todos los valores del array
+
+
+declare -a NAMEARRAY					#Asi también podemos declarar un array, se crea primero un array vacio llamado NAMEARRAY para este caso
+
+	Ejemplo:
+		declare -a var_array
+		var_array[0]=valor1			#declaramos el primer valor del array
+			
+		echo ${var_array[0]}			
+
+
+
+
+
+unset NAMEVARIABLE					#sirve para eliminar los valores de una variable, un array, una funcion, etc.
+
+
+
+declare -A NAMEARRAY
+
+NAMEARRAY["CLAVE"]="VALOR"				#para guardar el valor en una clave, como si fueran diccionarios en python.
+
+
+
+
+
+
+OPERADORES LOGICOS: && 	y ||
+-------------------------------------------------------------
+*Estos operadores son utilces.
+
+
+
+COMANDO1 && COMANDO2					#El comando2 se ejecuta solo si el comando1 se ejecuta
+
+COMANDO1 || COMANDO2					#El comando 2 se ejecuta solo si el comando1 no se ejecuta
+
+
+
+
+
+
+=================================================================================================================================================================================================
+|										SECCION 20: DESPEDIDA DEL CURSO											|
+=================================================================================================================================================================================================
+
+disown														El comando disown en Linux se utiliza para eliminar trabajos (jobs) de la tabla de trabajos del shell, evitando que envíen señales de 															notificación a la terminal cuando finalizan. Esto es particularmente útil cuando deseas que un proceso continúe ejecutándose después de cerrar 															la terminal o cuando no quieres recibir notificaciones sobre su estado.
+
+El %1 se refiere al número de trabajo en la tabla de trabajos. Cada trabajo que se ejecuta en segundo plano recibe un número de trabajo, que se puede ver con el comando jobs.	
+chvt 2			o 		ctrl+alt + 7								#para cambiar de tty al indicado, hay 2 maneras
+
+cut
+awk
+tr
+
+if [[ " ${array1[@]} " =~ " $valor1 " ]]; then echo "si esta dentro" ; fi					para ver si valor1 esta dentro del array
+
+
+
+cat nmap_salida.txt | grep ' open ' | cut -d '/' -f 1 | tr '\n' ',' | sed 's/.$//'  > puertos.txt
+
+
+
+curl "https://www.youtube.com/playlist?list=PLWtYZ2ejMVJmUTNE2QVaCd1y_6GslOeZ6" | perl -pe 's/\\u0026/&/g' | grep -ioE 'watch\?v=[[:graph:]]*&list=[[:alnum:]]*_[[:alnum:]]*&index=[[:alnum:]]*&pp=[[:alnum:]]*'
+
+
+curl "https://www.youtube.com/playlist?list=PLWtYZ2ejMVJmUTNE2QVaCd1y_6GslOeZ6" | perl -pe 's/\\u0026/&/g' | grep -ioE 'watch\?v=[[:graph:]]*&list=[[:alnum:]]*_[[:alnum:]]*&index=[[:alnum:]]*&pp=[[:alnum:]]*'
+
+
+perl -pe 's/cadena1/cadena2/g'					#nos permite remplazar cadenas de textos al igual que sed, pero este es mas facil para modificar unicodes como /u0026 que es = &  que a veces se usa para mostrar en el stdout de la terminal
+
+
+
+
+
+#PARA DESCARGAR LISTAS DE VIDEOS EN YOUTUBE
+------------------------------------------------------
+
+sudo apt install python3 -y 
+pip install yt-dlp
+sudo apt install ffmpeg -y
+
+
+
+
+yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best[height<=?1080]' 'https://www.youtube.com/watch?v=5O1srQNyJXo&list=PLWtYZ2ejMVJmUTNE2QVaCd1y_6GslOeZ6&index=1&pp=iAQB'
+
+
+
+
+eval $command				El comando eval en un script de bash se utiliza para evaluar una cadena como un comando de shell y ejecutarlo. Esto significa que toma la cadena dada, la analiza como si fuera un comando escrito directamente en el 						terminal, y luego ejecuta ese comando.
+
+ejemplo:
+command="ls -l"
+eval $command
+
+ejmplo2:				Puedes construir comandos de manera dinámica y ejecutarlos.
+base_command="echo"
+option="-n"
+message="Hello, World!"
+eval $base_command $option \"$message\"
+
+
+ejemplo3:				Expansión de variables: Puede usarse para expandir variables que contienen otras variables.
+varname="USER"
+eval echo \$$varname
+
+=================================================================================================================================================================================================
+|								 COMANDOS Y COMENTARIOS DEL CURSO QUE NOS PUEDEN SER UTILES PARA TODO								|
+=================================================================================================================================================================================================
+emacs 				#presionar 'q' si estas en el menu de ayuda
+				#ctrl+x   ctrl+s    para guardar
+				#ctrl+x   ctrl+c    para cerrar
+
+				#ctrl+w			para cortar
+				#ctrl+c
+				#ctrl+y	
+
+				#ctrol+b		para crear un nuevo buffer
+
+
+				#alt+x  (luego escribir 'comment region') Con esto comentara toda lo que hayamos seleccionado (es decir a cada fila agregara #)
+
+
+
+echo $?				#es la manera de sacar el valor del return de cualquier variable o comando anterior que hayamos ejecutado
+
+	ejemplo:
+		true
+		echo $?		#nos devolvera que true tiene el valor en return de 0
+
+		false
+		echo $?		#nos devolvera que false tiene el valor en return de 1		
+
+
+
+
+
+
+*Para cambiar la configuracion del teclado en Linux (en versiones antiguas)
+
+sudo loadkeys es				#cambia el teclado a español temporalmente, o sino edita el fichero /etc/X11/xorg.conf  (cambia la parte de Section: InputDevice , en donde dice 'us' por es)
+sudo setxkbmap es				#para algunas versiones modernas (funciona en el kali Linux)
+
+
+
+sudo ufw status					#para poder ver conexiones entrantes y salientes
+sudo ufw allow 8888/tcp				#para permitir conexiones tcp en el puerto indicado, ya que sino el firewall bloqueara las conexiones entrantes
+
+
+sudo ufw status numbered			#para ver con el numero de orden las reglas de firewall
+sudo ufw delete 2				#para eliminar indicando el numbered , la regla del firewall
+sudo ufw delete allow 8888/tcp			#para eliminar directamente la regla del firewall
+
+
+
+pv NAMEARCHIVO | COMANDO 			#pv se hace para poder ver el progreso de un comando (usa el pipe )
+
+
+
+PARA INICIAR UN PENTESTING, ESTAS SON LAS ETAPAS:
+
+
+•	Engagement (El acuerdo)
+•	Reconnaissance (reconocimineto)
+	-reconocimiento pasivo
+		*Lo hacemos mediante OSINT
+	-reconocimiento activo
+			Descubre los hosts activos de la red. Esto te dará como resultado una lista de direcciones IP de posibles targets.
+			Descubre los puertos abiertos en cada dirección IP encontrada previamente. 
+			Al analizar los puertos abiertos en un target, podrás darte una idea de qué tipo de host es el que estás escaneando.
+
+		*banner grabbing
+			Identifica el software y las versiones específicas que se ejecutan en los puertos abiertos descubiertos previamente. 
+			Esta información te proporciona indicadores de posibles vulnerabilidades (basadas en el servicio) para obtener 				
+			acceso al sistema a través de exploits. A esto se le conoce como banner grabbing.
+
+			
+		*OS fingerprinting
+			Descubre el sistema operativo y su arquitectura que se ejecuta en el host activo. A esto también se le conoce como OS fingerprinting. 
+			Con esta información puedes formular una estrategia de ataque basada en las vulnerabilidades del sistema operativo.
+
+
+•	Evaluación de vulnerabilidades
+•	Explotación
+•	Clean-up (Limpia)
+•	Reporte
+
+
+
+
+
+
+
+
+
+
+comm  ARCHIVO1  ARCHIVO2					Este comando compara dos archivos de texto, mostrando las líneas que son únicas para cada uno, así como las líneas que tienen en común. El comando genera 3 columnas: La primera contiene 									líneas que son exclusivas del primer archivo o argumento; el segundo contiene líneas que son exclusivas del segundo archivo o argumento. Y la tercera columna contiene líneas que son 									compartidas por ambos archivos.
+
+	-n 1 							-n  puede tener como valores 1 2 o 3, y lo que hará será suprimir la columna indicada. Los flags pueden ser por ejemplo -n 1  o -n12 (en este caso quita la columna 1 y 2)
+
+		comm  -12 archivo1  archivo2
+
+
+
+diff  archivo1  archivo2					Se utiliza para detectar diferencias entre archivos, similar a  comm.
+
+
+	-c 							Muestra las líneas diferentes usando de los archivos usando !, y las que no tengan ! significa que son iguales 
+
+	-u							muestra las líneas que coinciden en color blanco, las líneas que no coinciden del 1er archivo aparecen con el símbolo – y las del segundo archivo con +
+
+
+
+
+
