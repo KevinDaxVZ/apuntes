@@ -1,0 +1,867 @@
+-------------------------------------------------------------------------------------------------
+|	Comentarios del curso:									|
+-------------------------------------------------------------------------------------------------
+*Error al importar los datos a un esquema de MySQL usando Run SQL script.
+	*Solución 1: usar Open Script Data, se cargara los datos, y luego clic en el rayito amarillo para correr esos datos.
+	*Solución 2: Al instalar MySQL workbrench, usar otro directorio /Temp
+
+
+*SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'sakila';				 #devuelve un campo donde los valores seran los nombres de las tablas
+
+=========================================================================================================================================================================================================================================
+|													HACIENDO QUERY en MYSQL	1													|
+=========================================================================================================================================================================================================================================
+
+
+=================================================================================================
+|		comandos: 		SELECT , DISTINC, ORDER	 BY				|
+=================================================================================================
+
+
+SELECT:
+----------------
+
+**Ejemplos:
+
+	select * from sakila.actor;										# el '*' nos indica todos los campos  , 'sakila' es la base de datos, 'actor' es la tabla
+	select actor_id, first_name, last_name, last_update  from  sakila.actor;				# aqui indicamos todos los campos manualmente.
+	select first_name from sakila.actor;									# mostrara solo ese campo indicado de la tabla actor
+	select actor_id, fist_name  as  name, last_name  as  apellido, last_update  from sakila.actor;		# con 'as' indicamos que las tablas indicadas tengan otro nombre de la base de datos de 'sakila', es decir renombramos esos campos.
+	select * from sakila.city;									
+	
+
+
+DISTINCT:
+-------------------
+	
+**Ejemplos:
+
+	select distinct (first_name) from  sakila.actor;							# distinct hace que del campo que indiquemos a su continuación muestre valores unicos
+	select distinct (last_name) from sakila.actor;								# mostrara todos los apellidos ya sin repetirse
+
+
+
+
+
+
+ORDER BY:
+---------------------
+
+**Ejemplos:
+
+	select * from sakila.country ORDER BY  country  ASC;							#Ordenara en forma ascendente respecto al campo country
+	select * from sakila.country ORDER BY country DESC;							#Ordenara en forma descendente respecto al campo country
+
+
+
+*Prueba:
+------------------
+select store_id, first_name, last_name from sakila.customer;
+select store_id as Tienda, first_name as Nombre, last_name as Apellido from sakila.customer;
+select store_id as Tienda, first_name as Nombre, last_name as Apellido 
+from sakila.customer 
+order by Apellido desc;
+
+select * from sakila.payment;
+select distinct amount from sakila.payment order by amount asc;
+#mas baja 0
+select distinct amount from sakila.payment order by amount desc;
+#mas alta 11.59
+
+
+
+
+=================================================================================================
+|		comandos: 		WHERE							|
+=================================================================================================
+*Se usa para extraer registros que cumplen una condición especifica.
+*Comparadores aritmeticos son:
+	<			#menor que
+	<=			#menor o igual que
+	>			#mayor que
+	>=			#mayor o igual que
+	= 			#igual a
+	<>			#diferente de
+	%			#modulo de 
+
+**Ejemplo:
+-----------------
+
+	select * from sakila.actor WHERE first_name = 'DAN';							#Mostrara solo los campos que cumplan esa condición, como vemos, para texto se usa comillas.
+	select * from sakila.city WHERE country_id = 12;							#Mostrara solo aquellos campos que cumplan, como vemos, para numeros no se usa comillas.
+	select * from sakila.inventory WHERE film_id > 50;							#Mostara solo aqueelos campos que cumplan la condicion mayor que 50
+	select distinct amount from sakila.inventory where film_id < 50;					#Lo mismo pero para menores que 50
+	select * from sakila.film where title > 'D';								#También se puede comprar con letras del abecedario o texto, recuerda que lo compara letra a letra y comando en cuenta su valor en ascii.
+
+
+
+
+*Prueba:
+---------------------
+select * from sakila.film;
+select * from sakila.film where title = 'IMPACT ALADDIN';
+select description, release_year from sakila.film where title = 'IMPACT ALADDIN';
+
+select * from sakila.payment;
+select * from sakila.payment where amount > 0.99;
+	
+
+
+
+=================================================================================================
+|		comandos: 		AND,  OR,  NOT						|
+=================================================================================================
+*AND que ambas condiciones deben cumplirse
+*OR que alguna condicion debe ser verdadera
+*NOT cambie el valor del Bool
+
+
+**Ejemplo:
+-------------------
+	
+	select * from sakila.country where  country_id = 12  AND  country = 'mexico';				#Mostrara solo aquellos campos que cumplan esa condicion
+	select * from sakila.country where  country_id = 12  OR  country = 'mexico';				#Mostrara solo aquellos campos que cumplan alguna de esa condicion
+	select * from sakila.country where  not country_id > 12 ;						#Mostrara solo aquellos que su condición sea falsa, ya que Not lo convierte en Verdadera.
+
+
+
+*Prueba:
+---------------------
+select * from sakila.payment where customer_id = 36 and amount > 0.99 and staff_id = 1;
+select * from sakila.rental where staff_id = 1 and customer_id > 250 and inventory_id < 100;
+
+
+
+
+=================================================================================================
+|		comandos: 		IN							|
+=================================================================================================
+*IN   significa Dentro de (no es lo mismo que el in de Python ojo, ya que debe tener el mismo valor que algun valor dentro)
+*NOT IN  significa lo opuesto de dentro de
+*NOT  condicon, tambien podriamos poner el NOT mucho antes de la condición, al final es lo mismo
+
+
+
+**Ejemplo:
+-------------------
+	select * from sakila.customer where first_name in ('MARY','PATRICIA');					#donde first_name  tenga alguno de esos valores del parentesis.
+	
+	select * from sakila.film where special_features in ('Trailers', 'Trailers,Deleted Scenes') and rating in ('PG-13', 'G') and length > 100;
+	select * from sakila.category where not not name in ('Drama','Action');
+
+	SELECT * FROM sakila.city where 'B' in (city);								#Si la palabra 'B' esta dentro de city
+
+
+
+*Prueba:
+---------------------
+select * from sakila.film_text where title in ('ZORRO ARK', 'VIRGIN DAISY', 'UNITED PILOT');
+SELECT * FROM sakila.city where city in ('Chiayi','Dongying','Fukuyama','Kilis');
+
+
+
+
+=================================================================================================
+|		comandos: 		BETWEEN							|
+=================================================================================================
+*Between   significa en español, entre
+*Between se utiliza para indicar un rango de balores
+*BETWEEN se utiliza en el comando where
+
+
+**Ejemplo:
+-------------------
+	select * from sakila.rental where customer_id between 300 and 400;					#con between indicamos que debe estar entre 300 y 400 el valor de customer_id (si se considera a los extremos)
+	select * from sakila.rental where (customer_id between 300 and 400) and staff_id = 1;
+	select * from sakila.payment where (amount not between 3 and 5);
+
+
+
+*Prueba:
+---------------------
+select * from sakila.payment where (amount between 2.99 and 4.99) and staff_id = 2 and (customer_id in (1,2));
+select * from sakila.address where city_id between 300 and 350;
+select * from sakila.film where (rental_rate between 0.99 and 2.99) and length <= 50 and replacement_cost <20 ;
+
+
+=================================================================================================
+|		comandos: 		LIKE							|
+=================================================================================================
+*Esto se parece a regular expresiones
+
+*Se utiliza dentro de la clausula WHERE
+*Like significa 'como'
+*se utiliza para indicar por ejemplo que un campo empieza con determinada letra o numero o secuencia de caracteres, o termina con dicho caracter, o cualquier combinación que se nos ocurra. (como veremos en los ejemplos)
+
+%  este caracter se usa para indicar el resto
+
+'%'  todas las combinaciones
+'%A' cualquier palabra que termine en A
+'A%'  cualquier palabra que comience en A
+'%A%'  cualquier palabra que contenga un A
+'%A%B' cualquier palabra que contenga A y B. y así cualquier combinación posible.
+
+
+**Ejemplo:
+-------------------
+	select * from sakila.actor where last_name like '%A';
+	select * from sakila.actor where first_name like '%B%';
+	
+
+
+*Prueba:
+---------------------
+select * from sakila.film where release_year = '2006' and title like 'ALI%';
+
+
+
+
+=================================================================================================
+|		comandos: 	INNER JOIN,    LEFT JOIN,    RIGHT JOIN				|
+=================================================================================================
+* INNER JOIN  se usa para unir 2 tablas, las tablas deben tener una llave en común, solo unira los datos de las tablas con los mismos valores en la llave o campo en común
+* LEFT JOIN  se usa para unir 2 tablas, las tablas deben tener una llave en común, tomara como prioridad todos los valores de la tabla de la izquierda, y uniendolo con la otra tabla, en base la otra tabla no tenga un valor para dicho valor de llave
+ rellenara ese campo con un valor de NULL
+* RIGHT JOIN se usa para unir 2 tablas, pero es en el sentido opuesto de LEFT JOIN
+
+
+**Ejemplo:
+-------------------
+
+	INNER JOIN
+	-------------
+	select * from sakila.film inner join sakila.language on (sakila.film.language_id = sakila.language.language_id);		
+	select * from sakila.film f inner join sakila.language l on (f.language_id=l.language_id);					#notece que al escribir sakila.language l  , es como si renombraramos todo a solo una letra 'l'. Lo mismo para 'f'.
+	select f.title, f.description, f.release_year, l.name from (sakila.film f) inner join (sakila.language l) on (f.language_id = l.language_id);		#tenga en cuenta tambien que sakila.language l , es lo mismo que sakila.language as l 
+
+	*Como veremos se pueden combinar distintos resultados aprovechando eso de renombrar tablas, como veremos en el siguiente ejemplo:
+
+		select m.Direccion, m.Ciudad, n.Pais from (select a.address as Direccion, c.city as Ciudad from sakila.address as a inner join sakila.city as c on (a.city_id = c.city_id)) as m
+		inner join (select c.city as Ciudad, p.country as Pais from sakila.city as c inner join sakila.country as p on (c.country_id = p.country_id)) as n
+		on (m.Ciudad = n.Ciudad);
+
+
+
+	LEFT JOIN
+	-------------
+
+	select * from (sakila.city ci left join sakila.country co on (ci.country_id = co.country_id));
+
+
+	RIGHT JOIN
+	----------------
+
+	select * from (sakila.city ci right join sakila.country co on (ci.country_id = co.country_id));
+
+
+*Prueba:
+---------------------
+select a.address, a.district, c.city, p.country from sakila.address as a 
+inner join sakila.city as c
+inner join sakila.country as p
+on (a.city_id = c.city_id and c.country_id = p.country_id);
+
+
+select a.address, c.city, co.country from sakila.address a 
+inner join sakila.city c on (a.city_id = c.city_id)
+inner join sakila.country co on (c.country_id = co.country_id);
+
+
+select c.first_name, a.address, s.store_id from sakila.customer c
+left join sakila.store s on (c.store_id = s.store_id)
+left join sakila.address a on (c.address_id = a.address_id)
+
+select r.rental_id, s.first_name from sakila.rental as r
+inner join sakila.staff as s
+on (r.staff_id = s.staff_id);
+
+
+*Esta forma no es recomendada
+select a.address, a.district, c.city, p.country from sakila.address as a 
+inner join sakila.city as c
+inner join sakila.country as p
+on (a.city_id = c.city_id and c.country_id = p.country_id);
+
+=========================================================================================================================
+|		comandos: 	 COUNT,     AVG,     SUM,    MAX,   MIN,    LIMIT,	INTO OUTFILE			|
+=========================================================================================================================
+* COUNT devuelve como resultado la cantidad de datos de una tabla, o campo, etc.
+* AVG  (de average) que significa promedio en español, da el promedio de un campo de una tabla.
+* SUM (de Suma) suma todos los valores de un campo de una tabla.
+* MAX da el valor maximo de un campo de una tabla.
+* MIN da el valor minimo de un campo de una tabla.
+* LIMIT	para indicar el limite de cuantos registros podamos ver al hacer el query. (ya que por defecto es 1000)
+* INTO OUTFILE para indicar que queremos ver la query en el archivo indicado.
+
+**Ejemplo:
+-------------------
+select count(length) from sakila.film;					# cuenta cuantos datos hay en la tabla, es decir el numero de fila
+select sum(rental_rate) from sakila.film;				# suma todos los valores de rental_rate
+select avg(rental_rate) from sakila.film;				# da el promedio de sumar todos los valores de rental_rate
+select max(rental_rate) from sakila.film;				# selecciona el valor maximo de rental_rate
+select min(rental_rate) from sakila.film;				# selecciona el valor minimo de rental_rate
+select rental_duration + length from sakila.film;			# suma los valores de rental_rate + length ambos son campos de la tabla sakila.film
+select distinct(rental_rate) from sakila.film;				# muestra los valores distintos del campo rental_rate
+
+SELECT * FROM sakila.rental LIMIT 1000; 		-- Muestra los primeros 1000 registros			#con limit indicamos la cantidad maxima de registros que queremos ver
+SELECT * FROM sakila.rental INTO OUTFILE '/ruta/a/tu/archivo.txt';						# con INTO OUTFILE, hacemos que se nos muestre la salida en el archivo indicado
+
+
+
+*Prueba:
+---------------------
+select count(rental_id) from sakila.rental;
+select max(amount) from sakila.payment;
+	
+
+=================================================================================================
+|		comandos: 		GROUP BY						|
+=================================================================================================
+*GROUP by, asocia los valores respecto a un campo indicado.
+*select last_name, count(*) from sakila.actor  group by last_name;			#funciona mas o menos de la siguiente manera, para cada valor de group by, los va agrupando, y por eso es que al hacer count(*) solo nos da la cantidad de apariciones
+											de ese valor, ya que al agruparlo su tamaño de ese pequeño semigrupo instantaneo creado seria igual al valor de hacerle un count(*)
+
+
+
+
+**Ejemplo:
+-------------------
+	select first_name, count(*) from sakila.actor group by first_name;
+	select first_name, count(first_name) from sakila.actor group by first_name;
+
+
+	select c.customer_id,
+	c.first_name,
+	c.last_name,
+	sum(p.amount)
+	from sakila.payment as p
+	inner join sakila.customer as c
+	on (c.customer_id = p.customer_id)
+	group by 1,2,3;							#el 1,2,3 hacen referencia a lo que indicamos en select de forma respectiva
+
+
+	select c.customer_id,
+	c.first_name,
+	c.last_name,
+	sum(p.amount)
+	from sakila.payment as p
+	inner join sakila.customer as c
+	on (c.customer_id = p.customer_id)
+	group by c.customer_id, c.first_name, c.last_name;		#aqui un ejemplo de si no hubieramos utilizado el 1
+
+
+*Prueba:
+---------------------
+select r.customer_id, max(rental_date)
+from sakila.rental as r
+group by r.customer_id;
+
+
+
+=================================================================================================
+|		comandos: 	HAVING								|
+=================================================================================================
+*Having se creo por que la clausula where no podia hacer condicionales o agregarle funciones de agregación, 
+
+
+
+**Ejemplo:
+-------------------
+	select last_name, count(*) from sakila.actor
+	group by last_name;
+
+	select last_name, count(*) from sakila.actor
+	group by last_name
+	having count(*) > 3;								#con having si podemos hacer esta función de agregación, no se podria hacer 'where count(*) > 3', esto nos daria un error de sintaxis.
+
+
+	select p.customer_id, 
+	c.last_name, 
+	c.first_name,
+	sum(p.amount)
+	from sakila.payment as p
+	inner join sakila.customer as c
+	on (p.customer_id = c.customer_id)
+	group by 1,2,3
+	having sum(p.amount) < 60
+	order by sum(p.amount) desc;
+
+
+*Prueba:
+---------------------
+select last_name, count(*) from sakila.actor
+group by last_name
+having count(*) > 2;
+
+
+
+=================================================================================================
+|		Ejercicos complementarios							|
+=================================================================================================
+#1
+select * from sakila.actor
+where first_name like 'Scarlett';
+
+#2
+select * from sakila.actor
+having last_name like 'JOHANSSON';
+
+#3
+select count(distinct(last_name)) from sakila.actor;
+
+select count(*) from (select last_name, count(*) from sakila.actor
+group by last_name) as m;
+
+#4
+select last_name, count(*) from sakila.actor
+group by last_name
+having count(*) = 1 ;
+
+#5
+select actor_id, count(*) from sakila.film_actor
+group by actor_id;
+
+select * from 
+(select a.first_name, a.last_name, count(*) as aparicion from sakila.film_actor f
+inner join sakila.actor a
+on (f.actor_id = a.actor_id) 
+group by a.actor_id
+order by count(*) desc) as m
+having max(m.aparicion);
+
+#6
+select * from
+(select f.title, i.store_id from sakila.film as f
+inner join sakila.inventory as i
+on (f.film_id = i.film_id)
+group by 1, 2 
+order by f.film_id asc) as m
+having m.title like 'ACADEMY DINOSAUR' and m.store_id = 1;
+
+
+
+=========================================================================================================================================================================================================================================
+|													HACIENDO QUERY en MYSQL	2													|
+=========================================================================================================================================================================================================================================
+
+=========================================================================================================================
+|		comandos: 	 CHAR_LENGTH,     CONCAT,     CONCAT_WS,      ROUND,     UCASE,      LCASE,		|
+=========================================================================================================================
+	
+*CHAR_LENGTH  nos sirve para ver el tamaño de caracteres de cada valor de un campo.
+
+EJEMPLO:
+--------
+	select name, char_length(name) as 'Longitud del Nombre' from sakila.category;
+	select city, char_length(city) as 'Longitud del nombre de la ciudad' from sakila.city;
+
+
+
+
+
+*CONCAT  sirve para unir campos a un solo campo, ojo que al unir campos se uniran sin espacio, por lo que se aconseja agregar ' '.
+
+EJEMPLO:
+---------
+	SELECT *, concat(first_name, last_name) as 'Nombre completo' from sakila.actor;					#aqui nombre y apellido estaran pegados
+	SELECT *, concat(first_name,' ', last_name) as 'Nombre completo' from sakila.actor;				#aqui si esta bien
+
+
+
+
+
+*CONCAT_WS  sirve para unir pero especificando ya un caracter de intermedio al inicio.
+
+EJEMPLO:
+---------
+	select *, concat_ws(' ',first_name,last_name) as 'Nombre completo' from sakila.actor;
+
+
+
+
+
+
+*ROUND sirve para redondear valores a una cantidad de decimales indicacas. round(campo, n) 'n' en n indicamos la cantidad de decimales
+
+EJEMPLO:
+-----------
+	select *, round(amount, 0) from sakila.payment;
+ 
+
+
+*UCASE(upper case) convierte el valor del campo indicado en mayusculas. ucase(campo)
+*LCASE(lower case) convierte el valor del campo indicado en minusculas. lcase(campo)
+
+
+
+
+*prueba
+---------------------
+select * from sakila.city;
+
+select *, char_length(email) as 'Longitud_email' from sakila.customer;
+select *, concat(first_name, ' ', last_name, ' / ', email) as datos from sakila.customer;
+select *, concat_ws(' ', customer_id, store_id, first_name, last_name, email, address_id, create_date, last_update) as 'datos' from sakila.customer;
+select *, round(avg(amount), 0) as 'promedio' from sakila.payment group by customer_id;
+
+
+select city_id, ucase(city) as 'city', country_id, last_update from sakila.city;
+
+
+
+*datediff(fecha2,fecha1) 			 devuelve el valor en dias de la diferencia que hay entre las 2 fechas indicadas.
+*current_date()		 			 devuelve el dia actual en fecha. 
+
+
+set @rownum := 0;												#Esto nos ayudara a tener un indice nuevo para nuestra query
+
+@rownum := @rownum +1 as indice, 
+(abajo hay un ejemplo de su uso)
+
+=========================================================================================================================
+|		comandos: 	 INSER INTO										|
+=========================================================================================================================
+*INSERT INTO  se usa para agregar datos a una base de datos.
+*tener cuidado por que si ejecutas dos veces el mismo insert into, se agregaran dos valores iguales en la base de datos.
+
+EJEMPLO:
+-------------
+	select * from sakila.actor order by actor_id desc;							# para ver la tabla, y luego cuando volvamos a consultar veremos que se agrego el valor con el INSERT INTO
+	insert into sakila.actor (first_name, last_name) values ('KEVIN','DAX')					# Esto insertara los datos en la base de datos indicada, no se puede usar un alias aqui, se especifica sus campos y luego se 
+														  indica los valores en values, tener en cuenta que id_actor por ser indice ya se autocompleta sola. last_update tambien se 
+														  rellena sola
+
+*PRUEBA.
+------------
+insert into sakila.actor (first_name,last_name) values ('VANE','RICO');
+
+insert into sakila.address (address, district, city_id, postal_code, phone, location) 
+values ('1559 ANGAMOS ESTE','Surquillo','100', 1559, '987654321', ST_GeomFromText('POINT(128.0449753 46.9804391)', 0));
+
+insert into sakila.category (name) values ('Hot');
+
+insert into sakila.customer(store_id, first_name, last_name, email,address_id, active) values (1,'Kevin','Dax','kevin@sakilacustomer.org', 600, 1);
+
+insert into sakila.film_text (film_id, title, description) 
+values (1001,'PIRATAS DEL CARIBE','Esta saga de películas se basa libremente en mitos y leyendas de los mares, como el');
+
+
+
+
+=========================================================================================================================
+|		comandos: 	 UPDATE											|
+=========================================================================================================================
+*sirve para actualizar valores de los campos de las tablas de la base de datos.
+
+
+EJEMPLO
+------------
+	update sakila.actor set first_name = 'KATY' where actor_id = 203;					# actualiza el valor del campo indicado que cumpla la condición dada.
+
+	update sakila.actor 
+	set sexo='M' where actor_id = 1;
+
+	update sakila.actor 
+	set sexo='MA' where actor_id = 2;
+
+*PRUEBA:
+---------
+update sakila.actor set first_name = 'KATY' where actor_id = 203;
+
+update sakila.address set address = 'Angamos Oeste' where address_id = 609;
+
+UPDATE sakila.category set name = 'Dorama' where category_id = 18 ;
+
+update sakila.customer set email = 'kevindaxvz@sakilacustomer.org' where customer_id = 600;
+
+update sakila.film_text set title = 'PIRATES OF THE CARIBBEAN' where film_id= 1001;
+
+
+
+=========================================================================================================================
+|		comandos: 	ALTER TABLE										|
+=========================================================================================================================
+*Nos sirve para añadir columnas o quitar columnas a nuestra base de datos. (OJO que se lo aplica a la base de datos original)
+
+*sintax:  ALTER TABLE basededatos_tabla ADD COLUMN nombrenewcolumna CHAR (1);			#CHAR se usa para indicar el tipo de dato que tendra, y (1) indica la longitud del dato. Ojo que si luego en ese campo intentas meter un dato
+											mayor al tamaño indicado, se producira un error
+*sintax:  ALTER TABLE basededatos_tabla DROP COLUMN nombrecolumn;				#DROP se usa para eliminar la columna indicada.
+
+
+EJEMPLO:
+-----------
+	alter table sakila.actor add column sexo char(1);
+	alter table sakila.actor drop column sexo;
+
+prueba:
+----------
+alter table sakila.film_text add column categoria char (20);					#Creamos la columna indicada
+
+update sakila.film_text set categoria = film_id where film_id < 11;		#Actualizamos los valore para los 10 primeros indicados en el ejercicio.
+
+update sakila.film_text as fte 
+set fte.categoria = (select fc.category_id from sakila.film_category as fc where fc.film_id = fte.film_id)  
+where fte.film_id <50;
+
+
+
+update sakila.film_text as fte 
+set fte.categoria = (select fc.name from (select fc.film_id, cc.name from sakila.film_category as fc 
+inner join sakila.category as cc 
+on (fc.category_id = cc.category_id)
+order by fc.film_id) as fc 
+where fc.film_id = fte.film_id)  
+where fte.film_id < 1001 +1 ;
+
+=========================================================================================================================
+|		comandos: 	CASE											|
+=========================================================================================================================
+*Nos sirve para agregar un comentario en caso o no se cumple la condicion dada.
+
+
+sintaxis:
+---------
+	select a,b,
+	case 
+	 when c is null			#aqui se especifica la condicion, en este caso cuando 'c' is 'null'
+	 then 'hola1'			#entonces rellena el campo 'd' con 'hola1'
+	 else 'hola2'			#en caso no se cumpla, rellena el campo con 'hola2'
+	 end as d			#aqui d es el nombre de la columna
+	 from sakila.addres;
+
+
+	 select payment_id, amount, 
+	 case 
+		when amount < 1 then 'precio minimo'										#condicion 1
+		when amount between 1 and 3 then 'precio intermedio'								#condicion 2
+	   	else 'precio maximo'												#caso que no se cumplan las condiciones
+	 end as comentario 
+	 from sakila.payment;
+
+
+prueba:
+---------
+select *,
+case 
+ when rental_rate < 1 then 'Pelicula mala'
+ when rental_rate between 1 and 3 then 'Pelicula Buena'
+ else 'Pelicula excelente'
+end as comentario
+from sakila.film;
+
+
+=========================================================================================================================
+|		comandos: 	Consultas Multitablas									|
+=========================================================================================================================
+Ejercicio 1: hecho por Dax
+--------------------------------
+select r1.staff_id, concat_ws(' ', first_name, last_name) as 'nombre_completo' , email, store_id, Total_generado from (select staff_id, sum(amount) as 'Total_generado' from sakila.payment group by staff_id) as r1
+inner join sakila.staff as st on (r1.staff_id = st.staff_id) order by Total_generado desc;
+
+
+
+Ejercicio 2: ¿Que vendedor vendio mas el mes de agosto del 2005?
+-------------------------------------------------------------------
+select 
+st.first_name,
+st.last_name,
+sum(pay.amount) 
+from 
+sakila.payment pay
+inner join sakila.staff as st on (pay.staff_id = st.staff_id) and pay.payment_date like '2005-08%'
+group by st.first_name, last_name;
+
+
+select 
+st.first_name,
+st.last_name,
+sum(pay.amount) 
+from 
+sakila.payment pay
+inner join sakila.staff as st on (pay.staff_id = st.staff_id) and pay.payment_date like '2005-08%'
+group by st.staff_id;
+
+
+Ejercicio 3:
+--------------------------------------
+select fm.film_id, fm.title, fm.release_year, count(fa.actor_id) as 'Cantidad_de_Actores'
+from sakila.film as fm
+inner join sakila.film_actor fa on (fm.film_id = fa.film_id)
+group by fm.film_id 
+;
+
+
+
+Ejercicio 4:
+-----------------
+select film.title, count(*) 'cantidad de copias' from sakila.inventory inv 
+inner join sakila.film film on (inv.film_id = film.film_id) and film.title like 'HUNCHBACK%'
+group by film.title;
+
+
+Ejercicio 5:
+-------------------
+select cus.first_name, cus.last_name, sum(amount) as 'Total gastado' from sakila.customer as cus
+inner join sakila.payment as pay 
+on cus.customer_id = pay.customer_id
+group by cus.first_name, cus.last_name
+order by cus.last_name asc
+;
+
+
+
+**PRUEBA:
+-----------------------------
+
+set @rownum := 0;												#Esto nos ayudara a tener un indice nuevo para nuestra query
+
+select 
+@rownum := @rownum +1 as indice, 
+re.rental_date, re.return_date, datediff(re.return_date, re.rental_date) as 'Dias-pasados',
+fil.rental_duration, 
+fil.title,
+cu.first_name, cu.last_name, cu.email,
+addr.address, addr.district, addr.postal_code, addr.phone, addr.location 
+from sakila.rental re
+left join sakila.inventory inv on (re.inventory_id = inv.inventory_id)
+left join sakila.film fil on (inv.film_id = fil.film_id)
+left join sakila.customer cu on (re.customer_id = cu.customer_id)
+left join sakila.address addr on (cu.address_id = addr.address_id)
+where re.return_date is null or datediff(re.return_date, re.rental_date) > fil.rental_duration
+limit 10000
+;
+
+
+
+
+
+
+
+
+=========================================================================================================================
+|		comandos: 	SUBQUERIES										|
+=========================================================================================================================
+
+**Prueba:
+----------
+#1. Encuentre el nombre completo y la dirección de correo electrónico de todos los clientes que hayan alquilado una película de acción.
+
+select first_name, last_name, email from sakila.customer where customer_id in 
+(select customer_id from sakila.rental where inventory_id in 
+	(select inventory_id from sakila.inventory where film_id in 
+		(select film_id from sakila.film_category where category_id in 
+			(select category_id from sakila.category where name = 'Action')
+))
+);
+
+#2. Todos los pagos que exceden el promedio para cada cliente junto con el recuento total de pagos que exceden el promedio.
+
+select r1.customer_id, r1.amount, r2.Total_Superior_al_promedio from
+(select * from sakila.payment where amount > (select avg(amount) from sakila.payment)) as r1
+inner join 
+ (select pavg.customer_id,count(pavg.customer_id) as 'Total_Superior_Al_Promedio' from (select * from sakila.payment where amount > (select avg(amount) from sakila.payment)) as pavg group by pavg.customer_id) as r2
+on (r1.customer_id = r2.customer_id)
+;
+
+
+=========================================================================================================================
+|		comandos: 	VIEWS										|
+=========================================================================================================================
+*CREATE VIEW name AS (tabla)  , sirve para crear tablas virtuales o momentaneas y usarlas como si fueran variables que almacenan tablas
+*set @name := valor; sirve para crear una variable que almacenara solo 1 valor.
+
+
+use sakila;					#indicamos que estamos usando esta base de datos, eso nos evita estar escribiendo sakila. antes de especificar una tabla
+
+create view cliente_info as													#crea una tabla virtual o momentanea, o una variable por asi decirlo para usarla mas rapida
+select cu.customer_id, cu.first_name, cu.last_name, ad.address, ad.phone from sakila.customer  cu
+inner join sakila.address ad on (cu.address_id = ad.address_id);
+
+USE mysql; -- Puedes usar cualquier base de datos que sepas que existe
+DROP VIEW cliente_info;														#elimina datos de esa variable
+DROP VIEW IF EXISTS cliente_info;												#elimina si es que existe ese campo
+
+
+**PRUEBA:
+-----------------
+create view lista_clientes as
+select concat(first_name,' ',last_name) as 'NombreCompleto', concat(postal_code, ' ',district ) as 'Direccion'  from sakila.customer cu
+inner join 
+sakila.address ad on (cu.address_id = ad.address_id);
+
+
+select * from lista_clientes;
+
+
+
+=========================================================================================================================
+|		comandos:         UNION											|
+=========================================================================================================================
+
+
+*El operador UNION en SQL se utiliza para combinar dos o más conjuntos de resultados de instrucciones SELECT. Para utilizar el operador UNION, la consulta de SQL debe cumplir ciertos requisitos:
+
+	Cada instrucción SELECT dentro de UNION debe tener el mismo número de columnas.
+
+	Las columnas deben tener tipos de datos similares o compatibles.
+
+	Las columnas de cada instrucción SELECT deben estar en el mismo orden.
+
+
+Ejemplo:
+
+	select * from sakila.usuarios  UNION  select * from sakila.administradores
+
+
+
+*Básicamente, lo que estamos diciendo con esta consulta es:
+	Selecciona todos ("todo" se define con un asterisco *) los registros de la tabla llamada Usuarios y selecciona todos los registros de la tabla llamada Administradores y únelos en un solo resultado. El resultado es el siguiente:
+
+
+*Este ejemplo cumple todos los requisitos del operador UNION: ambas tablas tienen tres campos del mismo tipo de datos y las columnas están en el mismo orden. Pero ¿qué pasaría si una de las tablas, digamos la tabla Usuarios, tiene un campo adicional? En este caso, el servidor de SQL produciría un error porque el número de columnas de cada tabla no coinciden. Para resolver esto, tendríamos que editar la consulta SQL para que el número de columnas en cada instrucción SELECT sea igual. En lugar de la instrucción SELECT * podríamos hacer lo siguiente:
+
+
+	select username, contraseña, userid from sakila.usuarios  UNION select username, contraseña, userid from sakila.administradores	
+
+
+
+select first_name, last_name from actor where actor_id=1  UNION select null, version()  UNION select database(), user() UNION select @@hostname, @@basedir UNION select UUID(), current_user() UNION select @@tmpdir, @@datadir #'
+
+select * from information_schema.tables;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE nombre_de_la_base_de_datos;
+
+
+DELETE FROM nombre_de_la_tabla WHERE id = valor_id;
+
+Supongamos que tienes una tabla llamada usuarios y deseas eliminar la fila con id igual a 123.
+
+
+DELETE FROM usuarios WHERE id = 123;
+
+
+
